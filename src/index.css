@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-bg: #0a0e17;
+  --color-terminal-surface: #111827;
+  --color-terminal-border: #1e293b;
+  --color-terminal-text: #e0e6f0;
+  --color-terminal-muted: #64748b;
+  --color-terminal-cyan: #22d3ee;
+  --color-terminal-purple: #a78bfa;
+  --color-terminal-green: #34d399;
+  --color-terminal-red: #f87171;
+  --color-terminal-amber: #fbbf24;
+  --color-terminal-blue: #60a5fa;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-terminal-bg);
+  font-family: var(--font-mono);
+  color: var(--color-terminal-text);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-terminal-bg);
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-terminal-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-terminal-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terminal-muted);
+}
+
+/* Cursor blink animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scanline effect */
+.scanline-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  z-index: 50;
+}
+
+/* CRT glow */
+.terminal-glow {
+  box-shadow:
+    0 0 40px rgba(34, 211, 238, 0.03),
+    0 0 80px rgba(34, 211, 238, 0.02),
+    inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: var(--color-terminal-text);
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 12px;
+  }
+}
