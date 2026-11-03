@@ -75,7 +75,6 @@ button:focus-visible {
   min-height: 100vh;
   min-height: 100dvh;
   padding: var(--gutter);
-  max-width: 120ch;
   overflow-wrap: break-word;
   cursor: text;
 }
@@ -142,6 +141,8 @@ button:focus-visible {
   flex: none;
   color: var(--logo-bubble);
   font-family: inherit;
+  /* Set from Home.tsx so the logo is as tall as the text beside it. */
+  font-size: var(--logo-size, 1em);
   font-weight: 700;
   line-height: 1.15;
   white-space: pre;
@@ -154,6 +155,12 @@ button:focus-visible {
   flex: 1;
   min-width: 0;
   container-type: inline-size;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--line-height) * 0.5em);
 }
 
 /* 57-column block-letter title. Body size when it fits; otherwise shrinks to
@@ -182,7 +189,6 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: calc(var(--line-height) * 1em);
-  max-width: 100ch;
 }
 
 .entry-title {
