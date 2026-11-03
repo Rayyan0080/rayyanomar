@@ -14,6 +14,12 @@ function logoRuns(row: string) {
 }
 
 const logoLines = asciiLogoRows.map(logoRuns);
+const introLines = Array.isArray(profile.intro)
+  ? profile.intro
+  : profile.intro
+      .split(/\n+/)
+      .map(line => line.trim())
+      .filter(Boolean);
 
 export default function Home() {
   return (
@@ -34,7 +40,7 @@ export default function Home() {
         <p className="bold">{profile.name}</p>
         <p>{profile.title}</p>
         <div className="gap" />
-        {profile.intro.map(line => (
+        {introLines.map(line => (
           <p key={line}>{line}</p>
         ))}
         <div className="gap" />
