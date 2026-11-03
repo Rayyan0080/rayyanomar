@@ -27,8 +27,10 @@ export default function Home() {
         ))}
       </pre>
       <div className="home-info">
-        <h1 className="accent bold">{profile.handle}</h1>
-        <div className="muted" aria-hidden="true">{'-'.repeat(profile.handle.length)}</div>
+        <h1 className="banner" aria-label={profile.handle}>
+          <pre aria-hidden="true">{profile.handleBanner}</pre>
+        </h1>
+        <div className="gap" />
         <p className="bold">{profile.name}</p>
         <p>{profile.title}</p>
         <div className="gap" />

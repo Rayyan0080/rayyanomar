@@ -153,6 +153,17 @@ button:focus-visible {
 .home-info {
   flex: 1;
   min-width: 0;
+  container-type: inline-size;
+}
+
+/* 57-column block-letter title. Body size when it fits; otherwise shrinks to
+   the column width (57 glyphs x ~0.6em = 34.2em, plus a little slack). */
+.banner pre {
+  color: var(--accent);
+  font-family: inherit;
+  font-size: min(1em, 100cqw / 35);
+  line-height: 1.2;
+  white-space: pre;
 }
 
 .cmd-list { margin-top: 0; }
@@ -220,6 +231,10 @@ button:focus-visible {
 
   /* 38 columns at ~0.6em per glyph = ~23em: stays inside the gutters. */
   .logo { font-size: min(3.6vw, 15px); }
+
+  /* .home-info is a size container, so it can't size from its content;
+     stretch it to the full width in the stacked layout. */
+  .home-info { align-self: stretch; }
 }
 
 @media (max-width: 640px) {

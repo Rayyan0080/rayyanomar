@@ -1,6 +1,11 @@
 export const profile = {
   name: 'Rayyan Omar',
   handle: 'RayyanOmar.exe',
+  /** Block-letter rendering of `handle`, shown as the home screen title. */
+  handleBanner: [
+    '█▀█ ▄▀█ █▄█ █▄█ ▄▀█ █▄░█ █▀█ █▀▄▀█ ▄▀█ █▀█  █▀▀ ▀▄▀ █▀▀',
+    '█▀▄ █▀█ ░█░ ░█░ █▀█ █░▀█ █▄█ █░▀░█ █▀█ █▀▄  ██▄ █░█ ██▄',
+  ].join('\n'),
   title: 'Software Engineering Student',
   intro: [
     'BASc Software Engineering (Co-op) at the University of Ottawa.',
