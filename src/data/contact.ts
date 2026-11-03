@@ -4,6 +4,6 @@ import { ContactInfo } from '../types';
 export const contact: ContactInfo = {
   email: 'rayyanomarz@gmail.com',
   phone: '613-762-5308',
-  linkedin: '', // e.g. 'https://www.linkedin.com/in/your-profile'
+  linkedin: 'https://www.linkedin.com/in/rayyanomar/',
   github: 'https://github.com/Rayyan0080',
 };
