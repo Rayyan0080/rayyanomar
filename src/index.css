@@ -8,6 +8,8 @@
   --user: #5fd75f; /* prompt user@host, like bash */
   --path: #5f87d7;
   --error: #e06c6c;
+  --logo-bubble: #51a2da;
+  --logo-letter: #ffffff;
   --font: 'JetBrains Mono', ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
   /* One type size for everything, scaled to the viewport. */
   --font-size: clamp(13px, 0.3vw + 11px, 16px);
@@ -135,15 +137,18 @@ button:focus-visible {
   gap: 4ch;
 }
 
+/* Tighter rows than body text so the bubble renders round, not as a tall oval. */
 .logo {
   flex: none;
-  color: var(--accent);
+  color: var(--logo-bubble);
   font-family: inherit;
   font-weight: 700;
-  line-height: var(--line-height);
+  line-height: 1.15;
   white-space: pre;
   user-select: none;
 }
+
+.logo-letter { color: var(--logo-letter); }
 
 .home-info {
   flex: 1;
@@ -205,18 +210,19 @@ button:focus-visible {
 
 /* ---------- Phone: stack the logo above the text ---------- */
 
-@media (max-width: 640px) {
+/* The logo is 38 columns wide, so stack it above the text before the info
+   column gets cramped. */
+@media (max-width: 760px) {
   .home {
     flex-direction: column;
     gap: calc(var(--line-height) * 1em);
   }
 
-  /* 24 columns at ~0.6em per glyph: fits within ~55% of the viewport. */
-  .logo {
-    font-size: min(3.8vw, 14px);
-    line-height: 1.25;
-  }
+  /* 38 columns at ~0.6em per glyph = ~23em: stays inside the gutters. */
+  .logo { font-size: min(3.6vw, 15px); }
+}
 
+@media (max-width: 640px) {
   .cmd-row { grid-template-columns: 17ch minmax(0, 1fr); column-gap: 1ch; }
 }
 

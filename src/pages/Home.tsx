@@ -1,10 +1,31 @@
-import { asciiLogo, profile } from '../data/profile';
+import { asciiLogoRows, LOGO_LETTER, profile } from '../data/profile';
 import { availableCommands } from '../utils/commands';
+
+/** Split a logo row into runs of bubble/letter characters for colouring. */
+function logoRuns(row: string) {
+  const runs: { letter: boolean; text: string }[] = [];
+  for (const ch of row) {
+    const letter = LOGO_LETTER.test(ch);
+    const last = runs[runs.length - 1];
+    if (last && last.letter === letter) last.text += ch;
+    else runs.push({ letter, text: ch });
+  }
+  return runs;
+}
+
+const logoLines = asciiLogoRows.map(logoRuns);
 
 export default function Home() {
   return (
     <section className="home">
-      <pre className="logo" aria-label="R">{asciiLogo}</pre>
+      <pre className="logo" role="img" aria-label="R logo">
+        {logoLines.map((runs, i) => (
+          <span key={i}>
+            {runs.map((r, j) => (r.letter ? <span key={j} className="logo-letter">{r.text}</span> : r.text))}
+            {i < logoLines.length - 1 && '\n'}
+          </span>
+        ))}
+      </pre>
       <div className="home-info">
         <h1 className="accent bold">{profile.handle}</h1>
         <div className="muted" aria-hidden="true">{'-'.repeat(profile.handle.length)}</div>
