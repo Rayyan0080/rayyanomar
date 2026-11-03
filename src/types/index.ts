@@ -1,6 +1,8 @@
 export interface Project {
   name: string;
+  year?: string;
   description: string;
+  highlights?: string[];
   technologies: string[];
   github?: string;
   live?: string;
@@ -9,10 +11,11 @@ export interface Project {
 export interface Experience {
   organization: string;
   position: string;
+  location?: string;
   startDate: string;
   endDate: string;
   responsibilities: string[];
-  skills: string[];
+  skills?: string[];
   achievements?: string[];
 }
 
@@ -36,7 +39,8 @@ export interface ContactInfo {
 }
 
 export interface TerminalLine {
-  type: 'input' | 'output' | 'error' | 'success' | 'info' | 'system';
+  type: 'input' | 'output' | 'error';
   content: string;
-  prompt?: string;
+  /** Working directory shown in the prompt for echoed input lines. */
+  path?: string;
 }

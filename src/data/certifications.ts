@@ -1,11 +1,10 @@
 import { Certification } from '../types';
 
-export const certifications: Certification[] = [
-  {
-    name: '[PLACEHOLDER - Certification Name]',
-    issuer: '[PLACEHOLDER - Issuing Organization]',
-    date: '[PLACEHOLDER - Date Obtained]',
-    credentialUrl: '[PLACEHOLDER - Credential URL]',
-  },
-  // [PLACEHOLDER] Add more certifications as needed
-];
+// Add certifications here, e.g.:
+// {
+//   name: 'Certification Name',
+//   issuer: 'Issuing Organization',
+//   date: 'Month YYYY',
+//   credentialUrl: 'https://...',
+// },
+export const certifications: Certification[] = [];

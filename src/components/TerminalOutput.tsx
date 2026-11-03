@@ -1,27 +1,14 @@
 import { TerminalLine } from '../types';
+import Prompt from './Prompt';
 
-interface TerminalOutputProps {
-  lines: TerminalLine[];
-}
-
-const colorMap: Record<TerminalLine['type'], string> = {
-  input: 'text-terminal-purple',
-  output: 'text-terminal-text',
-  error: 'text-terminal-red',
-  success: 'text-terminal-green',
-  info: 'text-terminal-text',
-  system: 'text-terminal-muted',
-};
-
-export default function TerminalOutput({ lines }: TerminalOutputProps) {
+export default function TerminalOutput({ lines }: { lines: TerminalLine[] }) {
+  if (lines.length === 0) return null;
   return (
-    <div className="flex flex-col">
+    <div className="output">
       {lines.map((line, i) => (
-        <div key={i} className={`${colorMap[line.type]} text-xs sm:text-sm whitespace-pre-wrap break-words`}>
-          {line.prompt && (
-            <span className="text-terminal-cyan mr-2">{line.prompt}</span>
-          )}
-          <span>{line.content}</span>
+        <div key={i} className={`line line-${line.type}`}>
+          {line.type === 'input' && <Prompt path={line.path ?? '~'} />}
+          {line.content}
         </div>
       ))}
     </div>

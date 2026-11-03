@@ -12,29 +12,18 @@ This website is designed to be operated **entirely through keyboard input**, lik
 
 ### Terminal Commands
 
+Commands run when you press Enter. Typing anywhere on the page goes to the prompt, and the up/down arrow keys move through command history.
+
 | Command | Description |
 |---|---|
 | `help` | Show available commands |
 | `ls` | List available sections |
-| `cd <section>` | Navigate to a section (e.g., `cd projects`) |
-| `home` | Return to home page |
-| `back` | Go to previous page |
+| `cd <section>` | Open a section (`projects`, `experience`, `certifications`, `interests`, `contact`) |
+| `cd ~` | Return to the home screen |
+| `back` | Go to the previous page |
 | `pwd` | Show current directory |
-| `clear` | Clear terminal output |
+| `clear` | Clear terminal output (also `Ctrl+L`) |
 | `resume` | Download resume PDF |
-
-### Keyboard Shortcuts
-
-| Key | Action |
-|---|---|
-| `H` | Home |
-| `P` | Projects |
-| `E` | Experience |
-| `C` | Certifications |
-| `I` | Interests |
-| `T` | Contact |
-| `R` | Download Resume |
-| `ESC` | Go Back |
 
 ## 🛠️ Development
 
@@ -63,7 +52,7 @@ All portfolio content is stored in the `src/data/` directory:
 
 | File | Content |
 |---|---|
-| `profile.ts` | Name, title, summary, intro |
+| `profile.ts` | Name, title, intro, ASCII logo |
 | `projects.ts` | Software projects |
 | `experience.ts` | Work experience |
 | `certifications.ts` | Certifications |
@@ -96,7 +85,5 @@ The workflow file is at `.github/workflows/deploy.yml`.
 
 - **React 19** + **TypeScript**
 - **Vite** (build tool)
-- **Tailwind CSS v4** (styling)
+- **Plain CSS** (`src/index.css`, via the Tailwind v4 Vite plugin)
 - **React Router** (navigation with HashRouter)
-- **Framer Motion** (animations)
-- **Lucide React** (icons)

@@ -1,103 +1,228 @@
 @import "tailwindcss";
 
-@theme {
-  --color-terminal-bg: #0a0e17;
-  --color-terminal-surface: #111827;
-  --color-terminal-border: #1e293b;
-  --color-terminal-text: #e0e6f0;
-  --color-terminal-muted: #64748b;
-  --color-terminal-cyan: #22d3ee;
-  --color-terminal-purple: #a78bfa;
-  --color-terminal-green: #34d399;
-  --color-terminal-red: #f87171;
-  --color-terminal-amber: #fbbf24;
-  --color-terminal-blue: #60a5fa;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg: #0c0c0c;
+  --fg: #d0d0d0;
+  --muted: #8a8a8a;
+  --accent: #5fafd7; /* logo and headings */
+  --user: #5fd75f; /* prompt user@host, like bash */
+  --path: #5f87d7;
+  --error: #e06c6c;
+  --font: 'JetBrains Mono', ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+  /* One type size for everything, scaled to the viewport. */
+  --font-size: clamp(13px, 0.3vw + 11px, 16px);
+  --line-height: 1.4;
+  --gutter: clamp(16px, 2.5vw, 32px);
 }
 
 html {
-  background: var(--color-terminal-bg);
-  font-family: var(--font-mono);
-  color: var(--color-terminal-text);
-  font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
+  margin: 0;
   min-height: 100vh;
-  background: var(--color-terminal-bg);
+  min-height: 100dvh;
+  background: var(--bg);
   overflow-x: hidden;
 }
 
-#root {
+::selection {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+h1,
+h2,
+p,
+dl,
+dd,
+ul,
+pre {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 1px;
+}
+
+.bold { font-weight: 700; }
+.muted { color: var(--muted); }
+.accent { color: var(--accent); }
+.gap { height: calc(var(--line-height) * 1em); }
+
+/* ---------- Terminal ---------- */
+
+.terminal {
   min-height: 100vh;
+  min-height: 100dvh;
+  padding: var(--gutter);
+  max-width: 120ch;
+  overflow-wrap: break-word;
+  cursor: text;
+}
+
+.line {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.line-error { color: var(--error); }
+
+.prompt { white-space: pre-wrap; }
+.prompt-user { color: var(--user); font-weight: 700; }
+.prompt-path { color: var(--path); font-weight: 700; }
+
+.output,
+.input-line { margin-top: calc(var(--line-height) * 1em); }
+.output + .input-line { margin-top: 0; }
+
+.input-line { position: relative; }
+
+.input-mirror { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.cursor {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.cursor-unfocused {
+  background: transparent;
+  color: inherit;
+  outline: 1px solid var(--fg);
+  outline-offset: -1px;
+}
+
+/* The native input stays on top for typing but is invisible; the mirror
+   above draws the text and the static block cursor. 16px avoids iOS zoom. */
+.input-native {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  font: inherit;
+  font-size: 16px;
+  opacity: 0;
+}
+
+/* ---------- Home (neofetch-style) ---------- */
+
+.home {
+  display: flex;
+  align-items: flex-start;
+  gap: 4ch;
+}
+
+.logo {
+  flex: none;
+  color: var(--accent);
+  font-family: inherit;
+  font-weight: 700;
+  line-height: var(--line-height);
+  white-space: pre;
+  user-select: none;
+}
+
+.home-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cmd-list { margin-top: 0; }
+
+.cmd-row {
+  display: grid;
+  grid-template-columns: 18ch minmax(0, 1fr);
+  column-gap: 2ch;
+}
+
+.cmd-row dt { white-space: nowrap; }
+
+/* ---------- Section pages ---------- */
+
+.page {
   display: flex;
   flex-direction: column;
+  gap: calc(var(--line-height) * 1em);
+  max-width: 100ch;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-terminal-bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--color-terminal-border);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-terminal-muted);
+.entry-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 2ch;
 }
 
-/* Cursor blink animation */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+.bullets { list-style: none; padding: 0; }
+
+.bullets li {
+  padding-left: 2ch;
+  text-indent: -2ch;
 }
 
-.cursor-blink {
-  animation: blink 1s step-end infinite;
+.bullets li::before { content: '- '; }
+
+.kv-row {
+  display: grid;
+  grid-template-columns: 10ch minmax(0, 1fr);
+  column-gap: 2ch;
 }
 
-/* Scanline effect */
-.scanline-overlay {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
-  z-index: 50;
+.text-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
-/* CRT glow */
-.terminal-glow {
-  box-shadow:
-    0 0 40px rgba(34, 211, 238, 0.03),
-    0 0 80px rgba(34, 211, 238, 0.02),
-    inset 0 0 60px rgba(0, 0, 0, 0.3);
+@media (max-width: 900px) {
+  .home { gap: 3ch; }
 }
 
-/* Selection styling */
-::selection {
-  background: rgba(34, 211, 238, 0.3);
-  color: var(--color-terminal-text);
-}
+/* ---------- Phone: stack the logo above the text ---------- */
 
 @media (max-width: 640px) {
-  html {
-    font-size: 12px;
+  .home {
+    flex-direction: column;
+    gap: calc(var(--line-height) * 1em);
   }
+
+  /* 24 columns at ~0.6em per glyph: fits within ~55% of the viewport. */
+  .logo {
+    font-size: min(3.8vw, 14px);
+    line-height: 1.25;
+  }
+
+  .cmd-row { grid-template-columns: 17ch minmax(0, 1fr); column-gap: 1ch; }
+}
+
+@media (max-width: 380px) {
+  /* Very narrow: put each description under its command. */
+  .cmd-row,
+  .kv-row { grid-template-columns: minmax(0, 1fr); }
+  .cmd-row dd { padding-left: 2ch; }
 }

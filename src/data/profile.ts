@@ -1,13 +1,32 @@
 export const profile = {
   name: 'Rayyan Omar',
-  title: 'Software Engineer',
-  summary: 'Passionate software engineer with experience in full-stack development, building modern web applications, and solving complex technical problems. Driven by a commitment to clean code, continuous learning, and creating impactful digital experiences.',
+  handle: 'RayyanOmar.exe',
+  title: 'Software Engineering Student',
   intro: [
-    'Welcome to my terminal portfolio.',
-    '',
-    'I am a software engineer who loves building things that live on the internet.',
-    'My focus is on creating elegant, performant, and accessible digital experiences.',
-    '',
-    'Type "help" to see available commands, or use the keyboard shortcuts below.',
+    'BASc Software Engineering (Co-op) at the University of Ottawa.',
+    'I build full-stack and AI-driven systems with FastAPI, React, Spring Boot and multi-agent workflows.',
   ],
 };
+
+/** Monospaced logo for the home screen. Every row is padded to the same width. */
+const LOGO_ROWS = [
+  '###################',
+  '######################',
+  '######         ########',
+  '######            ######',
+  '######            ######',
+  '######            ######',
+  '######         ########',
+  '######################',
+  '###################',
+  '######      ######',
+  '######       ######',
+  '######        ######',
+  '######         ######',
+  '######          ######',
+  '######           ######',
+  '######            ######',
+];
+
+const LOGO_WIDTH = Math.max(...LOGO_ROWS.map(r => r.length));
+export const asciiLogo = LOGO_ROWS.map(r => r.padEnd(LOGO_WIDTH)).join('\n');

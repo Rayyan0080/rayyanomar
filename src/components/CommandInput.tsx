@@ -1,95 +1,119 @@
-import { useRef, useEffect, type KeyboardEvent } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type RefObject } from 'react';
+import Prompt from './Prompt';
 
 interface CommandInputProps {
+  inputRef: RefObject<HTMLInputElement | null>;
   value: string;
   onChange: (v: string) => void;
   onSubmit: (cmd: string) => void;
-  onFocus: () => void;
-  onBlur: () => void;
   onHistoryUp: () => string;
   onHistoryDown: () => string;
   onClear: () => void;
-  prompt: string;
+  path: string;
 }
 
+/**
+ * The real <input> is transparent and laid over a text mirror, so the cursor
+ * can be drawn as a static block instead of the browser's blinking caret.
+ */
 export default function CommandInput({
+  inputRef,
   value,
   onChange,
   onSubmit,
-  onFocus,
-  onBlur,
   onHistoryUp,
   onHistoryDown,
   onClear,
-  prompt,
+  path,
 }: CommandInputProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [caret, setCaret] = useState(0);
+  const [focused, setFocused] = useState(false);
 
-  // Focus input on any keypress when not already focused
+  // Typing anywhere on the page goes to the prompt.
   useEffect(() => {
     const handleGlobalKey = (e: globalThis.KeyboardEvent) => {
-      if (
-        inputRef.current &&
-        document.activeElement !== inputRef.current &&
-        !e.ctrlKey &&
-        !e.metaKey &&
-        !e.altKey &&
-        e.key.length === 1
-      ) {
-        inputRef.current.focus();
+      const input = inputRef.current;
+      if (!input || document.activeElement === input) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key.length === 1 || e.key === 'Enter' || e.key === 'Backspace' || e.key.startsWith('Arrow')) {
+        input.focus();
       }
     };
     document.addEventListener('keydown', handleGlobalKey);
     return () => document.removeEventListener('keydown', handleGlobalKey);
-  }, []);
+  }, [inputRef]);
+
+  // Focus on load, except on touch screens where it would pop the on-screen
+  // keyboard over the home screen.
+  useEffect(() => {
+    if (!window.matchMedia('(pointer: coarse)').matches) inputRef.current?.focus({ preventScroll: true });
+  }, [inputRef]);
+
+  const syncCaret = () => setCaret(inputRef.current?.selectionStart ?? value.length);
+
+  // After a history recall, move the caret to the end as soon as the new value
+  // is committed (before the next key event can be handled).
+  const caretToEnd = useRef(false);
+  useLayoutEffect(() => {
+    if (!caretToEnd.current) return;
+    caretToEnd.current = false;
+    inputRef.current?.setSelectionRange(value.length, value.length);
+    setCaret(value.length);
+  }, [value, inputRef]);
+
+  const replaceValue = (next: string) => {
+    caretToEnd.current = true;
+    onChange(next);
+  };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       onSubmit(value);
+      setCaret(0);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      const prev = onHistoryUp();
-      onChange(prev);
+      replaceValue(onHistoryUp());
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      const next = onHistoryDown();
-      onChange(next);
+      replaceValue(onHistoryDown());
     } else if (e.key === 'l' && e.ctrlKey) {
       e.preventDefault();
       onClear();
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      inputRef.current?.blur();
     }
   };
 
+  const pos = Math.min(caret, value.length);
+  const under = value[pos] ?? ' ';
+
   return (
-    <div className="flex items-center gap-2 mt-2 group">
-      <span className="text-terminal-cyan text-xs sm:text-sm whitespace-nowrap shrink-0">
-        {prompt}
+    <div className="line input-line">
+      <Prompt path={path} />
+      <span className="input-mirror" aria-hidden="true">
+        {value.slice(0, pos)}
+        <span className={focused ? 'cursor' : 'cursor cursor-unfocused'}>{under}</span>
+        {value.slice(pos + 1)}
       </span>
-      <div className="relative flex-1">
-        <input
-          ref={inputRef}
-          type="text"
-          value={value}
-          onChange={e => onChange(e.target.value)}
-          onKeyDown={handleKeyDown}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          className="w-full bg-transparent text-terminal-text text-xs sm:text-sm outline-none caret-terminal-cyan"
-          spellCheck={false}
-          autoComplete="off"
-          autoCapitalize="off"
-          aria-label="Terminal command input"
-        />
-        {value === '' && (
-          <span className="absolute left-0 top-0 text-terminal-cyan cursor-blink text-xs sm:text-sm">
-            ▋
-          </span>
-        )}
-      </div>
+      <input
+        ref={inputRef}
+        type="text"
+        className="input-native"
+        value={value}
+        onChange={e => {
+          onChange(e.target.value);
+          setCaret(e.target.selectionStart ?? e.target.value.length);
+        }}
+        onSelect={syncCaret}
+        onKeyDown={handleKeyDown}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        spellCheck={false}
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        enterKeyHint="go"
+        aria-label="Terminal command input"
+      />
     </div>
   );
 }

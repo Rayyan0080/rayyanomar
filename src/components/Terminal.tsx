@@ -1,68 +1,63 @@
-import { useState, useRef, useEffect, type ReactNode } from 'react';
-import TerminalHeader from './TerminalHeader';
+import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
+import { useLocation } from 'react-router-dom';
 import CommandInput from './CommandInput';
-import CommandBar from './CommandBar';
 import TerminalOutput from './TerminalOutput';
+import Prompt from './Prompt';
 import { useTerminal } from '../hooks/useTerminal';
-import { useKeyboardNav } from '../hooks/useKeyboardNav';
 
-interface TerminalProps {
-  children: ReactNode;
-}
-
-export default function Terminal({ children }: TerminalProps) {
-  const [inputFocused, setInputFocused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
+export default function Terminal({ children }: { children: ReactNode }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
   const {
     output,
     inputValue,
     setInputValue,
     executeCommand,
     currentPath,
+    pageEcho,
     navigateUp,
     navigateDown,
     clearOutput,
   } = useTerminal();
 
-  useKeyboardNav(inputFocused);
-
-  // Auto-scroll to bottom when output changes
+  // A new page starts at the top, like a freshly drawn screen.
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  // Keep the prompt in view as command output grows.
+  useEffect(() => {
+    if (output.length > 0) inputRef.current?.parentElement?.scrollIntoView({ block: 'nearest' });
   }, [output]);
 
+  // Tapping the terminal (needed on touch devices) focuses the prompt, unless
+  // the tap was on a link/button or the user is selecting text.
+  const focusInput = (e: MouseEvent) => {
+    if ((e.target as HTMLElement).closest('a, button')) return;
+    if (window.getSelection()?.toString()) return;
+    inputRef.current?.focus({ preventScroll: true });
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex-1 flex flex-col max-w-5xl w-full mx-auto px-3 sm:px-6 py-4">
-        <TerminalHeader currentPath={currentPath} />
-        <div
-          ref={scrollRef}
-          className="flex-1 bg-terminal-bg terminal-glow rounded-b-lg border border-t-0 border-terminal-border overflow-y-auto p-4 sm:p-6 flex flex-col gap-1"
-        >
-          {/* Page content */}
-          <div className="mb-4">{children}</div>
-
-          {/* Terminal output history */}
-          <TerminalOutput lines={output} />
-
-          {/* Command input */}
-          <CommandInput
-            value={inputValue}
-            onChange={setInputValue}
-            onSubmit={executeCommand}
-            onFocus={() => setInputFocused(true)}
-            onBlur={() => setInputFocused(false)}
-            onHistoryUp={navigateUp}
-            onHistoryDown={navigateDown}
-            onClear={clearOutput}
-            prompt={`rayyan@portfolio:${currentPath}$`}
-          />
+    <main className="terminal" onClick={focusInput}>
+      {pageEcho && (
+        <div className="line line-input">
+          <Prompt path={pageEcho.path} />
+          {pageEcho.command}
         </div>
-      </div>
-      <CommandBar />
-    </div>
+      )}
+      {children}
+      <TerminalOutput lines={output} />
+      <CommandInput
+        inputRef={inputRef}
+        value={inputValue}
+        onChange={setInputValue}
+        onSubmit={executeCommand}
+        onHistoryUp={navigateUp}
+        onHistoryDown={navigateDown}
+        onClear={clearOutput}
+        path={currentPath}
+      />
+    </main>
   );
 }

@@ -1,8 +1,9 @@
 import { ContactInfo } from '../types';
 
+// Leave a field as '' to hide it on the contact page.
 export const contact: ContactInfo = {
-  email: '[PLACEHOLDER - your.email@example.com]',
-  phone: '[PLACEHOLDER - +1 (XXX) XXX-XXXX]',
-  linkedin: '[PLACEHOLDER - https://linkedin.com/in/your-profile]',
+  email: 'rayyanomarz@gmail.com',
+  phone: '613-762-5308',
+  linkedin: '', // e.g. 'https://www.linkedin.com/in/your-profile'
   github: 'https://github.com/Rayyan0080',
 };

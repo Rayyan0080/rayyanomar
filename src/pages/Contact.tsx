@@ -1,115 +1,56 @@
-import { motion } from 'framer-motion';
-import { Mail, Phone, Linkedin, Github, Copy, Check } from 'lucide-react';
 import { useState } from 'react';
+import PageHeader from '../components/PageHeader';
 import { contact } from '../data/contact';
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
-  },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 6 },
-  show: { opacity: 1, y: 0 },
-};
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
-
   const handleCopy = () => {
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   };
-
   return (
-    <button
-      onClick={handleCopy}
-      className="text-terminal-muted hover:text-terminal-cyan transition-colors p-1 rounded"
-      title="Copy to clipboard"
-      tabIndex={-1}
-    >
-      {copied ? <Check size={12} className="text-terminal-green" /> : <Copy size={12} />}
+    <button type="button" className="text-button muted" onClick={handleCopy}>
+      {copied ? '[copied]' : '[copy]'}
     </button>
   );
 }
 
+const rows: { label: string; value: string; href?: string; copy?: boolean }[] = [
+  { label: 'email', value: contact.email, href: `mailto:${contact.email}`, copy: true },
+  { label: 'phone', value: contact.phone, href: `tel:${contact.phone.replace(/[^+\d]/g, '')}`, copy: true },
+  { label: 'github', value: contact.github, href: contact.github },
+  { label: 'linkedin', value: contact.linkedin, href: contact.linkedin },
+];
+
 export default function Contact() {
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="show"
-      className="space-y-4"
-    >
-      <motion.div variants={item} className="text-terminal-green text-xs sm:text-sm">
-        <span className="text-terminal-amber">$</span> cat ~/contact/README.md
-      </motion.div>
-
-      <motion.div variants={item} className="text-terminal-cyan text-sm sm:text-base font-semibold">
-        Contact Information
-      </motion.div>
-
-      <motion.div variants={item} className="text-terminal-border text-xs">
-        {'─'.repeat(50)}
-      </motion.div>
-
-      {/* Email */}
-      <motion.div variants={item} className="flex items-center gap-3 pl-2">
-        <Mail size={14} className="text-terminal-cyan shrink-0" />
-        <span className="text-terminal-text text-xs sm:text-sm flex-1">{contact.email}</span>
-        <CopyButton text={contact.email} />
-      </motion.div>
-
-      {/* Phone */}
-      <motion.div variants={item} className="flex items-center gap-3 pl-2">
-        <Phone size={14} className="text-terminal-green shrink-0" />
-        <span className="text-terminal-text text-xs sm:text-sm flex-1">{contact.phone}</span>
-        <CopyButton text={contact.phone} />
-      </motion.div>
-
-      {/* LinkedIn */}
-      <motion.div variants={item} className="flex items-center gap-3 pl-2">
-        <Linkedin size={14} className="text-terminal-blue shrink-0" />
-        <a
-          href={contact.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-terminal-text hover:text-terminal-blue transition-colors text-xs sm:text-sm flex-1"
-          tabIndex={-1}
-        >
-          {contact.linkedin}
-        </a>
-      </motion.div>
-
-      {/* GitHub */}
-      <motion.div variants={item} className="flex items-center gap-3 pl-2">
-        <Github size={14} className="text-terminal-purple shrink-0" />
-        <a
-          href={contact.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-terminal-text hover:text-terminal-purple transition-colors text-xs sm:text-sm flex-1"
-          tabIndex={-1}
-        >
-          {contact.github}
-        </a>
-      </motion.div>
-
-      <motion.div variants={item} className="text-terminal-border text-xs pt-2">
-        {'─'.repeat(50)}
-      </motion.div>
-
-      <motion.div variants={item} className="text-terminal-muted text-xs space-y-0.5 pl-2">
-        <div>Click the copy icon or use the terminal:</div>
-        <div className="text-terminal-text">
-          Links open in a new tab. Use <span className="text-terminal-amber">[ESC]</span> to go back.
-        </div>
-      </motion.div>
-    </motion.div>
+    <section className="page">
+      <PageHeader title="~/contact" />
+      <dl className="kv-list">
+        {rows
+          .filter(r => r.value)
+          .map(r => (
+            <div key={r.label} className="kv-row">
+              <dt className="accent">{r.label}</dt>
+              <dd>
+                <a
+                  href={r.href}
+                  {...(r.href?.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {r.value}
+                </a>
+                {r.copy && (
+                  <>
+                    {' '}
+                    <CopyButton text={r.value} />
+                  </>
+                )}
+              </dd>
+            </div>
+          ))}
+      </dl>
+    </section>
   );
 }
