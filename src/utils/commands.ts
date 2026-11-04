@@ -3,29 +3,22 @@ export interface CommandDef {
   description: string;
 }
 
-export interface Section {
-  name: string;
-  path: string;
-  description: string;
-}
-
-export const sections: Section[] = [
-  { name: 'projects', path: '/projects', description: 'Software projects' },
-  { name: 'experience', path: '/experience', description: 'Work and leadership experience' },
-  { name: 'certifications', path: '/certifications', description: 'Certifications' },
-  { name: 'interests', path: '/interests', description: 'Personal interests' },
-  { name: 'contact', path: '/contact', description: 'Contact information' },
-];
-
+/** Commands shown by `help` and on the home screen. */
 export const availableCommands: CommandDef[] = [
   { name: 'help', description: 'Show available commands' },
-  { name: 'ls', description: 'List sections' },
-  ...sections.map(s => ({ name: `cd ${s.name}`, description: s.description })),
-  { name: 'cd ~', description: 'Return to home' },
+  { name: 'ls [dir]', description: 'List the contents of a directory' },
+  { name: 'cd <dir>', description: 'Open a directory (e.g. cd courses/ITI1121)' },
+  { name: 'cd ..', description: 'Go up one directory' },
+  { name: 'cd / or cd ~', description: 'Return to home' },
+  { name: 'cd -', description: 'Return to the previous directory' },
+  { name: 'pwd', description: 'Print the current directory' },
+  { name: 'back', description: 'Go to the previous page' },
   { name: 'resume', description: 'Download resume (PDF)' },
-  { name: 'back', description: 'Go to previous page' },
-  { name: 'clear', description: 'Clear terminal output' },
+  { name: 'clear', description: 'Clear terminal output (Ctrl+L)' },
 ];
+
+/** Keyboard hints printed after the command list by `help`. */
+export const keyHints = ['Tab completes directory names; Up/Down recall earlier commands.'];
 
 /** Width of the command column when commands are printed as plain text. */
 export const COMMAND_COLUMN = Math.max(...availableCommands.map(c => c.name.length)) + 3;

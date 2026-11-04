@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef } from 'react';
 import { asciiLogoRows, LOGO_LETTER, profile } from '../data/profile';
 import { availableCommands } from '../utils/commands';
+import { root } from '../fs/tree';
+import { DirListing } from '../components/NodePage';
 
 /** Split a logo row into runs of bubble/letter characters for colouring. */
 function logoRuns(row: string) {
@@ -96,6 +98,8 @@ export default function Home() {
             </div>
           ))}
         </dl>
+        <div className="gap" />
+        <DirListing node={root} heading="Directories:" />
       </div>
     </section>
   );

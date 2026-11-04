@@ -9,6 +9,8 @@ interface CommandInputProps {
   onHistoryUp: () => string;
   onHistoryDown: () => string;
   onClear: () => void;
+  /** Tab completion: returns the completed input value. */
+  onComplete: (value: string) => string;
   path: string;
 }
 
@@ -24,6 +26,7 @@ export default function CommandInput({
   onHistoryUp,
   onHistoryDown,
   onClear,
+  onComplete,
   path,
 }: CommandInputProps) {
   const [caret, setCaret] = useState(0);
@@ -35,6 +38,8 @@ export default function CommandInput({
       const input = inputRef.current;
       if (!input || document.activeElement === input) return;
       if (e.ctrlKey || e.metaKey || e.altKey) return;
+      // Leave Enter/Space on a focused link or button to activate it.
+      if ((e.target as HTMLElement).closest?.('a, button') && (e.key === 'Enter' || e.key === ' ')) return;
       if (e.key.length === 1 || e.key === 'Enter' || e.key === 'Backspace' || e.key.startsWith('Arrow')) {
         input.focus();
       }
@@ -77,6 +82,11 @@ export default function CommandInput({
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       replaceValue(onHistoryDown());
+    } else if (e.key === 'Tab' && value.trim() && !e.shiftKey) {
+      // Complete names like a shell. With an empty prompt, Tab keeps its usual
+      // job of moving focus, so links stay reachable from the keyboard.
+      e.preventDefault();
+      replaceValue(onComplete(value));
     } else if (e.key === 'l' && e.ctrlKey) {
       e.preventDefault();
       onClear();

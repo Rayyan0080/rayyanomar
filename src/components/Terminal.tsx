@@ -13,6 +13,7 @@ export default function Terminal({ children }: { children: ReactNode }) {
     inputValue,
     setInputValue,
     executeCommand,
+    complete,
     currentPath,
     pageEcho,
     navigateUp,
@@ -56,6 +57,7 @@ export default function Terminal({ children }: { children: ReactNode }) {
         onHistoryUp={navigateUp}
         onHistoryDown={navigateDown}
         onClear={clearOutput}
+        onComplete={complete}
         path={currentPath}
       />
     </main>

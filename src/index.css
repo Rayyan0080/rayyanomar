@@ -8,8 +8,9 @@
   --user: #5fd75f; /* prompt user@host, like bash */
   --path: #5f87d7;
   --error: #e06c6c;
-  --logo-bubble: #51a2da;
-  --logo-letter: #ffffff;
+  /* Monochrome logo: grey bubble, bright letter. */
+  --logo-bubble: #7a7a7a;
+  --logo-letter: #f2f2f2;
   --font: 'JetBrains Mono', ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
   /* One type size for everything, scaled to the viewport. */
   --font-size: clamp(13px, 0.3vw + 11px, 16px);
@@ -191,12 +192,43 @@ button:focus-visible {
   gap: calc(var(--line-height) * 1em);
 }
 
-.entry-title {
+.section {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  column-gap: 2ch;
+  flex-direction: column;
+  gap: calc(var(--line-height) * 0.25em);
 }
+
+.section-heading { color: var(--accent); font-weight: 700; }
+
+/* Information the owner still has to supply. */
+.todo { color: var(--muted); }
+
+/* Label/value pairs and directory listings share one aligned grid each;
+   rows use display: contents so every row lines up in the same columns. */
+.fields,
+.dir-list {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 2ch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.field-row,
+.dir-row { display: contents; }
+
+.fields dd { margin: 0; overflow-wrap: anywhere; }
+
+/* Directory names look like `ls` output for directories. */
+.dir-name {
+  color: var(--path);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dir-name:hover,
+.dir-name:focus-visible { text-decoration: underline; }
 
 .bullets { list-style: none; padding: 0; }
 
@@ -227,7 +259,7 @@ button:focus-visible {
 
 /* ---------- Phone: stack the logo above the text ---------- */
 
-/* The logo is 38 columns wide, so stack it above the text before the info
+/* The logo is 44 columns wide, so stack it above the text before the info
    column gets cramped. */
 @media (max-width: 760px) {
   .home {
@@ -235,8 +267,8 @@ button:focus-visible {
     gap: calc(var(--line-height) * 1em);
   }
 
-  /* 38 columns at ~0.6em per glyph = ~23em: stays inside the gutters. */
-  .logo { font-size: min(3.6vw, 15px); }
+  /* 44 columns at ~0.6em per glyph = ~26.4em: fit inside the gutters. */
+  .logo { font-size: min(calc((100vw - 2 * var(--gutter)) / 27), 15px); }
 
   /* .home-info is a size container, so it can't size from its content;
      stretch it to the full width in the stacked layout. */
@@ -245,6 +277,12 @@ button:focus-visible {
 
 @media (max-width: 640px) {
   .cmd-row { grid-template-columns: 17ch minmax(0, 1fr); column-gap: 1ch; }
+
+  /* Narrow: put each directory's description under its (long) name. Field
+     labels are short, so fields keep two columns. */
+  .dir-list { grid-template-columns: minmax(0, 1fr); }
+  .dir-row > .muted { padding-left: 2ch; }
+  .fields { column-gap: 1ch; }
 }
 
 @media (max-width: 380px) {

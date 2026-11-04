@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PageHeader from '../components/PageHeader';
 import { contact } from '../data/contact';
+import { displayPath, type FsNode } from '../fs/tree';
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -24,10 +25,10 @@ const rows: { label: string; value: string; href?: string; copy?: boolean }[] = 
   { label: 'linkedin', value: contact.linkedin, href: contact.linkedin },
 ];
 
-export default function Contact() {
+export default function Contact({ node }: { node: FsNode }) {
   return (
     <section className="page">
-      <PageHeader title="~/contact" />
+      <PageHeader title={displayPath(node)} />
       <dl className="kv-list">
         {rows
           .filter(r => r.value)

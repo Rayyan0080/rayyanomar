@@ -1,0 +1,178 @@
+{
+  "chronosccloud.tech": {
+    "name": "chronosccloud.tech",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/chronosccloud.tech",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Python",
+      "TypeScript",
+      "JavaScript",
+      "CSS",
+      "C++",
+      "PowerShell",
+      "Shell",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-01-17",
+    "updatedAt": "2026-11-04"
+  },
+  "convibecooding": {
+    "name": "convibecooding",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/convibecooding",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Python",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-01-24",
+    "updatedAt": "2026-01-24"
+  },
+  "f1-Dashboard": {
+    "name": "f1-Dashboard",
+    "description": "f1",
+    "url": "https://github.com/Rayyan0080/f1-Dashboard",
+    "homepage": "",
+    "pagesUrl": "https://rayyan0080.github.io/f1-Dashboard/",
+    "languages": [
+      "JavaScript",
+      "CSS",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-07-11",
+    "updatedAt": "2026-11-04"
+  },
+  "MCU.watchpath": {
+    "name": "MCU.watchpath",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/MCU.watchpath",
+    "homepage": "",
+    "pagesUrl": "https://rayyan0080.github.io/MCU.watchpath/",
+    "languages": [
+      "TypeScript",
+      "CSS",
+      "JavaScript",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-08-14",
+    "updatedAt": "2026-08-17"
+  },
+  "memory_game_": {
+    "name": "memory_game_",
+    "description": "memory_game",
+    "url": "https://github.com/Rayyan0080/memory_game_",
+    "homepage": "",
+    "pagesUrl": "https://rayyan0080.github.io/memory_game_/",
+    "languages": [
+      "JavaScript",
+      "CSS",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-06-12",
+    "updatedAt": "2026-06-13"
+  },
+  "precision_auto_repair": {
+    "name": "precision_auto_repair",
+    "description": "assigmenst for SEG3126",
+    "url": "https://github.com/Rayyan0080/precision_auto_repair",
+    "homepage": "",
+    "pagesUrl": "https://rayyan0080.github.io/precision_auto_repair/",
+    "languages": [
+      "JavaScript",
+      "CSS",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-06-07",
+    "updatedAt": "2026-06-08"
+  },
+  "rayyanomar": {
+    "name": "rayyanomar",
+    "description": "Personal portfolio website for Rayyan Omar",
+    "url": "https://github.com/Rayyan0080/rayyanomar",
+    "homepage": "",
+    "pagesUrl": "https://rayyanomar.com/",
+    "languages": [
+      "TypeScript",
+      "CSS",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-11-02",
+    "updatedAt": "2026-11-04"
+  },
+  "SEG2105-Lab": {
+    "name": "SEG2105-Lab",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/SEG2105-Lab",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Java"
+    ],
+    "topics": [],
+    "createdAt": "2025-09-12",
+    "updatedAt": "2025-11-13"
+  },
+  "SEG3125": {
+    "name": "SEG3125",
+    "description": "Assingmnents",
+    "url": "https://github.com/Rayyan0080/SEG3125",
+    "homepage": "",
+    "pagesUrl": "https://rayyan0080.github.io/SEG3125/",
+    "languages": [
+      "HTML",
+      "CSS"
+    ],
+    "topics": [],
+    "createdAt": "2026-05-24",
+    "updatedAt": "2026-07-19"
+  },
+  "simpleChat": {
+    "name": "simpleChat",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/simpleChat",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Java"
+    ],
+    "topics": [],
+    "createdAt": "2025-11-03",
+    "updatedAt": "2026-11-04"
+  },
+  "technova": {
+    "name": "technova",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/technova",
+    "homepage": "",
+    "pagesUrl": "https://rayyan0080.github.io/technova/",
+    "languages": [
+      "JavaScript",
+      "CSS",
+      "HTML"
+    ],
+    "topics": [],
+    "createdAt": "2026-07-06",
+    "updatedAt": "2026-07-06"
+  },
+  "tictacto": {
+    "name": "tictacto",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/tictacto",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [],
+    "topics": [],
+    "createdAt": "2025-01-10",
+    "updatedAt": "2025-01-10"
+  }
+}

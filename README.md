@@ -1,89 +1,123 @@
 # Rayyan Omar — Terminal Portfolio
 
-A keyboard-driven, terminal-style personal portfolio website built with React, TypeScript, and Vite.
+A keyboard-driven portfolio that works like a Linux terminal. Every section is a
+directory: you explore it with `ls` and `cd`, and every directory has its own page.
 
-## 🚀 Live Site
+Live site: <https://rayyanomar.com>
 
-[https://rayyan0080.github.io/rayyanomar/](https://rayyan0080.github.io/rayyanomar/)
+## Using the site
 
-## ⌨️ Navigation
+Type anywhere on the page; input goes to the prompt. Commands run on Enter.
 
-This website is designed to be operated **entirely through keyboard input**, like a real terminal.
-
-### Terminal Commands
-
-Commands run when you press Enter. Typing anywhere on the page goes to the prompt, and the up/down arrow keys move through command history.
-
-| Command | Description |
+| Command | What it does |
 |---|---|
-| `help` | Show available commands |
-| `ls` | List available sections |
-| `cd <section>` | Open a section (`projects`, `experience`, `certifications`, `interests`, `contact`) |
-| `cd ~` | Return to the home screen |
-| `back` | Go to the previous page |
-| `pwd` | Show current directory |
-| `clear` | Clear terminal output (also `Ctrl+L`) |
-| `resume` | Download resume PDF |
+| `help` | List commands |
+| `ls [dir]` | List a directory (the current one by default) |
+| `cd <dir>` | Open a directory. Relative (`cd labs/lab-1`) and absolute (`cd /courses/ITI1121`) paths work; names are case-insensitive |
+| `cd ..` | Go up one level |
+| `cd /`, `cd ~`, `cd` | Go home |
+| `cd -` | Return to the previous directory |
+| `pwd` | Print the current directory |
+| `back` | Go to the previous page in browser history |
+| `resume` | Download the résumé PDF |
+| `clear` | Clear output (also Ctrl+L) |
 
-## 🛠️ Development
+- **Tab** completes command and directory names. Press it twice to see all matches.
+  With an empty prompt, Tab moves focus between links as usual.
+- **Up / Down** recall earlier commands.
+- Directory names on each page are links too, for touch screens.
 
-### Prerequisites
+### Directory layout
 
-- Node.js 20+
-- npm 9+
+```text
+/
+├── experience/      nrc/, hack-the-hill/, sapna/, hackathons/<event>/
+├── projects/        software-development/, engineering/, personal-projects/, university-projects/
+├── courses/         <COURSE>/assignments/<assignment>/, <COURSE>/labs/<lab>/
+├── interests/       outdoor-activities/, anime/, movies/, motorsports/, photography/, technology/
+├── certifications/
+└── contact/
+```
 
-### Install & Run
+## Development
+
+Requires Node.js 20+ and npm.
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:5173
+npm run build      # type-check and build to dist/
+npm run preview    # serve dist/ locally
 ```
 
-### Build
+## Editing content
 
-```bash
-npm run build
-npm run preview
-```
-
-## 📝 Updating Content
-
-All portfolio content is stored in the `src/data/` directory:
+Content lives in typed data files in `src/data/`, separate from the navigation code:
 
 | File | Content |
 |---|---|
 | `profile.ts` | Name, title, intro, ASCII logo |
-| `projects.ts` | Software projects |
-| `experience.ts` | Work experience |
+| `experience.ts` | Experience entries (each becomes `/experience/<slug>`) |
+| `courses.ts` | Courses, with their assignments, labs and other work |
+| `projects.ts` | Project categories and projects |
+| `interests.ts` | Interest pages and sub-pages |
 | `certifications.ts` | Certifications |
-| `interests.ts` | Personal interests |
-| `contact.ts` | Contact information |
+| `contact.ts` | Contact details |
+| `github.json` | Generated GitHub metadata (see below). Do not edit by hand |
 
-Edit these files to update your portfolio. The website UI will reflect the changes automatically.
+`src/fs/tree.ts` turns these into the directory tree. `src/components/NodePage.tsx`
+renders any directory, so new entries need no new components.
 
-### Replacing the Resume PDF
+**Placeholders:** a field left out of an entry shows as `[to be added: …]` on its
+page. Fill it in by adding the field. Never write in a placeholder fact.
 
-1. Place your PDF at `public/assets/Rayyan_Omar_Resume.pdf`
-2. Commit and push — the deploy workflow will update the live site.
+### Adding things
 
-## 🚢 Deployment
+- **A course:** add an object to `courses` in `courses.ts` with `code` and `name`.
+  It gets `/courses/<CODE>/`, plus `assignments/` and `labs/` directories.
+- **An assignment or lab:** add it to that course's `assignments` or `labs` array.
+  The `slug` becomes the directory name (e.g. `assignment-2`, `lab-3`).
+- **A project:** add it to `projects` in `projects.ts` with a `category`. If it has a
+  public repository, set `repo` to the repository name.
+- **An experience:** add it to `experience.ts`. Use `children` for sub-directories.
 
-This project uses **GitHub Actions** to deploy to **GitHub Pages** automatically on every push to `main`.
+## GitHub project data
 
-### Manual Deploy
+Repository metadata (URL, languages, dates, GitHub Pages demo URL) comes from
+`src/data/github.json`. Refresh it with the GitHub CLI's existing login:
 
 ```bash
-npm run build        # Build the production bundle
-git add -A
-git commit -m "Update site"
-git push origin main # Triggers GitHub Actions
+gh auth login           # once
+npm run sync:github     # rewrites src/data/github.json
+git diff src/data/github.json
 ```
 
-The workflow file is at `.github/workflows/deploy.yml`.
+Only public, non-fork repositories are written. Private repositories are skipped
+entirely. The site reads the file at build time, so visitors never trigger GitHub API
+requests.
 
-## 📦 Tech Stack
+## Deployment
 
-- **React 19** + **TypeScript**
-- **Vite** (build tool)
-- **Plain CSS** (`src/index.css`, via the Tailwind v4 Vite plugin)
-- **React Router** (navigation with HashRouter)
+Every push to `main` triggers `.github/workflows/deploy.yml`, which builds the site and
+publishes `dist/` to GitHub Pages.
+
+Custom domain setup:
+
+- `vite.config.ts` uses `base: '/'` because the site is served from the domain root.
+- `public/CNAME` contains `rayyanomar.com` and is copied into the build.
+- Routing uses React Router's `HashRouter` (`rayyanomar.com/#/courses/ITI1121`), so deep
+  links work on GitHub Pages without server rewrites.
+- DNS: the apex `rayyanomar.com` has A records for GitHub Pages
+  (185.199.108.153, .109, .110, .111); `www` is a CNAME to `rayyan0080.github.io`.
+  GitHub redirects `www` and HTTP to `https://rayyanomar.com`.
+- In the repository's **Settings → Pages**, the source is **GitHub Actions**, the custom
+  domain is `rayyanomar.com`, and **Enforce HTTPS** is on.
+
+### Replacing the résumé
+
+Put the new PDF at `public/assets/Rayyan_Omar_Resume.pdf`, then commit and push.
+
+## Tech stack
+
+React 19, TypeScript, Vite, React Router, plain CSS (via the Tailwind v4 Vite plugin),
+GitHub Actions and GitHub Pages.

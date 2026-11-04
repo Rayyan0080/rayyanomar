@@ -17,30 +17,36 @@ export const profile = {
 };
 
 /**
- * Monospaced logo for the home screen, in the style of the Fedora neofetch
- * logo: a rounded bubble of 'c' characters with the letter R cut out of it.
- * Letter characters are drawn in a second colour (see LOGO_LETTER).
+ * Monospaced logo for the home screen: a Fedora-style speech-bubble silhouette
+ * (a circle with a squared-off lower-left corner) filled with 'c', with a
+ * script R and its lower-left drop shadow (';') set inside it. Generated from
+ * the brush-script R reference by sampling the letter onto a 44x22 character
+ * grid. Letter characters are drawn brighter (see LOGO_LETTER); the logo is
+ * monochrome.
  */
 const LOGO_ROWS = [
-  "           ...::::::::::...",
-  "       ..:::cccccccccccccc:::..",
-  "     .::cccccccccccccccccccccc::.",
-  "   ..:cccccccccccccccccccccccccc:..",
-  "  .:cccccc;MMMMMMMMMWKOd:.cccccccc:.",
-  " .:ccccccc;MMMMMMMMMMMMMMk.cccccccc:.",
-  ".:cccccccc;MMM;cccccc;dMMMxccccccccc:.",
-  ".:cccccccc;MMM;ccccccc;WMMWccccccccc:.",
-  ":ccccccccc;MMM;cccccc;dMMMxcccccccccc:",
-  ":ccccccccc;MMMMMMMMMMMMMWk.cccccccccc:",
-  ":ccccccccc;MMMMMMMMMMMNk;cccccccccccc:",
-  ":ccccccccc;MMM;cc;OMMWoccccccccccccc:.",
-  ":ccccccccc;MMM;cccc;KMMK;ccccccccccc:.",
-  ":ccccccccc;MMM;cccccc;NMMkccccccccc:.",
-  ":ccccccccc;MMM;cccccccc;WMMdcccccc:.",
-  ":ccccccccccccccccccccccccccccccc:..",
-  ":ccccccccccccccccccccccccccccc::.",
-  ":ccccccccccccccccccccccccc:::..",
-  "::::::::::::::::::::::::...",
+  "             ..::::cccccc::::..",
+  "          .:cccccccccccccccccccc:.",
+  "       .:cccccccccccccccccccccccccc:.",
+  "     .:cccccccxNNMNNNNNNNMNxccccccccc:.",
+  "    :cccccxNMMMNccccccccc;NMMxccccccccc:",
+  "  .:ccccxMMMNccccccxcccccc;MMMcccccccccc:.",
+  " .cccccxMMMcccccccMMMcccccMMMMcccccccccccc.",
+  " :cccccNMMccccccNMMMNcccNMMMMccccccccccccc:",
+  ".cccccc;MMcccccMMMMNxNMMMMNcccccccccccccccc.",
+  ":ccccccc;xxccNMMMMMMMMNxccccccccccccccccccc:",
+  "ccccccccccccMMMMxMMNcccccccccccccccccccccccc",
+  "ccccccccccxMMMNcc;NMMccccccccccccccccccccccc",
+  "ccccccccc;MMMccccc;NMMxcccccccccccccccccccc:",
+  "ccccccccc;MMccccccc;xMMMccccccccccccccccccc.",
+  "cccccccccc;xcccccccccxMMMxcccccccccccccccc:",
+  "cccccccccccccccccccccc;MMMMccccccccccccccc.",
+  "ccccccccccccccccccccccc;xMMMMxcccccccMcc:.",
+  "ccccccccccccccccccccccccc;NMMMMMNNNNMNc:",
+  "ccccccccccccccccccccccccccc;NMMMMMMMx:.",
+  "cccccccccccccccccccccccccccccc;xxxc:.",
+  "cccccccccccccccccccccccccccccccc:.",
+  "ccccccccccccccccccccccccc::::..",
 ];
 
 /** Characters that belong to the R (everything else is the bubble). */
