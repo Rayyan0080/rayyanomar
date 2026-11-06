@@ -152,17 +152,6 @@ export interface RepoInfo {
   updatedAt: string;
 }
 
-// ----------------------------------------------------------------- interests
-
-/** A free-form page made of sections, optionally with sub-pages. */
-export interface Topic {
-  slug: string;
-  title: string;
-  summary: string;
-  sections: Section[];
-  children?: Topic[];
-}
-
 // ------------------------------------------------------------- other content
 
 export interface Certification {

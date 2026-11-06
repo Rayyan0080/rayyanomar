@@ -34,7 +34,6 @@ Type anywhere on the page; input goes to the prompt. Commands run on Enter.
 ├── experience/      nrc/, hack-the-hill/, sapna/, hackathons/<event>/
 ├── projects/        software-development/, engineering/, personal-projects/, university-projects/
 ├── courses/         <COURSE>/assignments/<assignment>/, <COURSE>/labs/<lab>/
-├── interests/       outdoor-activities/, anime/, movies/, motorsports/, photography/, technology/
 ├── certifications/
 └── contact/
 ```
@@ -60,7 +59,6 @@ Content lives in typed data files in `src/data/`, separate from the navigation c
 | `experience.ts` | Experience entries (each becomes `/experience/<slug>`) |
 | `courses.ts` | Courses, with their assignments, labs and other work |
 | `projects.ts` | Project categories and projects |
-| `interests.ts` | Interest pages and sub-pages |
 | `certifications.ts` | Certifications |
 | `contact.ts` | Contact details |
 | `github.json` | Generated GitHub metadata (see below). Do not edit by hand |

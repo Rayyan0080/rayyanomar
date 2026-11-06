@@ -154,7 +154,6 @@ export const projects: Project[] = [
       'GitHub Actions for deployment and weekly data updates',
     ],
     contributions: ['Sole contributor to the repository.'],
-    related: [{ label: 'Marvel collection in interests', href: '/interests/movies/marvel-cinematic-universe' }],
   },
   {
     slug: 'portfolio',
@@ -278,7 +277,6 @@ export const projects: Project[] = [
     challenges: ['The dataset is a synthetic sample built for visualization, not live race data.'],
     related: [
       { label: 'Course assignment', href: '/courses/SEG3125/assignments/assignment-5' },
-      { label: 'Formula 1 in interests', href: '/interests/motorsports/formula-1' },
     ],
   },
   {

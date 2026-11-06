@@ -17,12 +17,10 @@ import type {
   Project,
   RepoInfo,
   Section,
-  Topic,
 } from '../types';
 import { experience } from '../data/experience';
 import { courses } from '../data/courses';
 import { projectCategories, projects } from '../data/projects';
-import { interests } from '../data/interests';
 import { certifications } from '../data/certifications';
 import githubData from '../data/github.json';
 
@@ -227,12 +225,6 @@ function projectNode(p: Project): Draft {
   };
 }
 
-// ------------------------------------------------------------------ interests
-
-function topicNode(t: Topic): Draft {
-  return { name: t.slug, title: t.title, summary: t.summary, sections: t.sections, children: t.children?.map(topicNode) };
-}
-
 // ---------------------------------------------------------------------- tree
 
 const draft: Draft = {
@@ -279,13 +271,6 @@ const draft: Draft = {
         },
       ],
       children: courses.map(courseNode),
-    },
-    {
-      name: 'interests',
-      title: 'Interests',
-      summary: 'Outdoors, anime, movies, motorsports, photography, technology',
-      sections: [],
-      children: interests.map(topicNode),
     },
     {
       name: 'certifications',
