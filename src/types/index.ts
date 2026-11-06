@@ -63,6 +63,9 @@ export interface Assignment {
   approach?: string;
   tools?: string[];
   implementation?: string[];
+  concepts?: string[];
+  /** Technical specifications: language, size, entry points, build, libraries. */
+  specs?: string[];
   results?: string;
   /** Typical program output (from the repository README). */
   output?: string[];
@@ -84,6 +87,7 @@ export interface Lab {
   skills?: string[];
   /** Implementation files (from the repository README). */
   files?: string[];
+  specs?: string[];
   output?: string[];
   links?: Link[];
   note?: string;
@@ -93,6 +97,12 @@ export interface Course {
   /** Course code without spaces, used as the directory name (e.g. ITI1121). */
   code: string;
   name: string;
+  description?: string;
+  /** Where the description comes from, shown under it. */
+  descriptionSource?: string;
+  /** Techniques used across the course. */
+  concepts?: string[];
+  specs?: string[];
   /** Course repository. */
   links?: Link[];
   assignments?: Assignment[];
@@ -123,6 +133,7 @@ export interface Project {
   contributions?: string[];
   challenges?: string[];
   achievements?: string[];
+  specs?: string[];
   demo?: string;
   /** Related directories elsewhere on the site. */
   related?: Link[];
