@@ -1,56 +1,31 @@
-import { Course } from '../types';
+import { Course, Link } from '../types';
 
 /**
  * University of Ottawa courses, BASc Software Engineering (Co-op).
- * Scope (per Rayyan): ITI, CSI and SEG courses, plus GNG2101.
+ * Scope (per Rayyan): ITI, CSI and SEG courses, showing only assignments and labs.
  *
  * Sources:
- *  - Course codes and names: unofficial transcript. Terms, grades and
- *    academic standing are deliberately not published.
- *  - Assignment and lab details: Rayyan's own submissions (archives named with
- *    his student number, lab reports for his lab group, his GitHub repos).
- *    Instructor solution sets, past exams and other students' files were not
- *    used as evidence of his work.
- *  - Topics: titles of lecture notes, lab handouts and course schedules.
- *
- * To add a course, append an object to `courses`. Any field left out shows as
- * a "not provided yet" placeholder on the page.
+ *  - ITI1120, ITI1121 and CSI2110: the README of each course repository on GitHub.
+ *  - SEG courses: Rayyan's own submissions and GitHub repos.
  */
 
 const GH = 'https://github.com/Rayyan0080';
+
+/** Link to a folder (or file) inside one of the course repositories. */
+const src = (repo: string, branch: string, path: string, label = 'Source code'): Link[] => [
+  { label, href: encodeURI(`${GH}/${repo}/tree/${branch}/${path}`) },
+];
+const py = (path: string) => src('phythone-coursework', 'main', path);
+const iti = (path: string) => src('ITI1121', 'main', path);
+const csi = (path: string) => src('CSI-2110-Labs', 'master', path);
+const seg = (path: string) => src('SEG2105-Coursework', 'main', path);
 
 export const courses: Course[] = [
   {
     code: 'ITI1120',
     name: 'Introduction to Computing I',
-    topics: [
-      'Python programming environment (IDLE)',
-      'Expressions, types and the math module',
-      'Functions and conditional statements',
-      'for and while loops',
-      'Lists, 2D lists and matrices',
-      'Reading and writing files',
-      'Dictionaries',
-      'Searching and sorting algorithms and their efficiency',
-      'Exception handling',
-      'Objects and classes',
-    ],
-    concepts: [
-      'Decomposing problems into functions',
-      'Iteration and accumulation patterns',
-      'String processing without built-in helpers',
-      'Graph-style data held in adjacency lists',
-    ],
-    skills: ['Python', 'Writing and testing functions', 'Input validation', 'File parsing'],
-    summary:
-      'Python assignments covering interactive programs, number and string processing, list algorithms, a text-based card game against a computer dealer, and a friend-recommendation program over a social network file.',
+    links: [{ label: 'Repository', href: `${GH}/phythone-coursework` }],
     assignments: [
-      {
-        slug: 'assignment-1',
-        number: '1',
-        name: 'Assignment 1',
-        note: 'The archive on file contains only macOS metadata stubs, so the submission itself could not be read.',
-      },
       {
         slug: 'assignment-2',
         number: '2',
@@ -58,17 +33,8 @@ export const courses: Course[] = [
         objective: 'Practise functions, conditionals and user interaction in Python.',
         problem:
           'Part 1: an interactive program that welcomes a student and runs an elementary-school quiz (exponents and logarithms) or a high-school quiz (solving quadratic equations). Part 2: a set of independent functions.',
-        requirements: [
-          'Elementary quiz on exponentiation and logarithms',
-          'Quadratic equation solver for the high-school quiz',
-          'Welcome banner built from the user\'s name and school type',
-          'Minimum enclosing rectangle of a circle',
-          'Vote percentage from a list of results, plus an interactive vote tally',
-          'l2lo string transformation',
-        ],
-        approach: 'One function per task, with a main function driving the interactive part and test calls for each Part 2 function.',
         tools: ['Python 3', 'IDLE'],
-        implementation: ['Part 1 interactive quiz program (134 lines)', 'Part 2 utility functions with test cases'],
+        links: py('Asing/Assignment 2'),
       },
       {
         slug: 'assignment-3',
@@ -77,20 +43,8 @@ export const courses: Course[] = [
         objective: 'Practise loops and string manipulation, including solutions that avoid built-in string methods.',
         problem:
           'Part 1: split a number string into equal pieces and test whether the pieces increase. Part 2: ten separate functions on numbers and strings.',
-        requirements: [
-          'split_tester: split a digit string into pieces of length d and check that they strictly increase',
-          'Sum of the odd divisors of n',
-          'Sum of a series from user input',
-          'nth Pell number',
-          'Count "extraordinary" characters in a string',
-          'Convert a casual number string to an integer',
-          'Evaluate numbers in a custom alien numeral system, with and without string methods',
-          'Encrypt a string by reversing and interleaving it',
-          'oPify: insert o/p between characters by case',
-          'Check whether a string is non-repetitive',
-        ],
         tools: ['Python 3'],
-        implementation: ['Part 1: split_tester and a driver program', 'Part 2: ten functions (260 lines)'],
+        links: py('Asing/a3_300434818'),
       },
       {
         slug: 'assignment-4',
@@ -99,18 +53,8 @@ export const courses: Course[] = [
         objective: 'Work with lists and files, and build a complete text-based game.',
         problem:
           'Part 1: four list-processing questions. Part 2: a two-player card game against a computer dealer in which matching pairs are discarded.',
-        requirements: [
-          'Count numbers in a list divisible by n',
-          'Detect runs of two equal adjacent values',
-          'Find the length of the longest run',
-          'Read raw data from a file, clean it up and test whether it is "rigorous"',
-          'Card game: build and shuffle a deck, deal, remove pairs, take turns with validated input',
-        ],
         tools: ['Python 3'],
-        implementation: [
-          'Four Part 1 solutions, each with test code',
-          'Card game (127 lines): deck creation, shuffling, dealing, pair removal, input validation and the game loop',
-        ],
+        links: py('Asing/Assignment 4'),
       },
       {
         slug: 'assignment-5',
@@ -119,190 +63,115 @@ export const courses: Course[] = [
         objective: 'Model a social network from a file and compute statistics and recommendations.',
         problem:
           'Read a network of users and friendships from a file, report statistics, and recommend a new friend for a user based on common friends.',
-        requirements: [
-          'Parse the user count and friendship edges from a file, handling a missing file',
-          'Compute friend-count statistics such as the maximum and average',
-          'Recommend the non-friend with the most friends in common',
-          'List the common friends of two users',
-        ],
         tools: ['Python 3'],
-        implementation: ['read_file, calculate_statistics, recommend_friend and common_friends_list, plus an interactive main (159 lines)'],
+        links: py('Asing/Assignment V'),
       },
     ],
     labs: [
-      {
-        slug: 'lab-1',
-        number: '1',
-        name: 'Lab 1: Introduction to the Lab Environment',
-        objective: 'Get set up in the lab environment and run first Python programs.',
-        concepts: ['Using IDLE', 'Writing and running a first program', 'Turtle graphics', 'Block-based programming puzzles'],
-        tools: ['Python 3', 'IDLE', 'turtle module', 'Blockly'],
-      },
-      {
-        slug: 'lab-2',
-        number: '2',
-        name: 'Lab 2: Evaluating Expressions',
-        objective: 'Predict the value of Python expressions, then check them in the interpreter and explain any differences.',
-        concepts: ['Operators and precedence', 'Numeric types', 'The math module'],
-        tools: ['Python interpreter'],
-      },
-      {
-        slug: 'lab-3',
-        number: '3',
-        name: 'Lab 3: Functions and Conditionals',
-        concepts: ['Defining functions', 'if / elif / else', 'Divisibility tests'],
-        tools: ['Python 3'],
-      },
-      {
-        slug: 'lab-5',
-        number: '5',
-        name: 'Lab 5: Loops and Functions',
-        concepts: ['for loops', 'Tracing loop execution', 'Functions such as is_sorted and perfect-number tests'],
-        tools: ['Python 3'],
-      },
-      {
-        slug: 'lab-6',
-        number: '6',
-        name: 'Lab 6: while Loops and Lists',
-        concepts: ['while loops', 'Creating and modifying lists', 'Prime testing'],
-        tools: ['Python 3'],
-      },
-      {
-        slug: 'lab-7',
-        number: '7',
-        name: 'Lab 7',
-        tools: ['Python 3'],
-      },
-      {
-        slug: 'lab-8',
-        number: '8',
-        name: 'Lab 8: 2D Lists, Matrices and Files',
-        concepts: ['2D lists and matrices', 'Magic squares', 'Reading text files', 'In-place list algorithms'],
-        tools: ['Python 3'],
-      },
-      {
-        slug: 'lab-9',
-        number: '9',
-        name: 'Lab 9: Dictionaries, Searching and Sorting',
-        concepts: ['Dictionaries', 'Linear and binary search', 'Selection sort', 'Algorithm efficiency', 'Exception handling'],
-        tools: ['Python 3'],
-      },
-      {
-        slug: 'lab-10',
-        number: '10',
-        name: 'Lab 10: Objects',
-        concepts: ['Classes and objects', 'Methods and attributes'],
-        tools: ['Python 3'],
-      },
+      { slug: 'lab-1', number: '1', name: 'Lab 1: Introduction to the Lab Environment', objective: 'Get set up in the lab environment and run first Python programs.', tools: ['Python 3', 'IDLE', 'turtle module', 'Blockly'], links: py('Lab/lab1-solutions/lab1-solutions') },
+      { slug: 'lab-2', number: '2', name: 'Lab 2: Evaluating Expressions', objective: 'Predict the value of Python expressions, then check them in the interpreter and explain any differences.', tools: ['Python interpreter'], links: py('Lab/lab2-Solutions1/lab2-Solutions') },
+      { slug: 'lab-3', number: '3', name: 'Lab 3: Functions and Conditionals', concepts: ['Defining functions', 'if / elif / else', 'Divisibility tests'], tools: ['Python 3'], links: py('Lab/Lab3-solutions1/Lab3-solutions') },
+      { slug: 'lab-5', number: '5', name: 'Lab 5: Loops and Functions', concepts: ['for loops', 'Tracing loop execution', 'Functions such as is_sorted and perfect-number tests'], tools: ['Python 3'], links: py('Lab/lab5-solutions/lab5-solutions') },
+      { slug: 'lab-6', number: '6', name: 'Lab 6: while Loops and Lists', concepts: ['while loops', 'Creating and modifying lists', 'Prime testing'], tools: ['Python 3'], links: py('Lab/lab6-solutions/lab6-solutions') },
+      { slug: 'lab-7', number: '7', name: 'Lab 7', tools: ['Python 3'], links: py('Lab/lab7_solutions.py') },
+      { slug: 'lab-8', number: '8', name: 'Lab 8: 2D Lists, Matrices and Files', concepts: ['2D lists and matrices', 'Magic squares', 'Reading text files', 'In-place list algorithms'], tools: ['Python 3'], links: py('Lab/lab8-solutions/lab8-solutions') },
+      { slug: 'lab-9', number: '9', name: 'Lab 9: Dictionaries, Searching and Sorting', concepts: ['Dictionaries', 'Linear and binary search', 'Selection sort', 'Algorithm efficiency', 'Exception handling'], tools: ['Python 3'], links: py('Lab/lab9-solutions/lab9-solutions') },
+      { slug: 'lab-10', number: '10', name: 'Lab 10: Objects', concepts: ['Classes and objects', 'Methods and attributes'], tools: ['Python 3'], links: py('Lab/lab10-solutions/lab10-solutions') },
     ],
-  },
-  {
-    code: 'SEG2900',
-    name: 'Professional Communication and Responsibility',
   },
 
   {
     code: 'ITI1121',
     name: 'Introduction to Computing II',
-    topics: [
-      'Object-oriented programming in Java',
-      'Interfaces, inheritance and abstract classes',
-      'Generics',
-      'Stacks and queues (array-based and dynamic)',
-      'Singly and doubly linked lists',
-      'Iterators',
-      'Exceptions',
-      'Recursion',
-      'Comparators and sorting',
-      'File input',
-    ],
-    concepts: [
-      'Encapsulation and equality',
-      'Abstract data types and their implementations',
-      'Discrete-event simulation with queues',
-      'Probabilistic modelling (triangular distribution)',
-    ],
-    skills: ['Java', 'Implementing ADTs from interfaces', 'Testing with driver programs', 'Reading specifications closely'],
-    summary:
-      'Four connected assignments that grew a parking-lot model into a simulator and a capacity optimizer, plus eleven labs that implemented core Java data structures.',
+    links: [{ label: 'Repository', href: `${GH}/ITI1121` }],
     assignments: [
       {
-        slug: 'assignment-1',
-        number: '1',
-        name: 'Assignment 1: Parking Lot',
-        objective: 'Model a parking lot from an input file using classes.',
-        problem:
-          'Read a parking lot design and its occupancy from a file, store them, and support parking and removing cars according to the lot\'s parking rules.',
-        requirements: [
-          'Parse lot designs, including inputs with errors and extra whitespace',
-          'Store the lot layout and the cars parked in it',
-          'Park and remove cars while respecting the parking rules for each car type',
-        ],
-        tools: ['Java'],
-        implementation: ['Car.java and ParkingLot.java (provided CarType and Util classes unchanged)'],
+        slug: 'assignment-1', number: '1', name: 'Assignment 1: Parking Lot',
+        objective: 'This assignment implements a simple parking lot system that reads a parking configuration and occupancy file, then manages vehicle parking and removal according to parking rules. It emphasizes file-based input, object modeling, and lot-management logic.',
+        output: ['Parking status after each operation', 'Lot occupancy and spot availability', 'Whether a car can park or must leave because of rules'],
+        links: iti('Asing/a1_300434818'),
       },
       {
-        slug: 'assignment-2',
-        number: '2',
-        name: 'Assignment 2: Parking Lot Simulator',
-        objective: 'Simulate cars arriving at, parking in and leaving a lot over time.',
-        problem:
-          'Extend the parking lot into a simulation that manages arrivals, parking and departures, with departures drawn from a probability distribution.',
-        requirements: [
-          'Simulator that queues arriving cars and parks them when space allows',
-          'Individual parking spots that track their car and arrival time',
-          'Probabilistic departures using a triangular distribution',
-        ],
-        tools: ['Java'],
-        implementation: ['Simulator.java, ParkingLot.java, Spot.java and TriangularDistribution.java'],
+        slug: 'assignment-2', number: '2', name: 'Assignment 2: Parking Lot Simulator',
+        objective: 'This assignment builds a simulation of a parking lot with queues, random arrivals, and probabilistic departures. It models how cars arrive over time and how they are assigned to parking spots or wait in line if the lot is full.',
+        output: ['Simulation logs of car arrivals and departures', 'Queue length over time', 'Parking occupancy statistics', 'Simulation summary of lot usage'],
+        links: iti('Asing/a2_300434818'),
       },
       {
-        slug: 'assignment-3',
-        number: '3',
-        name: 'Assignment 3: Capacity Optimizer',
-        objective: 'Find the smallest lot that keeps the entrance queue under control.',
-        problem:
-          'Given an hourly arrival rate and a fixed departure distribution, determine the minimum number of spots needed to prevent excessive queue buildup at the entrance.',
-        requirements: [
-          'Run repeated simulations for each candidate lot size',
-          'Increase the lot size until the average final queue length is within the threshold',
-          'Validate the command-line arrival rate',
-          'Add exception handling to the probability distribution',
-        ],
-        approach:
-          'CapacityOptimizer starts at one spot and, for each size, runs ten simulations, averaging the queue length at the end of each run. It returns the first size whose average queue length is at most 5, timing each run.',
-        tools: ['Java', 'Linked lists', 'Queues'],
-        implementation: ['CapacityOptimizer.java plus updated ParkingLot, Simulator and LinkedQueue'],
+        slug: 'assignment-3', number: '3', name: 'Assignment 3: Capacity Optimizer',
+        objective: 'This assignment goes a step further by computing the minimum number of parking spots needed to reduce excessive queue buildup. It tests a capacity model using hourly arrival patterns and departure probabilities.',
+        output: ['Recommended capacity', 'Queue analysis', 'Lot performance summary', 'Simulation results for different conditions'],
+        links: iti('Asing/a3_300434818'),
       },
       {
-        slug: 'assignment-4',
-        number: '4',
-        name: 'Assignment 4: String Buffer, Iterators and Recursion',
-        objective: 'Implement a string buffer, extend iterators, and process lists recursively.',
-        requirements: [
-          'Q1: ITIStringBuffer',
-          'Q2: extensions to a linked list iterator',
-          'Q3: a recursive count method on a singly linked list',
-        ],
-        tools: ['Java'],
-        implementation: ['Three questions, each with its own test class (Q1, Q2, Q3)'],
+        slug: 'assignment-4', number: '4', name: 'Assignment 4: String Buffer, Iterators and Recursion',
+        objective: 'This assignment focuses on custom data structures and algorithmic processing. It includes an ITIStringBuffer implementation, linked-list behavior, iteration, and recursive list processing.',
+        output: ['Modified string content and buffer operations', 'List traversal and iteration results', 'Recursively processed list data'],
+        links: iti('Asing/a4_300434818'),
       },
     ],
     labs: [
-      { slug: 'lab-1', number: '1', name: 'Lab 1: Java Arrays and Methods', concepts: ['Arrays', 'Static methods', 'Averages, medians, pass/fail counts', 'Array insertion and reverse sorting', 'Prime and Fibonacci functions'], tools: ['Java'] },
-      { slug: 'lab-2', number: '2', name: 'Lab 2: Objects - Combination Lock', concepts: ['Classes and constructors', 'Object equality', 'Encapsulated state'], work: ['Combination and DoorLock classes: activate, open and track lock state'], tools: ['Java'] },
-      { slug: 'lab-3', number: '3', name: 'Lab 3: Rational Numbers', concepts: ['Immutable value objects', 'equals and compareTo', 'Static and instance methods'], work: ['Rational class with arithmetic and comparison', 'findAndReplace utility on string arrays'], tools: ['Java'] },
-      { slug: 'lab-4', number: '4', name: 'Lab 4: Interfaces and Inheritance', concepts: ['Interfaces', 'Inheritance', 'Comparable'], work: ['Likeable interface, Post with TextPost and PhotoPost subclasses, and a NewsFeed collection'], tools: ['Java'] },
-      { slug: 'lab-5', number: '5', name: 'Lab 5: Abstract Classes and Comparators', concepts: ['Abstract classes', 'Comparator', 'Sequences'], work: ['Arithmetic and Geometric series built on AbstractSeries', 'Book library sorted with a BookComparator'], tools: ['Java'] },
-      { slug: 'lab-6', number: '6', name: 'Lab 6: Generic Stacks and a Dictionary', concepts: ['Generics', 'Array-based stacks', 'Dynamic resizing', 'Map ADT'], work: ['ArrayStack and DynamicArrayStack', 'Dictionary implementing Map<String, Integer> with Pair entries'], tools: ['Java'] },
-      { slug: 'lab-7', number: '7', name: 'Lab 7: Exceptions', concepts: ['Checked and unchecked exceptions', 'Custom exception classes'], work: ['FullStackException and NotEnoughMoneyException', 'Account class and exception exercises'], tools: ['Java'] },
-      { slug: 'lab-8', number: '8', name: 'Lab 8: Queues and Simulation', concepts: ['Queue ADT', 'Circular array queues', 'Simulation'], work: ['ArrayQueue, plus Customer and Cashier classes for a checkout simulation'], tools: ['Java'] },
-      { slug: 'lab-9', number: '9', name: 'Lab 9: Playlists and Sorting', concepts: ['Dynamic arrays', 'Comparators', 'File input'], work: ['PlayList and Song with sort-by-name, artist and album comparators', 'Loading songs from a file'], tools: ['Java'] },
-      { slug: 'lab-10', number: '10', name: 'Lab 10: Ordered Linked List', concepts: ['Linked lists', 'Ordered insertion', 'Merging'], work: ['OrderedList implementing OrderedStructure, including merge'], tools: ['Java'] },
-      { slug: 'lab-11', number: '11', name: 'Lab 11: Iterators and Bit Lists', concepts: ['Iterators', 'Inner classes', 'Bitwise operations'], work: ['BitList with an inner iterator', 'and, or, xor and complement on bit lists'], tools: ['Java'] },
+      { slug: 'lab-1', number: '1', name: 'Lab 1: Java Arrays and Methods', objective: 'This lab covers basic Java array operations, including array insertion, average calculation, reverse sorting, and a few demonstration programs.', output: ['Array contents before and after processing', 'Average and sorted values', 'Reversed and inserted arrays'], links: iti('Lab/lab1_300434818') },
+      { slug: 'lab-2', number: '2', name: 'Lab 2: Combinations and a Door Lock', objective: 'This lab includes combinatorics and a door-lock simulation/probability exercise. It introduces logic-based problem solving and constrained decision-making.', output: ['Combinations or valid configurations', 'Door-lock outcomes or access states'], links: iti('Lab/lab2_300434818') },
+      { slug: 'lab-3', number: '3', name: 'Lab 3: Rational Numbers', objective: 'This lab introduces rational numbers and helper utilities for fraction arithmetic. It focuses on math operations with numerators and denominators.', output: ['Rational arithmetic results', 'Simplified fractions', 'Utility-generated numeric outputs'], links: iti('Lab/lab3_300434818') },
+      { slug: 'lab-4', number: '4', name: 'Lab 4: News Feed', objective: 'This lab models a social media/news feed application using interfaces and posts. It includes likeable posts, text posts, photo posts, and a feed manager.', output: ['News feed entries', 'Post content with likes', 'Feed updates and ordering'], links: iti('Lab/lab4_300434818') },
+      { slug: 'lab-5', number: '5', name: 'Lab 5: Books, Libraries and Series', objective: 'This lab introduces books, libraries, and numeric series. It includes abstract series classes for arithmetic and geometric sequences, plus library ordering and comparison logic.', output: ['Book catalogs', 'Sorted or compared records', 'Series values and totals'], links: iti('Lab/lab5_300434818') },
+      { slug: 'lab-6', number: '6', name: 'Lab 6: Stacks and Dictionaries', objective: 'This lab focuses on stacks, dictionaries, maps, and key-value pairs. It teaches generic data structures and their applications.', output: ['Stack push/pop results', 'Dictionary lookups and mappings', 'Pair structure usage'], links: iti('Lab/lab6_300434818') },
+      { slug: 'lab-7', number: '7', name: 'Lab 7: Exceptions', objective: 'This lab builds on stack concepts and adds banking/account logic with exception handling, including insufficient funds and stack overflow cases.', output: ['Deposit and withdrawal activity', 'Stack exceptions', 'Account state updates'], links: iti('Lab/lab7_300434818') },
+      { slug: 'lab-8', number: '8', name: 'Lab 8: Queues and Simulation', objective: 'This lab focuses on queues and customer service simulation. It models a cashier line and queue processing behavior.', output: ['Queue states', 'Customer processing order', 'Cashier service summary'], links: iti('Lab/lab8_300434818') },
+      { slug: 'lab-9', number: '9', name: 'Lab 9: Playlists and Sorting', objective: 'This lab works with sorting, playlists, and secret message handling. It covers custom comparators and collection ordering.', output: ['Playlist sorted by title/artist/album', 'Decoded or transformed secret message'], links: iti('Lab/lab9_300434818') },
+      { slug: 'lab-10', number: '10', name: 'Lab 10: Ordered Lists', objective: 'This lab covers ordered structures and ordered lists, introducing sorted container behavior and ordered data management.', output: ['Inserted values in sorted order', 'Ordered list operations', 'Structure traversal results'], links: iti('Lab/lab10_300434818 (2)/lab10_300434818') },
+      { slug: 'lab-11', number: '11', name: 'Lab 11: Iterators and Bit Lists', objective: 'This lab introduces bit lists and iterative processes, with iterator support and bit-level operations.', output: ['Bit values and set/clear operations', 'Iterator traversal through data', 'Iterative algorithm results'], links: iti('Lab/lab11_300434818') },
     ],
   },
 
+  {
+    code: 'CSI2110',
+    name: 'Data Structures and Algorithms',
+    links: [{ label: 'Repository', href: `${GH}/CSI-2110-Labs` }],
+    labs: [
+      {
+        slug: 'lab-1', number: '1', name: 'Lab 1: Sequence ADTs and Linked List Fundamentals',
+        objective: 'This lab focuses on understanding abstract data types built around integer sequences and list structures. It introduces array-based and linked-list implementations, recursion, and core operations such as insertion, deletion, traversal, lookup, and comparison.',
+        concepts: ['Array-based sequence behavior', 'Singly linked list operations', 'Circular list rotation', 'Doubly linked list operations', 'Recursive algorithms for sum, maximum, and reverse printing', 'Deep-copy and equivalence checks for data structures', 'Edge-case validation and exception handling'],
+        files: ['ArrayIntegerSequence.java', 'LinkedIntegerSequence.java', 'CircularIntegerList.java', 'DoublyIntegerList.java', 'Lab1Utilities.java', 'Main.java'],
+        links: csi('Lab/Lab1'),
+      },
+      {
+        slug: 'lab-2', number: '2', name: 'Lab 2: Linear Data Structures and Ticket Processing',
+        objective: 'This lab applies stacks, queues, deques, and list structures to a simplified ticket-processing system. The goal is to understand how ADTs behave in real-world situations and to compare array-backed and linked implementations.',
+        concepts: ['Stack ADT and stack applications', 'Queue ADT and circular-array queue behavior', 'Deque operations from both ends', 'Dynamic-array list implementation', 'Positional list / iterator concepts', 'Ticket processing, undo actions, and queue-based service simulation', 'Complexity analysis and design trade-offs'],
+        files: ['Stack.java', 'ArrayStack.java', 'Queue.java', 'CircularArrayQueue.java', 'Ticket.java'],
+        links: csi('Lab/Lab2'),
+      },
+      {
+        slug: 'lab-3', number: '3', name: 'Lab 3: Priority Queues and Heaps',
+        objective: 'This lab introduces priority queues as an ADT and demonstrates how heaps provide efficient insert and remove-min operations. The implementation is designed around the idea that the smallest priority item is always available at the root of a min-heap.',
+        concepts: ['Priority queue behavior', 'Heap structure and heap-order property', 'Insert and remove-min complexity', 'Min-heap representation in arrays', 'Task-based data objects with priorities', 'Efficiency comparisons against unsorted list implementations'],
+        files: ['HeapPriorityQueue.java', 'ListPriorityQueue.java', 'PriorityQueue.java', 'Task.java', 'Entry.java', 'MainTester.java'],
+        links: csi('Lab/lab3'),
+      },
+      {
+        slug: 'lab-4', number: '4', name: 'Lab 4: Sorting Algorithms and String Pattern Matching',
+        objective: 'This lab focuses on sorting strategies and the divide-and-conquer pattern. It compares simple sorting with efficient algorithms and also introduces brute-force pattern matching in text.',
+        concepts: ['Insertion sort as a baseline algorithm', 'Merge-sort and divide-and-conquer design', 'Quick-sort and pivot selection', 'Heap-sort and heap-based sorting', 'Algorithm comparison across best, average, and worst cases', 'Stability and in-place sorting analysis', 'String searching and pattern occurrence counting'],
+        files: ['SimpleSort.java', 'MergeSort.java', 'StudentRecord.java'],
+        links: csi('Lab/lab4'),
+      },
+      {
+        slug: 'lab-5', number: '5', name: 'Lab 5: Graphs, Traversals and Shortest Paths',
+        objective: 'This lab focuses on graph theory and route-planning logic. It models locations as vertices and roads as weighted edges, then implements graph algorithms for traversal, reachability checking, and shortest path computation.',
+        concepts: ['Graph ADT design', 'Adjacency-list graph representation', 'Breadth-first search (BFS)', 'Depth-first search (DFS)', 'Reachability and cycle detection', 'Minimum-edge path analysis', 'Weighted graphs and distance-aware navigation', "Dijkstra's algorithm and Bellman-Ford concepts", 'Path reconstruction and graph validation'],
+        files: ['Graph.java', 'AdjacencyListGraph.java', 'BreadthFirstSearch.java', 'DepthFirstSearch.java', 'WeightedEdge.java', 'Location.java', 'GraphApp.java'],
+        links: csi('Lab/lab5'),
+      },
+    ],
+  },
+
+  {
+    code: 'SEG2900',
+    name: 'Professional Communication and Responsibility',
+  },
   {
     code: 'GNG2101',
     name: 'Introduction to Product Development for Engineers and Computer Scientists',
@@ -310,245 +179,69 @@ export const courses: Course[] = [
   {
     code: 'SEG2105',
     name: 'Introduction to Software Engineering',
-    topics: [
-      'Object-oriented design with inheritance and interfaces',
-      'Polymorphism',
-      'Team development with Git and GitHub',
-      'Android application development',
-      'Cloud databases (Firebase)',
-      'Client-server architecture',
-    ],
-    concepts: ['Designing class hierarchies', 'Programming to interfaces', 'Event handling', 'Client-server communication'],
-    skills: ['Java', 'Android Studio', 'Firebase Realtime Database', 'Git collaboration'],
-    summary:
-      'Three in-class design exercises, team labs in a shared repository, and the simpleChat client-server assignment.',
+    links: [{ label: 'Repository', href: `${GH}/SEG2105-Coursework` }],
     assignments: [
       {
         slug: 'simplechat',
         name: 'simpleChat: Client-Server Chat',
-        objective: 'Extend a provided Java client-server chat application.',
-        problem:
-          'Starting from the course\'s simpleChat base code, implement the assigned exercises and verify them against the course test cases.',
-        requirements: [
-          'Client start-up with a login ID (connection refused without one)',
-          'Server start-up on the default port 5555',
-          'Server console commands',
-        ],
-        tools: ['Java', 'Sockets (course OCSF framework)'],
+        objective: "A console chat application built on the course's Object Client-Server Framework (OCSF), extending the provided base code.",
         implementation: [
-          'Commits "ex1" and "ex2" implement the exercises on top of the provided base code',
-          'A recorded run of the semi-automatic test suite is included in the repository',
+          'ChatClient / ClientConsole: a client that needs a login ID and reports when it cannot connect',
+          'EchoServer / ServerConsole: a server that listens on port 5555 by default and accepts console commands',
+          "SemiAutoChatRunner runs the course's semi-automatic test cases; a recorded run is included",
         ],
-        links: [{ label: 'Repository', href: `${GH}/simpleChat` }],
+        tools: ['Java', 'Sockets (OCSF)'],
+        links: [...seg('assignments/simpleChat'), { label: 'Original fork with history', href: `${GH}/simpleChat` }],
+      },
+      {
+        slug: 'otams',
+        name: 'Course Project: OTAMS Tutoring App (Group 7)',
+        objective: 'Team Android app for booking tutoring sessions. See the project page for details.',
+        links: [{ label: 'Project page', href: '/projects/university-projects/otams' }],
       },
     ],
     labs: [
       {
-        slug: 'lab-1',
-        number: '1',
-        name: 'Lab 1: Team Git Workflow',
-        objective: 'Set up a shared team repository and practise collaborating with Git.',
-        concepts: ['Cloning, committing and pushing', 'Merge conflicts'],
-        tools: ['Git', 'GitHub'],
-        work: ['Hosted the team repository on my GitHub account and committed the lab 1 activities'],
-        links: [{ label: 'Team repository', href: `${GH}/SEG2105-Lab` }],
+        slug: 'lab-1', number: '1', name: 'Lab 1: Team Git Workflow',
+        objective: 'The team set up a shared GitHub repository and practised cloning, committing, pushing and resolving merge conflicts. Each member added their own file and their name to team.txt.',
+        concepts: ['Git clone/commit/push/pull', 'Merge conflicts', 'Team collaboration on GitHub'],
+        links: seg('labs/lab-1-git-workflow'),
       },
       {
-        slug: 'firebase-lab',
-        name: 'Firebase Lab: Product Catalog',
-        objective: 'Connect an Android app to a cloud database.',
-        concepts: ['Firebase Realtime Database', 'Listening for data changes', 'Create, update and delete operations'],
-        tools: ['Android Studio', 'Java', 'Firebase'],
-        work: ['Committed the Firebase lab project: a product catalog app that reads products from Firebase and updates or deletes them through a dialog'],
-        links: [{ label: 'Team repository', href: `${GH}/SEG2105-Lab` }],
-        note: 'This lab was completed in a team repository. The lab number is not recorded in it.',
-      },
-    ],
-    other: [
-      {
-        slug: 'exercises',
-        title: 'In-class exercises',
-        items: [
-          {
-            slug: 'exercise-1',
-            number: '1',
-            name: 'Exercise 1: Vehicle Hierarchy',
-            objective: 'Design a class hierarchy with an interface.',
-            implementation: ['Vehicle base class with LandVehicle and AirVehicle branches, Car, Bike, Plane and Helicopter, a Printable interface and a test driver'],
-            tools: ['Java'],
-          },
-          {
-            slug: 'exercise-2',
-            number: '2',
-            name: 'Exercise 2: Event Handlers',
-            objective: 'Use an interface to process events polymorphically.',
-            implementation: ['EventHandler interface with Logger, Alerter and Notifier implementations applied to prioritized events'],
-            tools: ['Java'],
-          },
-          {
-            slug: 'exercise-3',
-            number: '3',
-            name: 'Exercise 3: Sorting Students',
-            objective: 'Sort objects with different comparison strategies.',
-            implementation: ['Student class with comparators by last name and by average grade, and a demo program'],
-            tools: ['Java'],
-          },
-        ],
-      },
-    ],
-  },
-
-  {
-    code: 'ITI1100',
-    name: 'Digital Systems I',
-    topics: [
-      'Number systems and conversions',
-      'Boolean algebra and logic gates',
-      'Karnaugh maps and logic minimization',
-      'Combinational circuits: decoders, multiplexers, adders',
-      'Latches and flip-flops',
-      'Sequential circuit analysis and state diagrams',
-      'Counters and registers',
-    ],
-    concepts: ['SOP and POS forms', 'NAND-only implementation', "Two's complement arithmetic and overflow", 'Edge triggering'],
-    skills: ['Quartus II schematic design', 'Testing circuits on an FPGA board', 'Writing lab reports'],
-    summary:
-      'Six hardware labs, done as Group 33 and written up as lab reports, plus written assignments on number systems, logic design and sequential circuits.',
-    assignments: [
-      { slug: 'assignment-1', number: '1', name: 'Assignment 1: Number Systems', objective: 'Convert numbers between bases.', implementation: ['Hand-worked conversions between decimal, binary, octal, hexadecimal and other bases'] },
-      { slug: 'assignment-2', number: '2', name: 'Assignment 2: Truth Tables and Boolean Algebra', implementation: ['Truth tables and Boolean expressions worked by hand'] },
-      { slug: 'assignment-3', number: '3', name: 'Assignment 3: Gate-Level Implementation', implementation: ['Simplified a four-variable Boolean function and drew its logic circuit'], note: 'Assignment number inferred from submission order; the file is an unlabelled scan.' },
-      { slug: 'assignment-4', number: '4', name: 'Assignment 4: Combinational Logic', implementation: ['Truth tables, K-map simplification and circuits for textbook chapter 4 problems'], note: 'Assignment number inferred from submission order and chapter numbering; the file is an unlabelled scan.' },
-      { slug: 'assignment-5', number: '5', name: 'Assignment 5: Sequential Circuits', implementation: ['Flip-flop circuits, state tables and state diagrams for textbook chapter 5 problems'] },
-      { slug: 'assignment-6', number: '6', name: 'Assignment 6: Counters and Registers', implementation: ['Counter design with flip-flop excitation tables and simplified input equations for textbook chapter 6 problems'] },
-    ],
-    labs: [
-      {
-        slug: 'lab-1', number: '1', name: 'Lab 1: Logic Gates',
-        objective: 'Construct simple combinational logic circuits from schematics and determine how they work experimentally.',
-        concepts: ['Basic gates', 'Truth tables', 'Equivalent gate configurations'],
-        tools: ['Quartus II 13.0 SP1', 'Altera DE2-115 board'],
-        procedure: ['Built one-chip and two-chip logic circuits in Quartus', 'Programmed the DE2-115 and set inputs with its switches', 'Recorded truth tables and compared them with predictions'],
-        results: 'The observed outputs matched the expected truth tables in every case.',
-        work: ['Co-authored the group lab report'],
+        slug: 'lab-2', number: '2', name: 'Lab 2: PointCP Design',
+        objective: 'PointCP stores a point in either polar or cartesian form and converts between them. PointCPTest reads a coordinate type and two values and prints the point in both forms, as a basis for discussing design trade-offs between internal representations.',
+        concepts: ['Class design', 'Encapsulation', 'Alternative internal representations', 'Design trade-offs'],
+        links: seg('labs/lab-2-pointcp'),
       },
       {
-        slug: 'lab-2', number: '2', name: 'Lab 2: Boolean Logic',
-        objective: 'Simplify logic functions and implement minimized circuits, including NAND-only designs.',
-        concepts: ['Boolean algebra', 'K-maps', 'SOP and POS forms', 'NAND-only implementation'],
-        tools: ['Quartus II 13.0 SP1', 'Altera DE2-115 board'],
-        results: 'The simplified circuits, including the POS and SOP forms, matched their theoretical predictions.',
-        work: ['Co-authored the group lab report'],
+        slug: 'lab-3', number: '3', name: 'Lab 3: Calculator App',
+        objective: 'An Android calculator. Digit buttons build the current number, and operator buttons are handled with an Operator enum that tracks the pending operation.',
+        concepts: ['Android Studio project setup', 'XML layouts', 'Button click handlers', 'UI state in an Activity'],
+        links: seg('labs/lab-3-calculator'),
       },
       {
-        slug: 'lab-3', number: '3', name: 'Lab 3: Decoders, Displays and Multiplexers',
-        objective: 'Build and test a 2-to-4 decoder, a seven-segment display decoder and a multiplexer.',
-        concepts: ['Decoders', 'Seven-segment displays', '4-to-1 multiplexers'],
-        tools: ['Quartus II 13.0 SP1', 'Altera DE2-115 board'],
-        results: 'Experimental results supported the predictions for all three circuits.',
-        work: ['Co-authored the group lab report'],
+        slug: 'lab-4', number: '4', name: 'Lab 4: Team Logo App',
+        objective: 'A multi-screen Android app: enter a team name and postal code, pick a logo on a second screen, open the postal code in Google Maps with an implicit intent, and see a confirmation screen.',
+        concepts: ['Explicit and implicit intents', 'startActivityForResult / onActivityResult', 'Passing Serializable objects between activities'],
+        links: seg('labs/lab-4-team-logo'),
       },
       {
-        slug: 'lab-4', number: '4', name: 'Lab 4: Adders and Subtractors',
-        objective: 'Build a full adder, use it in an 8-bit adder/subtractor with a hierarchical design, and add an overflow detector.',
-        concepts: ['Half and full adders', 'Parallel adders', "Two's complement subtraction", 'Overflow detection', 'Hierarchical design'],
-        tools: ['Quartus II 13.0 SP1', 'DE2-115 board'],
-        results: 'Measured sums and carries matched binary addition for each test case.',
-        work: ['Co-authored the group lab report'],
+        slug: 'lab-5', number: '5', name: 'Lab 5: Espresso UI Tests',
+        objective: 'Instrumented Espresso tests for a student registration screen that type into the form, press register, and check the validation errors shown.',
+        concepts: ['Android instrumented testing', 'ActivityScenarioRule', 'Espresso onView / perform / check', 'Input validation'],
+        links: seg('labs/lab-5-espresso-tests'),
       },
       {
-        slug: 'lab-5', number: '5', name: 'Lab 5: Latches and Flip-Flops',
-        objective: 'Build latches and flip-flops from basic gates and explore latching and edge triggering.',
-        concepts: ['SR latch', 'D and T flip-flops', 'Edge triggering', 'Clock inputs'],
-        tools: ['Quartus II 13.0 SP1', 'Altera DE2-115 board'],
-        work: ['Co-authored the group lab report'],
-      },
-      {
-        slug: 'lab-6', number: '6', name: 'Lab 6: Synchronous Counters',
-        objective: 'Design, simulate and test synchronous counters, displaying their outputs on LEDs.',
-        concepts: ['Synchronous counters', 'State tables', 'Waveform simulation'],
-        tools: ['Quartus II 13.0 SP1', 'Altera DE2-115 board'],
-        note: 'The copy of this report on file carries a document-sharing site watermark; confirm it is the group\'s own report.',
-      },
-    ],
-  },
-
-  {
-    code: 'CSI2110',
-    name: 'Data Structures and Algorithms',
-    topics: [
-      'Linear structures: arrays, linked lists, stacks, queues, deques, iterators',
-      'Priority queues and heaps',
-      'Maps, hash tables, skip lists and sets',
-      'Binary search trees, AVL trees, splay trees, (2,4) trees and red-black trees',
-      'Sorting, divide-and-conquer and heap-sort',
-      'Text processing and pattern matching',
-      'Graphs, DFS, BFS and shortest paths',
-    ],
-    concepts: ['Asymptotic analysis of ADT operations', 'Array-based heap representation', 'Graph traversal and reachability'],
-    skills: ['Java', 'Implementing and comparing ADT implementations', 'Complexity analysis'],
-    summary: 'Five labs implementing and comparing linear structures, priority queues, sorting algorithms and graph algorithms in Java.',
-    labs: [
-      {
-        slug: 'lab-1', number: '1', name: 'Lab 1: Integer Sequences',
-        concepts: ['Array-based and linked sequences', 'Singly, doubly and circular linked lists', 'Recursion'],
-        tools: ['Java'],
-        work: ['ArrayIntegerSequence, LinkedIntegerSequence, DoublyIntegerList and CircularIntegerList behind an IntegerSequence interface, with a driver'],
-      },
-      {
-        slug: 'lab-2', number: '2', name: 'Lab 2: Stacks, Queues, Deques, Lists and Iterators',
-        objective: 'Implement and compare linear ADTs (textbook chapters 6-7).',
-        concepts: ['Stack and queue ADTs', 'Circular array queues'],
-        tools: ['Java'],
-        work: ['ArrayStack and CircularArrayQueue, used in a ticket-processing example'],
-      },
-      {
-        slug: 'lab-3', number: '3', name: 'Lab 3: Priority Queues, Heaps and Maps',
-        objective: 'Implement and compare non-linear and associative structures (textbook chapters 9-11).',
-        concepts: ['Priority queue ADT', 'Heap-order property', 'Up-heap and down-heap'],
-        tools: ['Java'],
-        work: [
-          'ListPriorityQueue and HeapPriorityQueue behind a PriorityQueue interface, with a tester',
-          'Written report explaining priority queues and heaps and comparing their complexity',
-        ],
-        results:
-          'The report shows that an unsorted-list priority queue inserts in O(1) but needs O(n) for min and removeMin, while a heap gives O(log n) insert and removeMin and O(1) min, because the minimum is always at the root and down-heap follows the tree height.',
-      },
-      {
-        slug: 'lab-4', number: '4', name: 'Lab 4: Sorting Algorithms',
-        objective: 'Implement, test and compare sorting algorithms (textbook chapters 12-13).',
-        concepts: ['Insertion sort', 'Merge sort', 'Divide and conquer'],
-        tools: ['Java'],
-        work: ['SimpleSort (insertion sort) and MergeSort on StudentRecord arrays'],
-      },
-      {
-        slug: 'lab-5', number: '5', name: 'Lab 5: MiniMap Route Planner (group)',
-        objective: "Build a graph-based route planner with traversals, Dijkstra's algorithm and Bellman-Ford.",
-        concepts: ['Graph ADT', 'Adjacency lists', 'Weighted edges', 'BFS reachability', 'DFS cycle detection'],
-        tools: ['Java', 'Graphviz'],
-        work: ['AdjacencyListGraph, BreadthFirstSearch, DepthFirstSearch, WeightedEdge and Location classes, plus a GraphApp driver'],
-        note: 'Group lab. The files on record cover the graph structure and traversals.',
+        slug: 'firebase-lab', name: 'Firebase Lab: Product Catalog',
+        objective: 'An Android product catalog backed by Firebase Realtime Database. Products are added from a form, listed live, and updated or deleted from a dialog opened by a long press.',
+        concepts: ['Firebase Realtime Database', 'Create, read, update and delete', 'Real-time listeners', 'Custom list adapters'],
+        links: seg('labs/lab-firebase-product-catalog'),
       },
     ],
   },
   {
     code: 'SEG3125',
     name: 'Analysis and Design of User Interfaces',
-    topics: [
-      'UI/UX and visual communication',
-      'User-centred design and prototyping',
-      'Goal-oriented interaction and design patterns',
-      'Human cognition: attention, memory, perception',
-      'System image, interactive processes and learnability',
-      'Conversation design',
-      'Usability heuristics',
-      'Visualization and internationalization',
-      'Evaluation methods',
-    ],
-    concepts: ['Visual hierarchy', 'Faceted search', 'Multi-step flows with progress indicators', 'Localization'],
-    skills: ['HTML/CSS', 'JavaScript', 'React', 'Bootstrap', 'Recharts', 'Figma prototyping', 'GitHub Pages hosting'],
-    summary:
-      'Five design assignments, each built, hosted and linked from a course portfolio. Every assignment has a public repository and a live demo.',
     assignments: [
       {
         slug: 'assignment-1', number: '1', name: 'Assignment 1: Portfolio',
@@ -587,19 +280,9 @@ export const courses: Course[] = [
       },
     ],
   },
-
   {
     code: 'SEG3101',
     name: 'Software Requirements Analysis',
-    topics: [
-      'Writing good requirements and specifications',
-      'Requirements engineering basics',
-      'Non-functional requirements (conventional and contemporary)',
-      'Elicitation, brainstorming, questionnaires and prototyping',
-      'Prioritization with MoSCoW',
-    ],
-    concepts: ['Stakeholder analysis', 'Requirements traceability', 'Testable, unambiguous requirement statements'],
-    skills: ['Requirements documentation', 'LaTeX'],
     assignments: [
       {
         slug: 'assignment-1', number: '1', name: 'Assignment 1: Online Grocery Store Requirements',
@@ -636,15 +319,6 @@ export const courses: Course[] = [
   {
     code: 'SEG3102',
     name: 'Software Design and Architecture',
-    topics: [
-      'Introduction to software design and architecture',
-      'Domain-driven design: strategic and tactical design',
-      'Contracts and use case realization',
-      'Structure and behaviour design',
-      'From design to architecture',
-    ],
-    concepts: ['Core, supporting and generic subdomains', 'Bounded contexts', 'Operation contracts'],
-    skills: ['Angular', 'TypeScript', 'Kotlin', 'Spring Boot', 'Gradle'],
     assignments: [
       {
         slug: 'assignment-1', number: '1', name: 'Assignment 1: DDD Contracts',
@@ -665,24 +339,6 @@ export const courses: Course[] = [
       { slug: 'lab-4', number: '4', name: 'Lab 4: Forms and Services', tools: ['Angular', 'TypeScript'], work: ['User form and user details components sharing data through a service, with server-side rendering set up'] },
       { slug: 'lab-5', number: '5', name: 'Lab 5: Address List', tools: ['Angular', 'TypeScript'], work: ['Address list with a notification service, header and sign-in components, and environment configuration'] },
       { slug: 'lab-6', number: '6', name: 'Lab 6: REST Calculator', tools: ['Kotlin', 'Spring Boot'], work: ['REST calculator API (CalculatorController)'] },
-    ],
-    other: [
-      {
-        slug: 'project',
-        title: 'Term project',
-        items: [
-          {
-            slug: 'car-hms',
-            name: 'CAR-HMS: Cairn Hiking Event Management System (Group 5)',
-            objective: 'Design and build a system for a hiking club to schedule hikes, match members to hikes by skill level, and manage sign-ups and waitlists.',
-            problem:
-              "The club runs hikes in Gatineau Park, the Greenbelt and Ottawa's urban lands. Organizers may only create hikes on NCC trails where hiking is permitted and within each trail's open season.",
-            tools: ['Kotlin', 'Spring Boot', 'Angular', 'TypeScript', 'Cucumber'],
-            implementation: ['Deliverable 1: initial domain analysis and high-level domain model'],
-            note: 'Group project in progress; the repository belongs to the course organization.',
-          },
-        ],
-      },
     ],
   },
 ];

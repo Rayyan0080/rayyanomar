@@ -56,6 +56,10 @@ function list(heading: string, items: string[] | undefined, missing: string): Se
   return { heading, body: [items?.length ? { list: items } : { todo: missing }] };
 }
 
+function optionalText(heading: string, value: string | undefined): Section[] {
+  return value ? [{ heading, body: [value] }] : [];
+}
+
 /** Like `list`, but omitted entirely when there is nothing to show. */
 function optionalList(heading: string, items: string[] | undefined): Section[] {
   return items?.length ? [{ heading, body: [{ list: items }] }] : [];
@@ -120,17 +124,17 @@ function assignmentNode(a: Assignment): Draft {
   return {
     name: a.slug,
     title: a.name,
-    summary: a.objective ?? a.name,
+    summary: a.name,
     sections: [
-      { heading: 'Assignment', body: [{ fields: [['name', a.name], ['number', a.number]] }] },
-      text('Objective', a.objective, 'Objective of the assignment'),
-      text('Problem statement', a.problem, 'Problem the assignment asked to solve'),
-      list('Requirements', a.requirements, 'Requirements of the assignment'),
-      text('Approach and methodology', a.approach, 'How the problem was approached'),
-      list('Technologies and tools', a.tools, 'Languages and tools used'),
-      list('My implementation and contributions', a.implementation, 'What I implemented'),
-      text('Results and learning outcomes', a.results, 'Results and what I learned'),
-      ...links('Source code and reports', a.links, 'Links to source code or reports'),
+      ...optionalText('Overview', a.objective),
+      ...optionalText('Problem statement', a.problem),
+      ...optionalList('Requirements', a.requirements),
+      ...optionalText('Approach and methodology', a.approach),
+      ...optionalList('Technologies and tools', a.tools),
+      ...optionalList('My implementation and contributions', a.implementation),
+      ...optionalText('Results and learning outcomes', a.results),
+      ...optionalList('Typical output', a.output),
+      ...links('Source code', a.links),
       ...note(a.note),
     ],
   };
@@ -140,51 +144,39 @@ function labNode(l: Lab): Draft {
   return {
     name: l.slug,
     title: l.name,
-    summary: l.objective ?? l.name,
+    summary: l.name,
     sections: [
-      { heading: 'Lab', body: [{ fields: [['name', l.name], ['number', l.number]] }] },
-      text('Objective', l.objective, 'Objective of the lab'),
-      list('Concepts covered', l.concepts, 'Concepts the lab covered'),
-      list('Equipment, software and tools', l.tools, 'Equipment and software used'),
-      list('Procedures performed', l.procedure, 'Steps carried out in the lab'),
-      list('My work and contributions', l.work, 'What I did in this lab'),
-      text('Results and findings', l.results, 'Results and findings'),
-      list('Skills developed', l.skills, 'Skills developed'),
-      ...links('Links', l.links),
+      ...optionalText('Overview', l.objective),
+      ...optionalList('Concepts covered', l.concepts),
+      ...optionalList('Equipment, software and tools', l.tools),
+      ...optionalList('Procedures performed', l.procedure),
+      ...optionalList('My work and contributions', l.work),
+      ...optionalList('Implementation files', l.files),
+      ...optionalText('Results and findings', l.results),
+      ...optionalList('Typical output', l.output),
+      ...optionalList('Skills developed', l.skills),
+      ...links('Source code', l.links),
       ...note(l.note),
     ],
   };
 }
 
-function collectionNode(slug: string, title: string, items: Draft[], course: string): Draft {
-  return {
-    name: slug,
-    title: `${course} ${title}`,
-    summary: items.length ? `${items.length} ${title.toLowerCase()}` : `No ${title.toLowerCase()} recorded yet`,
-    sections: items.length ? [] : [{ heading: title, body: [{ todo: `${title} for ${course}` }] }],
-    children: items,
-  };
+function collectionNode(slug: string, title: string, items: Draft[], course: string): Draft[] {
+  return items.length ? [{ name: slug, title: `${course} ${title}`, summary: `${items.length} ${title.toLowerCase()}`, sections: [], children: items }] : [];
 }
 
 function courseNode(c: Course): Draft {
-  const description: Block[] = [c.description ?? { todo: 'Official course description (uOttawa course catalogue)' }];
-  if (c.description && c.descriptionSource) description.push(`Source: ${c.descriptionSource}`);
   return {
     name: c.code,
     title: `${c.code} - ${c.name}`,
     summary: c.name,
     sections: [
       { heading: 'Course', body: [{ fields: [['code', c.code], ['name', c.name]] }] },
-      { heading: 'Description', body: description },
-      list('Topics covered', c.topics, 'Topics covered in the course'),
-      list('Technical concepts learned', c.concepts, 'Technical concepts learned'),
-      list('Skills developed', c.skills, 'Skills developed'),
-      text('Summary of my work', c.summary, 'Summary of my work in the course'),
+      ...links('Repository', c.links),
     ],
     children: [
-      collectionNode('assignments', 'Assignments', (c.assignments ?? []).map(assignmentNode), c.code),
-      collectionNode('labs', 'Labs', (c.labs ?? []).map(labNode), c.code),
-      ...(c.other ?? []).map(o => collectionNode(o.slug, o.title, o.items.map(assignmentNode), c.code)),
+      ...collectionNode('assignments', 'Assignments', (c.assignments ?? []).map(assignmentNode), c.code),
+      ...collectionNode('labs', 'Labs', (c.labs ?? []).map(labNode), c.code),
     ],
   };
 }
@@ -275,7 +267,7 @@ const draft: Draft = {
       sections: [
         {
           heading: 'About',
-          body: ['Software Engineering (Co-op) courses at the University of Ottawa. Each course has assignments/ and labs/ directories.'],
+          body: ['Software Engineering (Co-op) courses at the University of Ottawa. Each course lists its assignments/ and labs/.'],
         },
       ],
       children: courses.map(courseNode),

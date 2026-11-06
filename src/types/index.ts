@@ -64,6 +64,8 @@ export interface Assignment {
   tools?: string[];
   implementation?: string[];
   results?: string;
+  /** Typical program output (from the repository README). */
+  output?: string[];
   links?: Link[];
   /** Caveats about the source material, e.g. how a number was inferred. */
   note?: string;
@@ -80,32 +82,21 @@ export interface Lab {
   work?: string[];
   results?: string;
   skills?: string[];
+  /** Implementation files (from the repository README). */
+  files?: string[];
+  output?: string[];
   links?: Link[];
   note?: string;
-}
-
-/** A group of course work that is neither an assignment nor a lab. */
-export interface CourseCollection {
-  slug: string;
-  title: string;
-  items: Assignment[];
 }
 
 export interface Course {
   /** Course code without spaces, used as the directory name (e.g. ITI1121). */
   code: string;
   name: string;
-  description?: string;
-  /** Where the description comes from, shown under it. */
-  descriptionSource?: string;
-  topics?: string[];
-  concepts?: string[];
-  skills?: string[];
-  summary?: string;
+  /** Course repository. */
+  links?: Link[];
   assignments?: Assignment[];
   labs?: Lab[];
-  /** Other work such as in-class exercises or a term project. */
-  other?: CourseCollection[];
 }
 
 // ------------------------------------------------------------------ projects

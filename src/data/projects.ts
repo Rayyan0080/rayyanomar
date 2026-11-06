@@ -272,6 +272,41 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: 'otams',
+    name: 'OTAMS: Online Tutoring Appointment Management System',
+    category: 'university-projects',
+    summary: 'SEG2105 team Android app for booking tutoring sessions',
+    repo: 'project-group-7',
+    year: '2025',
+    overview:
+      'A team-built Android app (Group 7, SEG2105) that gives students, tutors and administrators one platform for tutoring sessions. Built over four deliverables with a team of four.',
+    problem: 'Tutoring sessions were hard to manage: students need to find and book tutors, tutors need to publish availability, and someone has to vet who joins.',
+    features: [
+      'Students search tutors by course, book sessions, cancel up to 24 hours before, and rate tutors',
+      'Tutors create availability in 30-minute slots with overlap prevention, and manage their sessions',
+      'Administrators approve or reject registrations from an inbox; login is gated on approval status',
+      'Role-based registration and login for students, tutors and administrators',
+    ],
+    technologies: ['Java', 'Android', 'Firebase Authentication', 'Cloud Firestore', 'RecyclerView', 'Espresso'],
+    architecture: [
+      'Activity-based navigation with RecyclerView lists and custom adapters',
+      'Backend layer of use cases (login, logout, register student/tutor) behind an AuthService and an AuthRepository interface',
+      'Firestore holds users, approval status, availability and sessions',
+    ],
+    contributions: [
+      'Backend infrastructure: account creation logic, Firestore schema design and the user status model',
+      'Administrator backend: approval workflow, status gating at login and Firestore query optimization',
+      'Merged the final deliverable and submitted the final report',
+    ],
+    challenges: [
+      'Merge conflicts on a shared main branch, once wiping the codebase; fixed with feature branches, pull-before-push and pull request reviews',
+      'Firebase setup issues (misplaced google-services.json, permissive security rules hiding bugs); fixed by documenting setup and tightening rules feature by feature',
+      'Navigation running before Firestore queries finished; fixed with proper callbacks and loading states',
+      'Time-slot overlap checks flagging adjacent slots; fixed by storing times as epoch milliseconds with clear boundary rules',
+    ],
+    related: [{ label: 'SEG2105 course', href: '/courses/SEG2105' }],
+  },
+  {
     slug: 'simplechat',
     name: 'simpleChat',
     category: 'university-projects',
