@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import PageHeader from '../components/PageHeader';
 import { contact } from '../data/contact';
-import { displayPath, type FsNode } from '../fs/tree';
+import { displayPath } from '../fs/navigation';
+import type { FsNode } from '../fs/FsNode';
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);

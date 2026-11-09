@@ -1,6 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom';
 import type { Block, Link } from '../types';
-import { displayPath, type FsNode } from '../fs/tree';
+import { displayPath } from '../fs/navigation';
+import type { FsNode } from '../fs/FsNode';
 import PageHeader from './PageHeader';
 
 /** Internal directories use the router; everything else opens in a new tab. */

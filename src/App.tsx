@@ -3,7 +3,7 @@ import Terminal from './components/Terminal';
 import NodePage from './components/NodePage';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
-import { nodeForPathname } from './fs/tree';
+import { nodeForPathname } from './fs/navigation';
 
 /** Every URL is a directory in the tree; its page is chosen from the node. */
 function Page() {

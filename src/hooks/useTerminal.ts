@@ -4,7 +4,9 @@ import { TerminalLine } from '../types';
 import { useCommandHistory } from './useCommandHistory';
 import { downloadResume } from '../utils/download';
 import { availableCommands, keyHints, COMMAND_COLUMN } from '../utils/commands';
-import { completePath, displayPath, nodeForPathname, resolve, root, type FsNode } from '../fs/tree';
+import { completePath, displayPath, nodeForPathname, resolve } from '../fs/navigation';
+import { root } from '../fs/tree';
+import type { FsNode } from '../fs/FsNode';
 
 const COMMANDS = ['help', 'ls', 'cd', 'pwd', 'back', 'resume', 'clear'];
 

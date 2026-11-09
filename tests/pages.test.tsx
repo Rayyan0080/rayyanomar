@@ -2,7 +2,7 @@
 // the saved snapshot (so a refactor can't change what visitors see).
 import { describe, expect, it } from 'vitest';
 import { root } from '../src/fs/tree';
-import type { FsNode } from '../src/fs/tree';
+import type { FsNode } from '../src/fs/FsNode';
 import { renderAt } from './render';
 
 function allNodes(node: FsNode): FsNode[] {
