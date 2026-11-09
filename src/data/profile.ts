@@ -25,8 +25,8 @@ export const profile = {
  * monochrome.
  */
 const LOGO_ROWS = [
-  "             ..::::rrrrrr::::..",
-  "          .:ccccccccctcccccccccc:.",
+  "             ..::::cccccc::::..",
+  "          .:RayyancOmarcccccccc:.",
   "       .:cccccccccccccccccccccccccc:.",
   "     .:cccccccxNNMNNNNNNNMNxccccccccc:.",
   "    :cccccxNMMMNccccccccc;NMMxccccccccc:",
