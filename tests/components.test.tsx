@@ -36,3 +36,36 @@ describe('links', () => {
     expect(document.querySelector('h1')?.textContent).toBe('~/courses');
   });
 });
+
+describe('view-only poster on the NRC page', () => {
+  it('is a canvas in the Links section, with no image link to save', () => {
+    renderAt('/experience/nrc');
+    const canvas = screen.getByRole('img', { name: /Ultra-High Temperature Ceramics/ });
+    expect(canvas.tagName).toBe('CANVAS');
+    expect(canvas.closest('section')?.querySelector('h2')?.textContent).toBe('Links');
+    expect(document.querySelector('img, a[href*="poster"]')).toBeNull();
+  });
+
+  it('blocks right-click and dragging, and blurs when the window loses focus', () => {
+    renderAt('/experience/nrc');
+    const figure = document.querySelector('.view-only')!;
+    expect(fireEvent.contextMenu(figure)).toBe(false);
+    expect(fireEvent.dragStart(figure)).toBe(false);
+    act(() => {
+      window.dispatchEvent(new Event('blur'));
+    });
+    expect(figure.querySelector('canvas')?.className).toBe('view-only-hidden');
+    act(() => {
+      window.dispatchEvent(new Event('focus'));
+    });
+    expect(figure.querySelector('canvas')?.className).toBe('');
+  });
+});
+
+describe('certifications', () => {
+  it('stay hidden while there are none', () => {
+    renderAt('/');
+    expect(screen.queryByText('certifications/')).toBeNull();
+    expect(renderAt('/certifications').container.textContent).toContain('no such file or directory');
+  });
+});

@@ -1,5 +1,5 @@
 /** Turns entries from data/experience.ts into directories. */
-import type { Experience, Field, Section } from '../types';
+import type { Block, Experience, Field, Section } from '../types';
 import type { Draft } from './FsNode';
 import { links, list, optionalList, text } from './sections';
 
@@ -23,7 +23,7 @@ export function experienceNode(e: Experience, detailed: boolean): Draft {
       list('Skills', e.skills, 'Technical and professional skills used or developed'),
       list('Contributions and projects', e.contributions, 'Specific contributions or projects'),
       list('Achievements and outcomes', e.achievements, 'Results or recognition from this role'),
-      ...links('Links', e.links, 'Relevant links and supporting material'),
+      linksSection(e),
     );
   } else {
     sections.push(
@@ -43,4 +43,13 @@ export function experienceNode(e: Experience, detailed: boolean): Draft {
     sections,
     children: e.children?.map(c => experienceNode(c, false)),
   };
+}
+
+/** Links plus any view-only proof (e.g. a research poster), or a placeholder when there is neither. */
+function linksSection(e: Experience): Section {
+  const body: Block[] = [
+    ...(e.links?.length ? [{ links: e.links }] : []),
+    ...(e.proof ?? []).map(viewOnly => ({ viewOnly })),
+  ];
+  return { heading: 'Links', body: body.length ? body : [{ todo: 'Relevant links and supporting material' }] };
 }

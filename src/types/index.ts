@@ -22,7 +22,16 @@ export type Block =
   | { fields: Field[] }
   | { links: Link[] }
   /** Placeholder for information the site owner still needs to supply. */
-  | { todo: string };
+  | { todo: string }
+  | { viewOnly: ViewOnlyImage };
+
+/** An image shown view-only (no download, right-click, drag or print), e.g. a research poster. */
+export interface ViewOnlyImage {
+  /** Path inside public/, e.g. 'assets/nrc-poster.webp'. */
+  src: string;
+  alt: string;
+  caption: string;
+}
 
 export interface Section {
   heading: string;
@@ -45,6 +54,8 @@ export interface Experience {
   contributions?: string[];
   achievements?: string[];
   links?: Link[];
+  /** Proof of work shown view-only in the Links section. */
+  proof?: ViewOnlyImage[];
   /** Extra sections specific to this entry. */
   sections?: Section[];
   /** Sub-directories, e.g. individual hackathons. */

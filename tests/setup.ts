@@ -7,6 +7,7 @@ afterEach(cleanup);
 window.matchMedia ??= ((query: string) => ({ matches: false, media: query, addEventListener() {}, removeEventListener() {} })) as never;
 window.scrollTo = () => {};
 Element.prototype.scrollIntoView = () => {};
+HTMLCanvasElement.prototype.getContext = (() => null) as never;
 globalThis.ResizeObserver ??= class {
   observe() {}
   unobserve() {}

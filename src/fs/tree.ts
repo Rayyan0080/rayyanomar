@@ -58,17 +58,20 @@ const draft: Draft = {
       ],
       children: courses.map(courseNode),
     },
-    {
-      name: 'certifications',
-      title: 'Certifications',
-      summary: 'Certifications',
-      sections: certifications.length
-        ? certifications.map(c => ({
-            heading: c.name,
-            body: [{ fields: [['issuer', c.issuer], ['date', c.date], ['verify', c.credentialUrl ? { label: c.credentialUrl, href: c.credentialUrl } : undefined]] }],
-          }))
-        : [{ heading: 'Certifications', body: ['No certifications listed yet.'] }],
-    },
+    // Hidden until data/certifications.ts has at least one entry; then it appears on its own.
+    ...(certifications.length
+      ? [
+          {
+            name: 'certifications',
+            title: 'Certifications',
+            summary: 'Certifications',
+            sections: certifications.map(c => ({
+              heading: c.name,
+              body: [{ fields: [['issuer', c.issuer], ['date', c.date], ['verify', c.credentialUrl ? { label: c.credentialUrl, href: c.credentialUrl } : undefined]] }] as Block[],
+            })),
+          },
+        ]
+      : []),
     { name: 'contact', title: 'Contact', summary: 'Contact information', view: 'contact', sections: [] },
   ],
 };

@@ -291,3 +291,26 @@ button:focus-visible {
   .kv-row { grid-template-columns: minmax(0, 1fr); }
   .cmd-row dd { padding-left: 2ch; }
 }
+
+/* View-only images (ViewOnlyImage.tsx): no selecting, dragging or long-press saving,
+   blurred while the window is out of focus, and left out when printing. */
+.view-only {
+  margin: 1em 0 0;
+  max-width: 900px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.view-only canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.view-only-hidden { filter: blur(24px); }
+
+@media print {
+  .view-only { display: none; }
+}

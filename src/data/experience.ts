@@ -39,6 +39,13 @@ export const experience: Experience[] = [
     achievements: [
       'Improved material degradation analysis accuracy by 30% with the 3D depth-map and microscopy workflows.',
     ],
+    proof: [
+      {
+        src: 'assets/nrc-poster.webp',
+        alt: 'Research poster: Ultra-High Temperature Ceramics, Atmospheric Plasma and Oxyacetylene Torch Testing, by Rayyan Omar, Millicent Nedd, Xingbo Huang and Ali Merati, NRC',
+        caption: 'Research poster: Ultra-High Temperature Ceramics - Atmospheric Plasma and Oxyacetylene Torch Testing (view only)',
+      },
+    ],
   },
   {
     slug: 'hack-the-hill',

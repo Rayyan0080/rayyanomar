@@ -1,14 +1,16 @@
 import type { Block } from '../types';
 import Href from './Href';
+import ViewOnlyImage from './ViewOnlyImage';
 
 function Todo({ text }: { text: string }) {
   return <p className="todo">[to be added: {text}]</p>;
 }
 
-/** One block of page content: a paragraph, a bullet list, links, label/value fields or a placeholder. */
+/** One block of page content: a paragraph, a bullet list, links, label/value fields, a view-only image or a placeholder. */
 export default function BlockView({ block }: { block: Block }) {
   if (typeof block === 'string') return <p>{block}</p>;
   if ('todo' in block) return <Todo text={block.todo} />;
+  if ('viewOnly' in block) return <ViewOnlyImage image={block.viewOnly} />;
   if ('list' in block)
     return (
       <ul className="bullets">

@@ -68,6 +68,7 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 | `DirListing.tsx` | A list of sub-directories as clickable `name/` with descriptions. |
 | `Href.tsx` | A link. `/...` stays in the site, anything else opens a new tab. |
 | `CopyButton.tsx` | The `[copy]` button. It copies to the clipboard and shows `[copied]`. |
+| `ViewOnlyImage.tsx` | Shows an image (the NRC poster) view-only: drawn on a canvas, with right-click and dragging blocked, hidden when printing, and blurred when the window loses focus. |
 
 ### `src/hooks/`: React state and logic
 | File | What it does |
@@ -92,8 +93,8 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 |---|---|
 | `profile.ts` | Name, title, intro paragraphs, name banner and ASCII logo. |
 | `contact.ts` | Email, phone, GitHub and LinkedIn. |
-| `experience.ts` | Jobs and activities. `children` makes sub-directories (e.g. hackathons). |
-| `certifications.ts` | Certifications (currently empty). |
+| `experience.ts` | Jobs and activities. `children` makes sub-directories (e.g. hackathons). `proof` adds view-only images to the Links section (the NRC poster). |
+| `certifications.ts` | Certifications. While this list is empty, `/certifications` is hidden. It appears as soon as you add one. |
 | `courses/index.ts` | Combines the year files into `courses`. |
 | `courses/firstYear.ts`, `secondYear.ts`, `thirdYear.ts` | Courses for that year, with their assignments and labs. |
 | `courses/links.ts` | Helpers that build links into the course GitHub repositories. |
@@ -114,7 +115,7 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 |---|---|
 | `pages.test.tsx` | Renders **every** directory in the tree, compares each one to a saved snapshot, and checks the not-found page. |
 | `terminal.test.tsx` | Every command and its error messages, Tab completion and Up/Down history. |
-| `components.test.tsx` | The copy button, internal and external links, and clicking a directory. |
+| `components.test.tsx` | The copy button, links, clicking a directory, the view-only poster's protections, and that certifications stay hidden. |
 | `render.tsx` | `renderAt(path)`: renders the whole app at a URL. |
 | `setup.ts` | Stubs for browser features the test environment lacks. |
 | `__snapshots__/` | The saved HTML of every page. If you change content on purpose, run `npx vitest run -u` and review the diff. |
@@ -126,7 +127,7 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 | `vite.config.ts` | Vite setup (React, Tailwind plugin, test settings). |
 | `tsconfig.json` | TypeScript settings (strict; checks `src/` only). |
 | `scripts/sync-github.mjs` | Refreshes `src/data/github.json` using the `gh` CLI. |
-| `public/` | Files copied into the build as-is: `CNAME` (custom domain) and `assets/Rayyan_Omar_Resume.pdf`. |
+| `public/` | Files copied into the build as-is: `CNAME` (custom domain), `assets/Rayyan_Omar_Resume.pdf`, and `assets/nrc-poster.webp` (the NRC poster as a watermarked image; the original PDF is deliberately not in the repo). |
 | `.github/workflows/deploy.yml` | Every push to `main` builds and deploys to GitHub Pages. |
 
 ## Common tasks
@@ -142,3 +143,5 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 | Give a directory a custom page | Add a `view` value in `FsNode.ts`, a page in `src/pages/`, and a branch in `App.tsx` |
 | Change colours or layout | `src/index.css` |
 | Replace the résumé | `public/assets/Rayyan_Omar_Resume.pdf` |
+| Show certifications again | Add entries to `src/data/certifications.ts`. Nothing else is needed |
+| Add another view-only document | Convert it to an image in `public/assets/` and add it to that entry's `proof` in `experience.ts` |
