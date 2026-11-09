@@ -1,23 +1,8 @@
-import { useState } from 'react';
 import PageHeader from '../components/PageHeader';
+import CopyButton from '../components/CopyButton';
 import { contact } from '../data/contact';
 import { displayPath } from '../fs/navigation';
 import type { FsNode } from '../fs/FsNode';
-
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  const handleCopy = () => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-  return (
-    <button type="button" className="text-button muted" onClick={handleCopy}>
-      {copied ? '[copied]' : '[copy]'}
-    </button>
-  );
-}
 
 const rows: { label: string; value: string; href?: string; copy?: boolean }[] = [
   { label: 'email', value: contact.email, href: `mailto:${contact.email}`, copy: true },
