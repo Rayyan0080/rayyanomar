@@ -32,8 +32,11 @@ export default function ViewOnlyImage({ image }: { image: ViewOnly }) {
     const onFocus = () => setInFocus(true);
     const onVisibility = () => setInFocus(!document.hidden);
     // Win+Shift+S, Cmd+Shift+3/4/5 and Print Screen all start with one of these keys held.
-    const onKey = (e: KeyboardEvent) =>
+    const onKey = (e: KeyboardEvent) => {
       setInFocus(!(e.key === 'PrintScreen' || e.metaKey || (e.ctrlKey && e.shiftKey)));
+      // The OS takes the shot before the browser hears the key, so wipe the copied image.
+      if (e.key === 'PrintScreen') navigator.clipboard?.writeText('').catch(() => {});
+    };
     window.addEventListener('blur', onBlur);
     window.addEventListener('focus', onFocus);
     document.addEventListener('visibilitychange', onVisibility);
