@@ -34,7 +34,7 @@ Type anywhere on the page; input goes to the prompt. Commands run on Enter.
 ├── experience/      nrc/, hack-the-hill/, sapna/, hackathons/<event>/
 ├── projects/        software-development/, engineering/, personal-projects/, university-projects/
 ├── courses/         <COURSE>/assignments/<assignment>/, <COURSE>/labs/<lab>/
-├── certifications/
+├── certifications/    (hidden until there is at least one)
 └── contact/
 ```
 
