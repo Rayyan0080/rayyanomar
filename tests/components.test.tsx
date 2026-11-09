@@ -46,7 +46,7 @@ describe('view-only poster on the NRC page', () => {
     expect(document.querySelector('img, a[href*="poster"]')).toBeNull();
   });
 
-  it('blocks right-click and dragging, and blurs when the window loses focus', () => {
+  it('blocks right-click and dragging, and blacks out the page on focus loss or screenshot keys', () => {
     renderAt('/experience/nrc');
     const figure = document.querySelector('.view-only')!;
     expect(fireEvent.contextMenu(figure)).toBe(false);
@@ -54,11 +54,15 @@ describe('view-only poster on the NRC page', () => {
     act(() => {
       window.dispatchEvent(new Event('blur'));
     });
-    expect(figure.querySelector('canvas')?.className).toBe('view-only-hidden');
+    expect(document.querySelector('.view-only-blackout')).not.toBeNull();
     act(() => {
       window.dispatchEvent(new Event('focus'));
     });
-    expect(figure.querySelector('canvas')?.className).toBe('');
+    expect(document.querySelector('.view-only-blackout')).toBeNull();
+    fireEvent.keyDown(window, { key: 'PrintScreen' });
+    expect(document.querySelector('.view-only-blackout')).not.toBeNull();
+    fireEvent.keyUp(window, { key: 'a' });
+    expect(document.querySelector('.view-only-blackout')).toBeNull();
   });
 });
 
