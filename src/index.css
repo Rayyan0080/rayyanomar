@@ -309,6 +309,9 @@ button:focus-visible {
   pointer-events: none;
 }
 
+.view-only canvas { filter: blur(24px); transition: filter 0.15s; }
+.view-only:hover canvas { filter: none; }
+
 .view-only-blackout { position: fixed; inset: 0; z-index: 9999; background: #000; }
 
 @media print {

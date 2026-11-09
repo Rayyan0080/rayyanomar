@@ -46,6 +46,15 @@ describe('view-only poster on the NRC page', () => {
     expect(document.querySelector('img, a[href*="poster"]')).toBeNull();
   });
 
+  it('is not loaded at all on phones and tablets', () => {
+    const real = window.matchMedia;
+    window.matchMedia = ((q: string) => ({ matches: q === '(pointer: coarse)' })) as never;
+    renderAt('/experience/nrc');
+    window.matchMedia = real;
+    expect(document.querySelector('canvas')).toBeNull();
+    expect(screen.getByText(/open this page on a desktop/)).toBeTruthy();
+  });
+
   it('blocks right-click and dragging, and blacks out the page on focus loss or screenshot keys', () => {
     renderAt('/experience/nrc');
     const figure = document.querySelector('.view-only')!;

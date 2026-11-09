@@ -68,7 +68,7 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 | `DirListing.tsx` | A list of sub-directories as clickable `name/` with descriptions. |
 | `Href.tsx` | A link. `/...` stays in the site, anything else opens a new tab. |
 | `CopyButton.tsx` | The `[copy]` button. It copies to the clipboard and shows `[copied]`. |
-| `ViewOnlyImage.tsx` | Shows an image (the NRC poster) view-only: drawn on a canvas, with right-click and dragging blocked, hidden when printing, and blurred when the window loses focus. |
+| `ViewOnlyImage.tsx` | Shows an image (the NRC poster) view-only: drawn on a canvas, with right-click and dragging blocked, hidden when printing, blurred until hovered, desktop only, and the whole page blacks out on focus loss or screenshot keys. |
 
 ### `src/hooks/`: React state and logic
 | File | What it does |
