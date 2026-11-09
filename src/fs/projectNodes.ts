@@ -1,4 +1,4 @@
-/** Turns projects from data/projects.ts into directories, adding GitHub metadata. */
+/** Turns projects from data/projects/ into directories, adding GitHub metadata. */
 import type { Field, Project, RepoInfo } from '../types';
 import type { Draft } from './FsNode';
 import { links, list, optionalList, text } from './sections';

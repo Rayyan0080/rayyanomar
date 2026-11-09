@@ -1,4 +1,4 @@
-/** Turns courses from data/courses.ts (with their assignments and labs) into directories. */
+/** Turns courses from data/courses/ (with their assignments and labs) into directories. */
 import type { Assignment, Course, Lab } from '../types';
 import type { Draft } from './FsNode';
 import { links, note, optionalList, optionalText } from './sections';

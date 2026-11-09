@@ -1,7 +1,7 @@
 /**
  * Content types. Data files in src/data describe *what* is on the site using
  * these types; src/fs turns them into the navigable directory tree, and
- * src/components/NodePage renders any directory. Optional fields that are
+ * src/pages/NodePage renders any directory. Optional fields that are
  * left out are shown as "not provided yet" placeholders, so a missing fact is
  * visible instead of silently skipped or invented.
  */

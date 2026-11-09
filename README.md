@@ -47,6 +47,7 @@ npm install
 npm run dev        # http://localhost:5173
 npm run build      # type-check and build to dist/
 npm run preview    # serve dist/ locally
+npm test           # render every page and check every command
 ```
 
 ## Editing content
@@ -57,25 +58,26 @@ Content lives in typed data files in `src/data/`, separate from the navigation c
 |---|---|
 | `profile.ts` | Name, title, intro, ASCII logo |
 | `experience.ts` | Experience entries (each becomes `/experience/<slug>`) |
-| `courses.ts` | Courses, with their assignments, labs and other work |
-| `projects.ts` | Project categories and projects |
+| `courses/` | Courses, one file per year (`firstYear.ts`, `secondYear.ts`, `thirdYear.ts`), with their assignments and labs |
+| `projects/` | `categories.ts`, plus one file of projects per category |
 | `certifications.ts` | Certifications |
 | `contact.ts` | Contact details |
 | `github.json` | Generated GitHub metadata (see below). Do not edit by hand |
 
-`src/fs/tree.ts` turns these into the directory tree. `src/components/NodePage.tsx`
-renders any directory, so new entries need no new components.
+`src/fs/` turns these into the directory tree, and `src/pages/NodePage.tsx`
+renders any directory, so new entries need no new components. See [MAP.md](MAP.md)
+for what every file does.
 
 **Placeholders:** a field left out of an entry shows as `[to be added: …]` on its
 page. Fill it in by adding the field. Never write in a placeholder fact.
 
 ### Adding things
 
-- **A course:** add an object to `courses` in `courses.ts` with `code` and `name`.
+- **A course:** add an object with `code` and `name` to the right year file in `courses/`.
   It gets `/courses/<CODE>/`, plus `assignments/` and `labs/` directories.
 - **An assignment or lab:** add it to that course's `assignments` or `labs` array.
   The `slug` becomes the directory name (e.g. `assignment-2`, `lab-3`).
-- **A project:** add it to `projects` in `projects.ts` with a `category`. If it has a
+- **A project:** add it to its category's file in `projects/`, with a `category`. If it has a
   public repository, set `repo` to the repository name.
 - **An experience:** add it to `experience.ts`. Use `children` for sub-directories.
 
