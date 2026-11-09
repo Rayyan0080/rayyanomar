@@ -26,7 +26,7 @@ export const profile = {
  */
 const LOGO_ROWS = [
   "             ..::::rrrrrr::::..",
-  "          .:cccccccccccccccccccc:.",
+  "          .:ccccccccctcccccccccc:.",
   "       .:cccccccccccccccccccccccccc:.",
   "     .:cccccccxNNMNNNNNNNMNxccccccccc:.",
   "    :cccccxNMMMNccccccccc;NMMxccccccccc:",
