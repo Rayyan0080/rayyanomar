@@ -8,7 +8,8 @@ import { completePath, displayPath, nodeForPathname, resolve } from '../fs/navig
 import { root } from '../fs/tree';
 import type { FsNode } from '../fs/FsNode';
 
-const COMMANDS = ['help', 'ls', 'cd', 'pwd', 'back', 'resume', 'clear'];
+/** Command names for Tab completion, taken from the help list ("cd <dir>" -> "cd"). */
+const COMMANDS = [...new Set(availableCommands.map(c => c.name.split(' ')[0]))];
 
 /** The command that produced the page currently shown, echoed above it. */
 interface PageEcho {
