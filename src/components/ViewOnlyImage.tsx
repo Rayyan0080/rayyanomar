@@ -4,8 +4,9 @@ import type { ViewOnlyImage as ViewOnly } from '../types';
 /**
  * Shows an image view-only. It is drawn on a canvas, so there is no "Save image as"
  * and no image link on the page. Right-click and dragging are blocked, printing hides
- * it (see .view-only in index.css), and it blurs while the window is out of focus,
- * which catches some screenshot and recording tools.
+ * it (see .view-only in index.css), and the whole page goes black while the window is out
+ * of focus or a screenshot key (Print Screen, Win/Cmd, Ctrl+Shift) is held, which catches
+ * most screenshot and recording tools.
  * shortcut: a browser cannot fully stop screenshots, screen recording or someone saving
  * the file from dev tools. The watermark baked into the image is what marks any copy.
  */
@@ -30,13 +31,20 @@ export default function ViewOnlyImage({ image }: { image: ViewOnly }) {
     const onBlur = () => setInFocus(false);
     const onFocus = () => setInFocus(true);
     const onVisibility = () => setInFocus(!document.hidden);
+    // Win+Shift+S, Cmd+Shift+3/4/5 and Print Screen all start with one of these keys held.
+    const onKey = (e: KeyboardEvent) =>
+      setInFocus(!(e.key === 'PrintScreen' || e.metaKey || (e.ctrlKey && e.shiftKey)));
     window.addEventListener('blur', onBlur);
     window.addEventListener('focus', onFocus);
     document.addEventListener('visibilitychange', onVisibility);
+    window.addEventListener('keydown', onKey);
+    window.addEventListener('keyup', onKey);
     return () => {
       window.removeEventListener('blur', onBlur);
       window.removeEventListener('focus', onFocus);
       document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('keydown', onKey);
+      window.removeEventListener('keyup', onKey);
     };
   }, []);
 
@@ -44,12 +52,8 @@ export default function ViewOnlyImage({ image }: { image: ViewOnly }) {
 
   return (
     <figure className="view-only" onContextMenu={block} onDragStart={block} onCopy={block}>
-      <canvas
-        ref={canvasRef}
-        role="img"
-        aria-label={image.alt}
-        className={inFocus ? undefined : 'view-only-hidden'}
-      />
+      <canvas ref={canvasRef} role="img" aria-label={image.alt} />
+      {!inFocus && <div className="view-only-blackout" aria-hidden="true" />}
       <figcaption className="muted">{image.caption}</figcaption>
     </figure>
   );

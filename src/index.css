@@ -309,7 +309,7 @@ button:focus-visible {
   pointer-events: none;
 }
 
-.view-only-hidden { filter: blur(24px); }
+.view-only-blackout { position: fixed; inset: 0; z-index: 9999; background: #000; }
 
 @media print {
   .view-only { display: none; }
