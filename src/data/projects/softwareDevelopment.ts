@@ -68,9 +68,14 @@ export const softwareDevelopment: Project[] = [
     year: '2025',
     overview: 'A full-stack mobile application with a Java/Spring Boot backend and a React frontend, built in 36 hours.',
     features: ['REST API integrating external APIs for incident detection, with response latency under 500 ms'],
-    technologies: ['Java', 'Spring Boot', 'React', 'Android Studio'],
+    technologies: ['Java', 'Spring Boot 3.4.1', 'MariaDB 11.6.2', 'React', 'Android Studio'],
     contributions: ['Architected the backend, integrating Spring Boot with the React frontend.'],
-    related: [{ label: 'Hackathon entry', href: '/experience/hackathons/parkingsporter' }],
+    achievements: ['Built at uOttaHack 7 (January 2025)'],
+    related: [
+      { label: 'Hackathon entry', href: '/experience/hackathons/parkingsporter' },
+      { label: 'Backend repository (Driving Spotter)', href: 'https://github.com/zahinabrer5/driving-spotter-backend' },
+      { label: 'DoraHacks submission', href: 'https://dorahacks.io/buidl/21593' },
+    ],
   },
   {
     slug: 'brainrot-short-generator',

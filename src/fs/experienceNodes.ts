@@ -21,8 +21,8 @@ export function experienceNode(e: Experience, detailed: boolean): Draft {
       text('Organization', e.organizationDescription, 'Description of the organization'),
       list('Responsibilities', e.responsibilities, 'Main responsibilities in this role'),
       list('Skills', e.skills, 'Technical and professional skills used or developed'),
-      list('Contributions and projects', e.contributions, 'Specific contributions or projects'),
-      list('Achievements and outcomes', e.achievements, 'Results or recognition from this role'),
+      ...optionalList('Contributions and projects', e.contributions),
+      ...optionalList('Achievements and outcomes', e.achievements),
       linksSection(e),
     );
   } else {
