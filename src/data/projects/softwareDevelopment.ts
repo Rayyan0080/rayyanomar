@@ -95,12 +95,12 @@ export const softwareDevelopment: Project[] = [
     features: [
       'User verification: an ID and a selfie are required to activate an account',
       'Violation reporting: photos of the violating car and its plates; offline mode stores reports until connectivity is restored',
-      'AI validation: GROQ AI extracts the license plate from the photos',
+      'AI validation: Groq extracts the licence plate from the photos',
       'Database management: MariaDB holds the reports for 3-1-1 workers',
       'Efficient processing: reviewed reports lead to ticket issuance',
       'REST API integrating external APIs for incident detection, with response latency under 500 ms',
     ],
-    technologies: ['GROQ AI', 'MariaDB', 'Spring Boot', 'ngrok', 'Java', 'React', 'Android Studio'],
+    technologies: ['Groq', 'MariaDB', 'Spring Boot', 'ngrok', 'Java', 'React', 'Android Studio'],
     architecture: [
       'Mobile app (React frontend): residents verify their account with an ID and a selfie, then photograph the violating car and its plates',
       'Reports made offline are stored on the device and sent once connectivity is restored',
