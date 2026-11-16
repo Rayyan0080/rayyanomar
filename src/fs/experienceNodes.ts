@@ -1,15 +1,20 @@
 /** Turns entries from data/experience.ts into directories. */
 import type { Block, Experience, Field, Section } from '../types';
+import { projects } from '../data/projects';
+import { projectNode } from './projectNodes';
 import type { Draft } from './FsNode';
-import { links, list, optionalList, text } from './sections';
+import { links, optionalList, optionalText } from './sections';
 
 export function experienceNode(e: Experience, detailed: boolean): Draft {
-  const facts: Field[] = [
+  // Same page as the project's own directory, so the two can never drift apart.
+  if (e.project) return { ...projectNode(projects.find(p => p.slug === e.project)!), name: e.slug, summary: e.summary };
+
+  const facts = ([
     ['organization', e.organization],
     ['role', e.role],
     ['dates', e.dates],
     ['location', e.location],
-  ];
+  ] as Field[]).filter(([, v]) => v);
   const sections: Section[] = [];
 
   if (e.children) {
@@ -18,16 +23,17 @@ export function experienceNode(e: Experience, detailed: boolean): Draft {
   } else if (detailed) {
     sections.push(
       { heading: 'Position', body: [{ fields: facts }] },
-      text('Organization', e.organizationDescription, 'Description of the organization'),
-      list('Responsibilities', e.responsibilities, 'Main responsibilities in this role'),
-      list('Skills', e.skills, 'Technical and professional skills used or developed'),
+      ...optionalText('Summary', e.overview),
+      ...optionalText('Organization', e.organizationDescription),
+      ...optionalList('Responsibilities', e.responsibilities),
+      ...optionalList('Skills', e.skills),
       ...optionalList('Contributions and projects', e.contributions),
       ...optionalList('Achievements and outcomes', e.achievements),
-      linksSection(e),
+      ...linksSection(e),
     );
   } else {
     sections.push(
-      { heading: 'Summary', body: [{ fields: facts.filter(([, v]) => v) }] },
+      { heading: 'Summary', body: [{ fields: facts }] },
       ...optionalList('Contributions', e.contributions),
       ...optionalList('Achievements', e.achievements),
       ...optionalList('Skills and tools', e.skills),
@@ -45,11 +51,11 @@ export function experienceNode(e: Experience, detailed: boolean): Draft {
   };
 }
 
-/** Links plus any view-only proof (e.g. a research poster), or a placeholder when there is neither. */
-function linksSection(e: Experience): Section {
+/** Links plus any view-only proof (e.g. a research poster); no section when there is neither. */
+function linksSection(e: Experience): Section[] {
   const body: Block[] = [
     ...(e.links?.length ? [{ links: e.links }] : []),
     ...(e.proof ?? []).map(viewOnly => ({ viewOnly })),
   ];
-  return { heading: 'Links', body: body.length ? body : [{ todo: 'Relevant links and supporting material' }] };
+  return body.length ? [{ heading: 'Links', body }] : [];
 }

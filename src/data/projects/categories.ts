@@ -8,11 +8,6 @@ export const projectCategories: { slug: ProjectCategory; summary: string; descri
     description: 'Software I built outside coursework, mostly at hackathons.',
   },
   {
-    slug: 'engineering',
-    summary: 'Engineering design and hardware projects',
-    description: 'Engineering projects outside pure software. Research work at NRC is under /experience/nrc.',
-  },
-  {
     slug: 'personal-projects',
     summary: 'Things built for myself or my community',
     description: 'Side projects built out of personal interest.',

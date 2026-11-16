@@ -3,7 +3,7 @@ import { Experience } from '../types';
 /**
  * Sources: résumé (public/assets/Rayyan_Omar_Resume.pdf) and the activity list
  * Rayyan supplied for NRC. Leave a field out when it is not known; the page
- * then shows a "not provided yet" placeholder for it.
+ * then has no section for it.
  */
 export const experience: Experience[] = [
   {
@@ -86,8 +86,24 @@ export const experience: Experience[] = [
   },
   {
     slug: 'sapna',
-    summary: 'Sapna (details to be added)',
-    organization: 'Sapna',
+    summary: 'Director of Event Management and Logistics, uOttawa SAPNA',
+    organization: 'uOttawa SAPNA',
+    role: 'Director of Event Management and Logistics',
+    overview:
+      'I led the end-to-end planning and execution of large-scale professional networking and social events for over 150 participants. My role encompassed everything from securing venues and coordinating equipment and catering deliveries, to directly hosting and public speaking at our social gatherings and team-building activities. I am proud to have successfully orchestrated these complex logistical operations to deliver seamless, engaging experiences for our community.',
+    responsibilities: [
+      'Event Operations: Directed end-to-end event logistics, including venue selection, scheduling, and operational roadmaps for professional and social events.',
+      'Vendor & Supply Management: Coordinated food, beverage, and equipment deliveries for large-scale gatherings exceeding 150 attendees.',
+      'Hosting & Public Speaking: Acted as the primary host and speaker for social events, facilitating group games and ensuring high attendee engagement.',
+      'On-Site Execution: Managed real-time logistics and troubleshooting during events to ensure seamless delivery and participant satisfaction.',
+    ],
+    skills: [
+      'Event Planning & Management',
+      'Logistics & Operations Coordination',
+      'Public Speaking & Hosting',
+      'Vendor Management',
+      'Time Management & Organization',
+    ],
   },
   {
     slug: 'hackathons',
@@ -203,31 +219,8 @@ export const experience: Experience[] = [
           },
         ],
       },
-      {
-        slug: 'parkingsporter',
-        summary: 'ParkingSporter - 36-hour build',
-        organization: 'ParkingSporter (hackathon project)',
-        role: 'Participant (team)',
-        dates: '2025',
-        contributions: ['Built the Java/Spring Boot backend of a full-stack mobile app with a React frontend in a 36-hour sprint.'],
-        skills: ['Java', 'Spring Boot', 'React', 'Android Studio'],
-        links: [
-          { label: 'ParkingSporter project page', href: '/projects/software-development/parkingsporter' },
-          { label: 'Backend repository (Driving Spotter)', href: 'https://github.com/zahinabrer5/driving-spotter-backend' },
-          { label: 'DoraHacks submission', href: 'https://dorahacks.io/buidl/21593' },
-          { label: 'LinkedIn post', href: 'https://www.linkedin.com/posts/rayyanomar_uottahack-hackathon-learning-ugcPost-7287198124236759041-XxQ0/' },
-        ],
-        sections: [
-          { heading: 'Event', body: ['uOttaHack 7 (January 2025)'] },
-          {
-            heading: 'README',
-            body: [
-              'Driving Spotter is the backend for the Driving Spotter mobile app, created for uOttaHack 7. It is written using:',
-              { list: ['Spring Boot 3.4.1', 'MariaDB 11.6.2'] },
-            ],
-          },
-        ],
-      },
+      // Shows the ParkingSporter project page; edit it in data/projects/softwareDevelopment.ts.
+      { slug: 'parkingsporter', summary: 'ParkingSporter - 36-hour build', organization: 'ParkingSporter', project: 'parkingsporter' },
       {
         slug: 'hack-the-hill',
         summary: 'Organizer - Co-VP of Logistics',

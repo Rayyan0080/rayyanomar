@@ -2,8 +2,7 @@
  * Content types. Data files in src/data describe *what* is on the site using
  * these types; src/fs turns them into the navigable directory tree, and
  * src/pages/NodePage renders any directory. Optional fields that are
- * left out are shown as "not provided yet" placeholders, so a missing fact is
- * visible instead of silently skipped or invented.
+ * left out produce no section, so nothing is invented and nothing shows empty.
  */
 
 /** A link. Hrefs starting with "/" are directories inside the site. */
@@ -21,8 +20,6 @@ export type Block =
   | { list: string[] }
   | { fields: Field[] }
   | { links: Link[] }
-  /** Placeholder for information the site owner still needs to supply. */
-  | { todo: string }
   | { viewOnly: ViewOnlyImage };
 
 /** An image shown view-only (no download, right-click, drag or print), e.g. a research poster. */
@@ -49,6 +46,8 @@ export interface Experience {
   role?: string;
   dates?: string;
   location?: string;
+  /** First-person summary of the role. */
+  overview?: string;
   responsibilities?: string[];
   skills?: string[];
   contributions?: string[];
@@ -60,6 +59,8 @@ export interface Experience {
   sections?: Section[];
   /** Sub-directories, e.g. individual hackathons. */
   children?: Experience[];
+  /** Slug of a project: this directory then shows that project's page instead of the fields above. */
+  project?: string;
 }
 
 // ------------------------------------------------------------------- courses
@@ -116,6 +117,8 @@ export interface Course {
   specs?: string[];
   /** Course repository. */
   links?: Link[];
+  /** Keeps the course in the data but leaves it out of the site. */
+  hidden?: boolean;
   assignments?: Assignment[];
   labs?: Lab[];
 }
@@ -124,7 +127,6 @@ export interface Course {
 
 export type ProjectCategory =
   | 'software-development'
-  | 'engineering'
   | 'personal-projects'
   | 'university-projects';
 
@@ -146,6 +148,8 @@ export interface Project {
   achievements?: string[];
   specs?: string[];
   demo?: string;
+  /** Extra sections specific to this project. */
+  sections?: Section[];
   /** Related directories elsewhere on the site. */
   related?: Link[];
 }

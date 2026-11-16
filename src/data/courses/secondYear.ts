@@ -53,6 +53,7 @@ export const secondYear: Course[] = [
   {
     code: 'SEG2900',
     name: 'Professional Communication and Responsibility',
+    hidden: true,
   },
   {
     code: 'GNG2101',

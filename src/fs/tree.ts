@@ -30,7 +30,7 @@ const draft: Draft = {
     {
       name: 'projects',
       title: 'Projects',
-      summary: 'Software, engineering, personal and university projects',
+      summary: 'Software, personal and university projects',
       sections: [],
       children: projectCategories.map(cat => {
         const items = projects.filter(p => p.category === cat.slug);
@@ -38,10 +38,7 @@ const draft: Draft = {
           name: cat.slug,
           title: cat.slug,
           summary: cat.summary,
-          sections: [
-            { heading: 'About', body: [cat.description] },
-            ...(items.length ? [] : [{ heading: 'Projects', body: [{ todo: 'Projects in this category' } as Block] }]),
-          ],
+          sections: [{ heading: 'About', body: [cat.description] }],
           children: items.map(projectNode),
         };
       }),
@@ -56,7 +53,7 @@ const draft: Draft = {
           body: ['Software Engineering (Co-op) courses at the University of Ottawa. Each course lists its assignments/ and labs/.'],
         },
       ],
-      children: courses.map(courseNode),
+      children: courses.filter(c => !c.hidden).map(courseNode),
     },
     // Hidden until data/certifications.ts has at least one entry; then it appears on its own.
     ...(certifications.length

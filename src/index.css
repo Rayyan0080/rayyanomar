@@ -201,7 +201,6 @@ button:focus-visible {
 .section-heading { color: var(--accent); font-weight: 700; }
 
 /* Information the owner still has to supply. */
-.todo { color: var(--muted); }
 
 /* Label/value pairs and directory listings share one aligned grid each;
    rows use display: contents so every row lines up in the same columns. */

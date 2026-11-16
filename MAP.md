@@ -37,7 +37,7 @@ src/components/Terminal.tsx wraps every page: echoed command on top, page,
 calls `navigate('/courses')`. `App` then sees the new URL and renders `NodePage` for that node.
 
 **Adding content needs no new code.** Add an entry to a data file. The `fs/` builders give it a
-directory and `NodePage` renders it. A field you leave out shows as `[to be added: ...]`.
+directory and `NodePage` renders it. A field you leave out gets no section on the page.
 
 ## Files
 
@@ -64,7 +64,7 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 | `TerminalOutput.tsx` | Prints the lines that commands produce. |
 | `Prompt.tsx` | The `rayyan@portfolio:~/path$` label. |
 | `PageHeader.tsx` | A page title with a dashed underline. |
-| `BlockView.tsx` | Draws one content block: a paragraph, a bullet list, a link list, label/value fields or a placeholder. |
+| `BlockView.tsx` | Draws one content block: a paragraph, a bullet list, a link list, label/value fields or a view-only image. |
 | `DirListing.tsx` | A list of sub-directories as clickable `name/` with descriptions. |
 | `Href.tsx` | A link. `/...` stays in the site, anything else opens a new tab. |
 | `CopyButton.tsx` | The `[copy]` button. It copies to the clipboard and shows `[copied]`. |
@@ -82,9 +82,9 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 |---|---|
 | `FsNode.ts` | The `FsNode` type (one directory: name, title, summary, path, sections, children) and `Draft` (a node before its path is set). |
 | `tree.ts` | Defines the top-level directories and builds `root`, the full tree. **To add a new top-level section, edit this file.** |
-| `sections.ts` | Small helpers that turn a data field into a page section, or into a placeholder when the field is missing. |
-| `experienceNodes.ts` | Experience entries → directories. |
-| `courseNodes.ts` | Courses → directories, with `assignments/` and `labs/` under each. |
+| `sections.ts` | Small helpers that turn a data field into a page section, or into nothing when the field is missing. |
+| `experienceNodes.ts` | Experience entries → directories. An entry with `project` shows that project's page instead (ParkingSporter). |
+| `courseNodes.ts` | Courses → directories, with `assignments/` and `labs/` under each. A course marked `hidden: true` (SEG2900) is skipped in `tree.ts`. |
 | `projectNodes.ts` | Projects → directories, merged with GitHub data from `github.json`. |
 | `navigation.ts` | `resolve` (path → node, for `cd`/`ls`/URLs), `nodeForPathname`, `displayPath` (`~/x`) and `completePath` (Tab). |
 
@@ -99,7 +99,7 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 | `courses/firstYear.ts`, `secondYear.ts`, `thirdYear.ts` | Courses for that year, with their assignments and labs. |
 | `courses/links.ts` | Helpers that build links into the course GitHub repositories. |
 | `projects/index.ts` | Combines the category files into `projects` and re-exports `projectCategories`. |
-| `projects/categories.ts` | The four project categories (each becomes `/projects/<slug>`). |
+| `projects/categories.ts` | The three project categories (each becomes `/projects/<slug>`). |
 | `projects/softwareDevelopment.ts`, `personalProjects.ts`, `universityProjects.ts` | Projects in that category. |
 | `github.json` | **Generated** by `npm run sync:github`: repository URLs, languages, dates and demo links. Do not edit by hand. |
 
@@ -115,7 +115,7 @@ directory and `NodePage` renders it. A field you leave out shows as `[to be adde
 |---|---|
 | `pages.test.tsx` | Renders **every** directory in the tree, compares each one to a saved snapshot, and checks the not-found page. |
 | `terminal.test.tsx` | Every command and its error messages, Tab completion and Up/Down history. |
-| `components.test.tsx` | The copy button, links, clicking a directory, the view-only poster's protections, and that certifications stay hidden. |
+| `components.test.tsx` | The copy button, links, clicking a directory, the view-only poster's protections, that certifications and SEG2900 stay hidden, and that both ParkingSporter pages match. |
 | `render.tsx` | `renderAt(path)`: renders the whole app at a URL. |
 | `setup.ts` | Stubs for browser features the test environment lacks. |
 | `__snapshots__/` | The saved HTML of every page. If you change content on purpose, run `npx vitest run -u` and review the diff. |

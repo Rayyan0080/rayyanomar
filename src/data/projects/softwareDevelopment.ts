@@ -64,17 +64,58 @@ export const softwareDevelopment: Project[] = [
     slug: 'parkingsporter',
     name: 'ParkingSporter',
     category: 'software-development',
-    summary: 'Full-stack mobile app built in a 36-hour sprint',
+    summary: 'Parking-violation reporting app for 3-1-1, built in 36 hours',
     year: '2025',
-    overview: 'A full-stack mobile application with a Java/Spring Boot backend and a React frontend, built in 36 hours.',
-    features: ['REST API integrating external APIs for incident detection, with response latency under 500 ms'],
-    technologies: ['Java', 'Spring Boot 3.4.1', 'MariaDB 11.6.2', 'React', 'Android Studio'],
-    contributions: ['Architected the backend, integrating Spring Boot with the React frontend.'],
+    overview:
+      'A full-stack mobile app that lets residents report parking violations to the city\'s 3-1-1 service. It has a Java/Spring Boot backend and a React frontend, and was built by a team in a 36-hour sprint at uOttaHack 7 (January 2025).',
+    problem:
+      'Reporting a parking violation is slow for residents, and every report costs 3-1-1 staff time and a vehicle trip. ParkingSporter lets a verified resident file a photo report that AI validates before a 3-1-1 worker reviews it, so tickets can be issued without the wasted time and travel.',
+    features: [
+      'User verification: an ID and a selfie are required to activate an account',
+      'Violation reporting: photos of the violating car and its plates; offline mode stores reports until connectivity is restored',
+      'AI validation: GROQ AI extracts the license plate from the photos',
+      'Database management: MariaDB holds the reports for 3-1-1 workers',
+      'Efficient processing: reviewed reports lead to ticket issuance',
+      'REST API integrating external APIs for incident detection, with response latency under 500 ms',
+    ],
+    technologies: ['GROQ AI', 'MariaDB 11.6.2', 'Spring Boot 3.4.1', 'ngrok', 'Java', 'React', 'Android Studio'],
+    architecture: [
+      'Mobile app (React frontend): residents verify their account with an ID and a selfie, then photograph the violating car and its plates',
+      'Reports made offline are stored on the device and sent once connectivity is restored',
+      'Java/Spring Boot backend exposes the REST API, reached by the app through an ngrok tunnel',
+      'GROQ AI extracts the license plate from each report to validate it',
+      'MariaDB stores the reports for 3-1-1 workers; a reviewed report leads to a ticket being issued',
+    ],
+    contributions: [
+      'Participant in a team project.',
+      'Architected the backend, integrating Spring Boot with the React frontend.',
+    ],
     achievements: ['Built at uOttaHack 7 (January 2025)'],
+    sections: [
+      {
+        heading: 'Benefits',
+        body: [
+          {
+            fields: [
+              ['Residents', '50% time savings and easy access to violation history'],
+              ['311 services', 'Saves 2 hours per report and reduces vehicle reliance'],
+              ['City', '$2 million annual savings from operational efficiency, and reduced carbon emissions'],
+            ],
+          },
+        ],
+      },
+      {
+        heading: 'README',
+        body: [
+          'Driving Spotter is the backend for the Driving Spotter mobile app, created for uOttaHack 7. It is written using:',
+          { list: ['Spring Boot 3.4.1', 'MariaDB 11.6.2'] },
+        ],
+      },
+    ],
     related: [
-      { label: 'Hackathon entry', href: '/experience/hackathons/parkingsporter' },
       { label: 'Backend repository (Driving Spotter)', href: 'https://github.com/zahinabrer5/driving-spotter-backend' },
       { label: 'DoraHacks submission', href: 'https://dorahacks.io/buidl/21593' },
+      { label: 'LinkedIn post', href: 'https://www.linkedin.com/posts/rayyanomar_uottahack-hackathon-learning-ugcPost-7287198124236759041-XxQ0/' },
     ],
   },
   {

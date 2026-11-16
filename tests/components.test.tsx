@@ -75,6 +75,23 @@ describe('view-only poster on the NRC page', () => {
   });
 });
 
+describe('hidden and mirrored pages', () => {
+  it('keeps SEG2900 out of the course list and unreachable', () => {
+    renderAt('/courses');
+    expect(screen.queryByText('SEG2900/')).toBeNull();
+    expect(renderAt('/courses/SEG2900').container.textContent).toContain('no such file or directory');
+  });
+
+  it('shows the same ParkingSporter page under /projects and /experience', () => {
+    const body = (path: string) => renderAt(path).container.querySelector('article')!.innerHTML.replace(/<header.*?<\/header>/, '');
+    expect(body('/experience/hackathons/parkingsporter')).toBe(body('/projects/software-development/parkingsporter'));
+  });
+
+  it('leaves no placeholder text on a page', () => {
+    expect(renderAt('/experience/sapna').container.textContent).not.toContain('to be added');
+  });
+});
+
 describe('certifications', () => {
   it('stay hidden while there are none', () => {
     renderAt('/');

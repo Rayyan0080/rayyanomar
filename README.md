@@ -32,7 +32,7 @@ Type anywhere on the page; input goes to the prompt. Commands run on Enter.
 ```text
 /
 ├── experience/      nrc/, hack-the-hill/, sapna/, hackathons/<event>/
-├── projects/        software-development/, engineering/, personal-projects/, university-projects/
+├── projects/        software-development/, personal-projects/, university-projects/
 ├── courses/         <COURSE>/assignments/<assignment>/, <COURSE>/labs/<lab>/
 ├── certifications/    (hidden until there is at least one)
 └── contact/
@@ -68,8 +68,8 @@ Content lives in typed data files in `src/data/`, separate from the navigation c
 renders any directory, so new entries need no new components. See [MAP.md](MAP.md)
 for what every file does.
 
-**Placeholders:** a field left out of an entry shows as `[to be added: …]` on its
-page. Fill it in by adding the field. Never write in a placeholder fact.
+**Empty fields:** a field left out of an entry gets no section on its page. Add the
+field to make the section appear. Never write in a placeholder fact.
 
 ### Adding things
 
