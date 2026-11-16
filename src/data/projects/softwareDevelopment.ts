@@ -53,10 +53,10 @@ export const softwareDevelopment: Project[] = [
     ],
     contributions: [
       'Team project; the repository is hosted on my account.',
-      'Orchestrated an event-driven architecture of 14 APIs and 7 specialized AI agents (résumé).',
+      'Orchestrated an event-driven architecture of 14 APIs and 7 specialized AI agents.',
     ],
     achievements: [
-      'Reduced decision-making latency for city operators by over 80%, from hours to minutes, by correlating cascading risks across transit and traffic (résumé).',
+      'Reduced decision-making latency for city operators by over 80%, from hours to minutes, by correlating cascading risks across transit and traffic.',
     ],
     related: [{ label: 'Hackathon entry', href: '/experience/hackathons/chronos-cloud' }],
   },
@@ -98,7 +98,7 @@ export const softwareDevelopment: Project[] = [
           {
             fields: [
               ['Residents', '50% time savings and easy access to violation history'],
-              ['311 services', 'Saves 2 hours per report and reduces vehicle reliance'],
+              ['3-1-1 services', 'Saves 2 hours per report and reduces vehicle reliance'],
               ['City', '$2 million annual savings from operational efficiency, and reduced carbon emissions'],
             ],
           },

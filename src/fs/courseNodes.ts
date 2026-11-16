@@ -48,7 +48,7 @@ function labNode(l: Lab): Draft {
 }
 
 function collectionNode(slug: string, title: string, items: Draft[], course: string): Draft[] {
-  return items.length ? [{ name: slug, title: `${course} ${title}`, summary: `${items.length} ${title.toLowerCase()}`, sections: [], children: items }] : [];
+  return items.length ? [{ name: slug, title: `${course} ${title}`, summary: `${items.length} ${title.toLowerCase().slice(0, items.length === 1 ? -1 : undefined)}`, sections: [], children: items }] : [];
 }
 
 export function courseNode(c: Course): Draft {

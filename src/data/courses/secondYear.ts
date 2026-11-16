@@ -11,7 +11,7 @@ export const secondYear: Course[] = [
     descriptionSource: 'CSI2110 syllabus, Spring/Summer 2026 (official calendar description)',
     concepts: ['Abstract data types and Big-O analysis', 'Linked lists, stacks, queues and deques', 'Priority queues and heaps', 'Sorting (insertion, merge, quick, heap sort)', 'Graphs: BFS, DFS, shortest paths', 'String pattern matching'],
     specs: ['Language: Java', 'Coursework: 5 labs, about 1,900 lines of Java', 'Textbook: Goodrich, Tamassia and Goldwasser, Data Structures and Algorithms in Java'],
-    links: [{ label: 'Repository', href: `${GH}/CSI-2110-Labs` }],
+    links: [{ label: 'View on GitHub', href: `${GH}/CSI-2110-Labs` }],
     labs: [
       {
         slug: 'lab-1', specs: ['Language: Java (JDK standard library)', '7 source files, about 454 lines', 'Entry point: Main.main', 'java.util.Arrays, java.util.Random'], number: '1', name: 'Lab 1: Sequence ADTs and Linked List Fundamentals',
@@ -99,7 +99,7 @@ export const secondYear: Course[] = [
       {
         heading: 'Technical skills and methodologies applied',
         body: [
-          'This project was a masterclass in constraint-driven problem-solving. Bringing this from concept to physical reality allowed me to deeply sharpen my skills in:',
+          'This project taught me to solve problems under tight constraints. Taking it from concept to a working product built my skills in:',
           {
             list: [
               '3D Printing & Rapid Prototyping: Managing physical manufacturing constraints, optimizing print orientations, and working with PLA materials.',
@@ -134,7 +134,7 @@ export const secondYear: Course[] = [
     descriptionSource: 'uOttawa calendar (earlier edition, summarized)',
     concepts: ['Object-oriented design and UML', 'Team development with Git and GitHub', 'Android app development (activities, intents, layouts)', 'Client-server architecture with frameworks', 'Cloud databases (Firebase)', 'UI testing with Espresso'],
     specs: ['Languages: Java (desktop and Android)', 'Android: Gradle (Kotlin DSL)', 'Backends: Firebase Realtime Database, Firebase Authentication and Cloud Firestore', 'Frameworks: OCSF client-server framework'],
-    links: [{ label: 'Repository', href: `${GH}/SEG2105-Coursework` }],
+    links: [{ label: 'View on GitHub', href: `${GH}/SEG2105-Coursework` }],
     assignments: [
       {
         slug: 'simplechat', concepts: ['Client-server architecture', 'Framework hook methods (AbstractClient / AbstractServer)', 'Sockets and threads', 'Command parsing in a console UI'], specs: ['Language: Java', '6 source files, about 601 lines, plus the OCSF framework', 'Entry points: ClientConsole (client) and ServerConsole (server)', 'Default port: 5555 over TCP sockets', 'Test harness: SemiAutoChatRunner'],

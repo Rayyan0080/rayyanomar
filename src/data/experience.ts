@@ -90,19 +90,19 @@ export const experience: Experience[] = [
     organization: 'uOttawa SAPNA',
     role: 'Director of Event Management and Logistics',
     overview:
-      'I led the end-to-end planning and execution of large-scale professional networking and social events for over 150 participants. My role encompassed everything from securing venues and coordinating equipment and catering deliveries, to directly hosting and public speaking at our social gatherings and team-building activities. I am proud to have successfully orchestrated these complex logistical operations to deliver seamless, engaging experiences for our community.',
+      'I planned and ran professional networking and social events for more than 150 participants. I booked venues, coordinated equipment and catering deliveries, and hosted the social events and team-building activities myself.',
     responsibilities: [
-      'Event Operations: Directed end-to-end event logistics, including venue selection, scheduling, and operational roadmaps for professional and social events.',
-      'Vendor & Supply Management: Coordinated food, beverage, and equipment deliveries for large-scale gatherings exceeding 150 attendees.',
-      'Hosting & Public Speaking: Acted as the primary host and speaker for social events, facilitating group games and ensuring high attendee engagement.',
-      'On-Site Execution: Managed real-time logistics and troubleshooting during events to ensure seamless delivery and participant satisfaction.',
+      'Event operations: planned venues, schedules and run-of-show for professional and social events.',
+      'Vendors and supplies: coordinated food, drink and equipment deliveries for events of more than 150 attendees.',
+      'Hosting and public speaking: main host and speaker at social events, including running the group games.',
+      'On-site: handled logistics and fixed problems as they came up during events.',
     ],
     skills: [
-      'Event Planning & Management',
-      'Logistics & Operations Coordination',
-      'Public Speaking & Hosting',
-      'Vendor Management',
-      'Time Management & Organization',
+      'Event planning and management',
+      'Logistics and operations coordination',
+      'Public speaking and hosting',
+      'Vendor management',
+      'Time management and organization',
     ],
   },
   {
@@ -154,7 +154,7 @@ export const experience: Experience[] = [
       {
         slug: 'chronos-cloud',
         summary: 'Chronos Cloud - AI smart city command center',
-        organization: 'Chronos Cloud (hackathon project)',
+        organization: 'uOttaHack 8',
         role: 'Participant (team)',
         dates: '2026',
         contributions: [

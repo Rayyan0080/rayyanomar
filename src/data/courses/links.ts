@@ -4,7 +4,7 @@ import type { Link } from '../../types';
 export const GH = 'https://github.com/Rayyan0080';
 
 /** Link to a folder (or file) inside one of the course repositories. */
-export const src = (repo: string, branch: string, path: string, label = 'Source code'): Link[] => [
+export const src = (repo: string, branch: string, path: string, label = 'View on GitHub'): Link[] => [
   { label, href: encodeURI(`${GH}/${repo}/tree/${branch}/${path}`) },
 ];
 export const py = (path: string) => src('phythone-coursework', 'main', path);
