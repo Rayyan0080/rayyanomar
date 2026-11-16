@@ -44,7 +44,7 @@ export const softwareDevelopment: Project[] = [
       'Graceful fallbacks to mock data and rules when external services are unavailable',
     ],
     technologies: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'MongoDB', 'NATS / Solace PubSub+', 'Gemini', 'Cerebras', 'MapLibre GL', 'Docker'],
-    specs: ['Backend agents: Python with pydantic, nats-py, pymongo, Solace PubSub+ client and Sentry SDK', 'Dashboard: Next.js 14, React 18, TypeScript 5, MapLibre GL 4', 'Infrastructure: Docker Compose with NATS 2.10, MongoDB 7.0 and mongo-express', 'Simulation source in C++ (QNX grid simulator)'],
+    specs: ['Backend agents: Python with pydantic, nats-py, pymongo, Solace PubSub+ client and Sentry SDK', 'Dashboard: Next.js 14, React 18, TypeScript 5, MapLibre GL 4', 'Infrastructure: Docker Compose with NATS 2.10, MongoDB and mongo-express', 'Simulation source in C++ (QNX grid simulator)'],
     architecture: [
       'Event sources (crisis generator, live data adapters, flight plans) publish to a message broker (NATS locally, Solace PubSub+ in production)',
       'Python agent services (coordinator, autonomy router, risk agents) consume events',
