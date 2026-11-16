@@ -1,7 +1,7 @@
 /** Turns projects from data/projects/ into directories, adding GitHub metadata. */
 import type { Field, Project, RepoInfo } from '../types';
 import type { Draft } from './FsNode';
-import { links, optionalList, optionalText } from './sections';
+import { optionalList, optionalText } from './sections';
 import githubData from '../data/github.json';
 
 const github = githubData as Record<string, RepoInfo>;
@@ -38,8 +38,7 @@ export function projectNode(p: Project): Draft {
       ...optionalList('Achievements', p.achievements),
       ...optionalList('Technical specifications', p.specs),
       ...(p.sections ?? []),
-      { heading: 'Links', body: [{ fields: linkFields }] },
-      ...links('Related', p.related),
+      { heading: 'Links', body: [{ fields: linkFields }, ...(p.related?.length ? [{ links: p.related }] : [])] },
     ],
   };
 }
