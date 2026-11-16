@@ -66,6 +66,7 @@ export const secondYear: Course[] = [
         heading: 'Course project: board game accessibility system',
         body: [
           'A modular, wheelchair-mountable gaming system that lets a young user with limited mobility play board games independently.',
+          "Presented at the University of Ottawa's Design Day with my teammates Abdurrahman Shearzad, Vaibhav Bhadrachalam and Micael Gourde.",
         ],
       },
       {

@@ -107,14 +107,15 @@ export const experience: Experience[] = [
     ],
   },
   {
-    slug: 'capital-technologies',
-    summary: 'Chair of the Board of Directors, Capital Technologies',
-    organization: 'Capital Technologies',
+    slug: 'capital-technology-network',
+    summary: 'Chair of the Board of Directors, Capital Technology Network',
+    organization: 'Capital Technology Network (Réseau technologique de la capitale)',
+    organizationDescription: 'The student organization behind the Hack the Hill hackathon.',
     role: 'Chair of the Board of Directors',
     dates: '2026',
     location: 'University of Ottawa, Ottawa, ON',
     overview:
-      'I chair the board of Capital Technologies. I help make decisions for the organization and take on the tasks that need attention and that the team cannot handle alone, drawing on my experience in software engineering, logistics and management.',
+      'I chair the board of Capital Technology Network. I help make decisions for the organization and take on the tasks that need attention and that the team cannot handle alone, drawing on my experience in software engineering, logistics and management.',
     responsibilities: [
       'Help make decisions for the organization as chair of the board.',
       'Take on tasks that need attention and cannot be done by the team alone.',
