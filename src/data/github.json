@@ -1,8 +1,8 @@
 {
-  "chronosccloud.tech": {
-    "name": "chronosccloud.tech",
+  "chronoscloud.tech": {
+    "name": "chronoscloud.tech",
     "description": "",
-    "url": "https://github.com/Rayyan0080/chronosccloud.tech",
+    "url": "https://github.com/Rayyan0080/chronoscloud.tech",
     "homepage": "",
     "pagesUrl": "",
     "languages": [
@@ -17,12 +17,12 @@
     ],
     "topics": [],
     "createdAt": "2026-01-17",
-    "updatedAt": "2026-11-04"
+    "updatedAt": "2026-11-16"
   },
-  "convibecooding": {
-    "name": "convibecooding",
+  "convibecoding": {
+    "name": "convibecoding",
     "description": "",
-    "url": "https://github.com/Rayyan0080/convibecooding",
+    "url": "https://github.com/Rayyan0080/convibecoding",
     "homepage": "",
     "pagesUrl": "",
     "languages": [
@@ -31,7 +31,20 @@
     ],
     "topics": [],
     "createdAt": "2026-01-24",
-    "updatedAt": "2026-01-24"
+    "updatedAt": "2026-11-16"
+  },
+  "CSI-2110-Labs": {
+    "name": "CSI-2110-Labs",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/CSI-2110-Labs",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Java"
+    ],
+    "topics": [],
+    "createdAt": "2026-11-06",
+    "updatedAt": "2026-11-06"
   },
   "f1-Dashboard": {
     "name": "f1-Dashboard",
@@ -47,6 +60,19 @@
     "topics": [],
     "createdAt": "2026-07-11",
     "updatedAt": "2026-11-04"
+  },
+  "ITI1121": {
+    "name": "ITI1121",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/ITI1121",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Java"
+    ],
+    "topics": [],
+    "createdAt": "2026-11-06",
+    "updatedAt": "2026-11-06"
   },
   "MCU.watchpath": {
     "name": "MCU.watchpath",
@@ -94,6 +120,19 @@
     "createdAt": "2026-06-07",
     "updatedAt": "2026-06-08"
   },
+  "python-coursework": {
+    "name": "python-coursework",
+    "description": "ITI1120 Programming I course materials, labs, and assignments",
+    "url": "https://github.com/Rayyan0080/python-coursework",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Python"
+    ],
+    "topics": [],
+    "createdAt": "2026-11-06",
+    "updatedAt": "2026-11-16"
+  },
   "rayyanomar": {
     "name": "rayyanomar",
     "description": "Personal portfolio website for Rayyan Omar",
@@ -103,11 +142,25 @@
     "languages": [
       "TypeScript",
       "CSS",
+      "JavaScript",
       "HTML"
     ],
     "topics": [],
     "createdAt": "2026-11-02",
-    "updatedAt": "2026-11-04"
+    "updatedAt": "2026-11-10"
+  },
+  "SEG2105-Coursework": {
+    "name": "SEG2105-Coursework",
+    "description": "",
+    "url": "https://github.com/Rayyan0080/SEG2105-Coursework",
+    "homepage": "",
+    "pagesUrl": "",
+    "languages": [
+      "Java"
+    ],
+    "topics": [],
+    "createdAt": "2026-11-06",
+    "updatedAt": "2026-11-06"
   },
   "SEG2105-Lab": {
     "name": "SEG2105-Lab",
@@ -164,15 +217,15 @@
     "createdAt": "2026-07-06",
     "updatedAt": "2026-07-06"
   },
-  "tictacto": {
-    "name": "tictacto",
+  "tictactoe": {
+    "name": "tictactoe",
     "description": "",
-    "url": "https://github.com/Rayyan0080/tictacto",
+    "url": "https://github.com/Rayyan0080/tictactoe",
     "homepage": "",
     "pagesUrl": "",
     "languages": [],
     "topics": [],
     "createdAt": "2025-01-10",
-    "updatedAt": "2025-01-10"
+    "updatedAt": "2026-11-16"
   }
 }

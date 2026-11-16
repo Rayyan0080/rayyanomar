@@ -89,6 +89,7 @@ export const experience: Experience[] = [
     summary: 'Director of Event Management and Logistics, uOttawa SAPNA',
     organization: 'uOttawa SAPNA',
     role: 'Director of Event Management and Logistics',
+    dates: 'Sep 2025 - Present',
     overview:
       'I planned and ran professional networking and social events for more than 150 participants. I booked venues, coordinated equipment and catering deliveries, and hosted the social events and team-building activities myself.',
     responsibilities: [
@@ -106,6 +107,57 @@ export const experience: Experience[] = [
     ],
   },
   {
+    slug: 'capital-technologies',
+    summary: 'Chair of the Board of Directors, Capital Technologies',
+    organization: 'Capital Technologies',
+    role: 'Chair of the Board of Directors',
+    overview:
+      'I chair the board of Capital Technologies. I help make decisions for the organization and take on the tasks that need attention and that the team cannot handle alone, drawing on my experience in software engineering, logistics and management.',
+    responsibilities: [
+      'Help make decisions for the organization as chair of the board.',
+      'Take on tasks that need attention and cannot be done by the team alone.',
+      'Bring software engineering, logistics and management experience to the board.',
+    ],
+    skills: ['Leadership', 'Decision making', 'Software engineering', 'Logistics', 'Management'],
+  },
+  {
+    slug: 'foss-club',
+    summary: 'VP of Technical Events, FOSS Club',
+    organization: 'Free and Open Source Software (FOSS) Club',
+    role: 'VP of Technical Events',
+    overview:
+      'I run technical events for the Free and Open Source Software (FOSS) Club. I recently presented the best free and open-source alternatives to popular proprietary software, and why the software we choose matters.',
+    responsibilities: [
+      'Plan and present technical events for the club.',
+      'Presented free and open-source alternatives to everyday proprietary tools, with demonstrations.',
+      'Share the presentations and download links so members can try the tools themselves.',
+      'Help grow the club community.',
+    ],
+    skills: ['Public speaking', 'Open-source software', 'Cybersecurity and privacy', 'Event planning'],
+    links: [{ label: 'Join the FOSS Club Discord', href: 'https://lnkd.in/gWeiKDwi' }],
+    sections: [
+      {
+        heading: 'Presenting open-source alternatives to proprietary software',
+        body: [
+          'As the VP of Technical Events at the Free and Open Source Software (FOSS) Club, I recently had the pleasure of presenting some of the best free and open-source alternatives to popular proprietary software!',
+          'It was an exciting opportunity to share my passion for open-source technology and raise awareness about why the software we choose matters.',
+          'Open-source software is about more than just saving money. It represents a movement toward greater digital freedom, transparency, and control over our technology.',
+          {
+            list: [
+              '🔐 Security and transparency: open-source code can be publicly inspected, audited, and improved, helping identify vulnerabilities and build trust',
+              '🛡️ Privacy and data ownership: greater control over how our information is stored, accessed, and shared',
+              "💻 Digital freedom: the freedom to use, modify, and distribute software without being tied to a single company's ecosystem",
+              '🌍 Community and innovation: a collaborative approach to building accessible technology that benefits everyone',
+            ],
+          },
+          'One of my favourite parts of the presentation was demonstrating how many powerful open-source alternatives are already available for the tools we use every day, often offering comparable or even better functionality.',
+          "I'll also be sharing my presentation, including links to download the alternatives discussed, so you can explore these tools and try them out yourself.",
+          'Because at the end of the day, you should have control over your software, your data, and your digital freedom.',
+        ],
+      },
+    ],
+  },
+  {
     slug: 'hackathons',
     summary: 'Hackathon participation and organizing',
     organization: 'Hackathons',
@@ -119,10 +171,10 @@ export const experience: Experience[] = [
         role: 'Participant (team)',
         dates: '2026',
         contributions: [
-          'Built AeroGuard (A.E.G.I.S. Garden), an AI-powered security operations (SOC) platform.',
+          'Built AeroGuard (A.E.G.I.S. Garden), a real-time security operations centre (SOC) platform, with a team of four in 24 hours.',
         ],
-        achievements: ['First Place, Best Use of Snowflake.'],
-        skills: ['FastAPI', 'Snowflake', 'MongoDB', 'Google Gemini'],
+        achievements: ['First Place, Best Use of Snowflake API (Major League Hacking).', 'Competed in the D3 Security challenge.'],
+        skills: ['FastAPI', 'Snowflake', 'MongoDB', 'Google Gemini', 'WebSockets', 'ElevenLabs'],
         links: [
           { label: 'AeroGuard project page', href: '/projects/software-development/aeroguard' },
           { label: 'Demo video', href: 'https://youtu.be/v50brOXF6v4' },
@@ -164,7 +216,7 @@ export const experience: Experience[] = [
         links: [
           { label: 'Chronos Cloud project page', href: '/projects/software-development/chronos-cloud' },
           { label: 'Devpost', href: 'https://devpost.com/software/chronoscloud-tech' },
-          { label: 'GitHub', href: 'https://github.com/Rayyan0080/chronosccloud.tech' },
+          { label: 'GitHub', href: 'https://github.com/Rayyan0080/chronoscloud.tech' },
           { label: 'Demo video', href: 'https://youtu.be/oAnwRMJ8bpg' },
           { label: 'LinkedIn post', href: 'https://www.linkedin.com/posts/rayyanomar_chronos-cloud-share-7420686774005571584-J34T/' },
         ],
@@ -227,6 +279,12 @@ export const experience: Experience[] = [
         organization: 'Hack the Hill',
         role: 'Organizer (Co-VP of Logistics)',
         dates: '2026',
+        contributions: [
+          'Ran logistics for 900+ participants over the 36-hour event: check-in, catering and fixing problems on the ground.',
+          'Led the Full-Stack Development and AI/ML workshop.',
+          'Judged projects and took part in the MLH Devpost workshop.',
+        ],
+        skills: ['Event operations', 'Logistics planning', 'Vendor negotiation', 'Team coordination'],
         links: [{ label: 'Full Hack the Hill entry', href: '/experience/hack-the-hill' }],
       },
     ],

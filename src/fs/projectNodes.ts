@@ -9,10 +9,6 @@ const github = githubData as Record<string, RepoInfo>;
 export function projectNode(p: Project): Draft {
   const repo = p.repo ? github[p.repo] : undefined;
   const demo = p.demo ?? (repo?.pagesUrl || repo?.homepage || undefined);
-  const technologies = [...(p.technologies ?? [])];
-  for (const lang of repo?.languages ?? []) {
-    if (!technologies.some(t => t.toLowerCase().includes(lang.toLowerCase()))) technologies.push(lang);
-  }
 
   // Rows with no value (no public repo or demo) are not drawn; see BlockView.
   const linkFields: Field[] = [
@@ -32,7 +28,7 @@ export function projectNode(p: Project): Draft {
       { heading: 'Overview', body: [p.overview, ...(p.year ? [`Year: ${p.year}`] : [])] },
       ...optionalText('Problem being solved', p.problem),
       ...optionalList('Main features', p.features),
-      ...optionalList('Technologies used', technologies),
+      ...optionalText('Technologies used', p.technologies?.join(', ')),
       ...optionalList('Architecture and implementation', p.architecture),
       ...optionalList('My contributions', p.contributions),
       ...optionalList('Challenges', p.challenges),

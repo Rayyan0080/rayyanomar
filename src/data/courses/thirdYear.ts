@@ -7,7 +7,7 @@ export const thirdYear: Course[] = [
     name: 'Analysis and Design of User Interfaces',
     description:
       'Psychological principles of human-computer interaction. Evaluation of user interfaces and usability engineering. Task analysis, user-centred design and prototyping. Conceptual models, design of windows and menus, and response time and feedback. Prerequisite: SEG 2105.',
-    descriptionSource: 'uOttawa calendar (2014-15 edition, summarized)',
+    descriptionSource: { label: 'uOttawa course catalogue', href: 'https://catalogue.uottawa.ca/en/courses/seg/' },
     concepts: ['User-centred design and prototyping', 'Visual communication and hierarchy', 'Designing for human cognition', 'Usability heuristics and evaluation', 'Data visualization', 'Internationalization'],
     specs: ['Front end: HTML/CSS, React, Bootstrap', 'Build: Vite and Create React App', 'Charts: Recharts', 'Hosting: GitHub Pages', 'Prototyping: Figma'],
     assignments: [
@@ -53,7 +53,7 @@ export const thirdYear: Course[] = [
     name: 'Software Requirements Analysis',
     description:
       'Techniques for eliciting requirements. Languages and models for representing requirements. Analysis and validation techniques, including need, goal and use case analysis. Prerequisite: SEG 2105.',
-    descriptionSource: 'uOttawa calendar (summarized)',
+    descriptionSource: { label: 'uOttawa course catalogue', href: 'https://catalogue.uottawa.ca/en/courses/seg/' },
     concepts: ['Requirements elicitation (interviews, surveys, observation)', 'Writing testable functional and non-functional requirements', 'Stakeholder analysis', 'MoSCoW prioritization', 'Traceability'],
     specs: ['Deliverables: written reports in LaTeX'],
     assignments: [
@@ -94,7 +94,7 @@ export const thirdYear: Course[] = [
     name: 'Software Design and Architecture',
     description:
       'An advanced look at software design, extending the study of design patterns, frameworks and architectures. Survey of middleware, evaluating and evolving designs, and the basics of reengineering and reverse engineering. Prerequisite: SEG 2105.',
-    descriptionSource: 'uOttawa course catalogue (summarized)',
+    descriptionSource: { label: 'uOttawa course catalogue', href: 'https://catalogue.uottawa.ca/en/courses/seg/' },
     concepts: ['Domain-driven design: subdomains and bounded contexts', 'Use case contracts and realizations', 'Component-based front ends', 'MVC and REST back ends', 'Dependency injection and services'],
     specs: ['Front end: Angular with TypeScript and RxJS', 'Back end: Kotlin with Spring Boot, built with Gradle', 'Other: Angular SSR with Express, Firebase via @angular/fire, springdoc OpenAPI'],
     assignments: [

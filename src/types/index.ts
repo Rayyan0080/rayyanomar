@@ -110,8 +110,8 @@ export interface Course {
   code: string;
   name: string;
   description?: string;
-  /** Where the description comes from, shown under it. */
-  descriptionSource?: string;
+  /** Where the description comes from, shown as a link under it. */
+  descriptionSource?: Link;
   /** Techniques used across the course. */
   concepts?: string[];
   specs?: string[];

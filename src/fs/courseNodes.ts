@@ -1,5 +1,5 @@
 /** Turns courses from data/courses/ (with their assignments and labs) into directories. */
-import type { Assignment, Course, Lab } from '../types';
+import type { Assignment, Course, Field, Lab } from '../types';
 import type { Draft } from './FsNode';
 import { links, note, optionalList, optionalText } from './sections';
 
@@ -58,8 +58,7 @@ export function courseNode(c: Course): Draft {
     summary: c.name,
     sections: [
       { heading: 'Course', body: [{ fields: [['code', c.code], ['name', c.name]] }] },
-      ...optionalText('Description', c.description),
-      ...(c.description && c.descriptionSource ? [{ heading: 'Source', body: [c.descriptionSource] }] : []),
+      ...(c.description ? [{ heading: 'Description', body: [c.description, ...(c.descriptionSource ? [{ fields: [['source', c.descriptionSource]] as Field[] }] : [])] }] : []),
       ...optionalList('Techniques used', c.concepts),
       ...optionalList('Technical specifications', c.specs),
       ...links('Repository', c.links),

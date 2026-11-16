@@ -8,7 +8,7 @@ export const secondYear: Course[] = [
     name: 'Data Structures and Algorithms',
     description:
       'The concept of abstract data types. Simple methods of complexity analysis. Trees. The search problem: balanced trees, binary trees, hashing. Sorting. Graphs and simple graph algorithms: traversal, minimum spanning tree. Strings and pattern matching. Prerequisites: ITI 1121, MAT 1348.',
-    descriptionSource: 'CSI2110 syllabus, Spring/Summer 2026 (official calendar description)',
+    descriptionSource: { label: 'uOttawa course catalogue', href: 'https://catalogue.uottawa.ca/en/courses/csi/' },
     concepts: ['Abstract data types and Big-O analysis', 'Linked lists, stacks, queues and deques', 'Priority queues and heaps', 'Sorting (insertion, merge, quick, heap sort)', 'Graphs: BFS, DFS, shortest paths', 'String pattern matching'],
     specs: ['Language: Java', 'Coursework: 5 labs, about 1,900 lines of Java', 'Textbook: Goodrich, Tamassia and Goldwasser, Data Structures and Algorithms in Java'],
     links: [{ label: 'View on GitHub', href: `${GH}/CSI-2110-Labs` }],
@@ -60,7 +60,7 @@ export const secondYear: Course[] = [
     name: 'Introduction to Product Development for Engineers and Computer Scientists',
     description:
       'A hands-on, team-based introduction to product development for engineers and computer scientists. A "Design for X" approach is applied in open-ended, client-based design projects, covering economics, sustainability, business models, marketing, ethics and intellectual property. Prerequisite for software engineering: SEG 2900.',
-    descriptionSource: 'uOttawa course catalogue (summarized)',
+    descriptionSource: { label: 'uOttawa course catalogue', href: 'https://catalogue.uottawa.ca/en/courses/seg/' },
     sections: [
       {
         heading: 'Course project: board game accessibility system',
@@ -131,7 +131,7 @@ export const secondYear: Course[] = [
     name: 'Introduction to Software Engineering',
     description:
       'Principles of software engineering: requirements, design and testing. Review of object orientation, object-oriented analysis with UML, frameworks and APIs, client-server architecture, and an introduction to user interface technology. Prerequisite: ITI 1121.',
-    descriptionSource: 'uOttawa calendar (earlier edition, summarized)',
+    descriptionSource: { label: 'uOttawa course catalogue', href: 'https://catalogue.uottawa.ca/en/courses/seg/' },
     concepts: ['Object-oriented design and UML', 'Team development with Git and GitHub', 'Android app development (activities, intents, layouts)', 'Client-server architecture with frameworks', 'Cloud databases (Firebase)', 'UI testing with Espresso'],
     specs: ['Languages: Java (desktop and Android)', 'Android: Gradle (Kotlin DSL)', 'Backends: Firebase Realtime Database, Firebase Authentication and Cloud Firestore', 'Frameworks: OCSF client-server framework'],
     links: [{ label: 'View on GitHub', href: `${GH}/SEG2105-Coursework` }],
@@ -151,7 +151,19 @@ export const secondYear: Course[] = [
       {
         slug: 'otams', concepts: ['Role-based access control', 'Approval workflows', 'Team development with Git'], specs: ['Platform: Android (Java), Gradle', 'Backend: Firebase Authentication and Cloud Firestore'],
         name: 'Course Project: OTAMS Tutoring App (Group 7)',
-        objective: 'Team Android app for booking tutoring sessions. See the project page for details.',
+        objective: 'The course project: a team of four built OTAMS, an Android app where students book tutoring sessions, tutors publish their availability and administrators approve who can join. It was delivered in four graded deliverables.',
+        requirements: [
+          'Role-based registration and login for students, tutors and administrators',
+          'Administrators approve or reject registrations before an account can log in',
+          'Tutors publish availability in 30-minute slots that cannot overlap',
+          'Students search tutors by course, book and cancel sessions, and rate tutors',
+        ],
+        tools: ['Java', 'Android Studio', 'Firebase Authentication', 'Cloud Firestore', 'Espresso'],
+        implementation: [
+          'Backend: account creation logic, the Firestore schema and the user status model',
+          'Administrator side: the approval workflow and blocking login until an account is approved',
+          'Merged the final deliverable and submitted the final report',
+        ],
         links: [{ label: 'Project page', href: '/projects/university-projects/otams' }],
       },
     ],
