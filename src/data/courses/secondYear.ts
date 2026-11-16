@@ -61,6 +61,70 @@ export const secondYear: Course[] = [
     description:
       'A hands-on, team-based introduction to product development for engineers and computer scientists. A "Design for X" approach is applied in open-ended, client-based design projects, covering economics, sustainability, business models, marketing, ethics and intellectual property. Prerequisite for software engineering: SEG 2900.',
     descriptionSource: 'uOttawa course catalogue (summarized)',
+    sections: [
+      {
+        heading: 'Course project: board game accessibility system',
+        body: [
+          'A modular, wheelchair-mountable gaming system that lets a young user with limited mobility play board games independently.',
+        ],
+      },
+      {
+        heading: 'The problem',
+        body: [
+          'A young user with limited mobility wanted to enjoy board games independently. Existing dice towers on the market were too small and required precise aiming, and standard card holders lacked the ability to attach to a wheelchair, leaving the user reliant on caregiver assistance to play.',
+        ],
+      },
+      {
+        heading: 'The engineering solution',
+        body: [
+          'Through rigorous iterative prototyping and direct client feedback, we engineered a completely modular, wheelchair-mountable gaming system using 3D-printed PLA parts. Kept strictly within a $50-100 manufacturing budget, the system features two primary mechanical assemblies.',
+        ],
+      },
+      {
+        heading: '3-axis articulated magnetic card holder',
+        body: [
+          'We engineered a custom clamp-on arm utilizing a base mount, interlocking arm frames, and a friction-locking fastening system (using long screws, counter screws, and wide screw lids for maximum clamp surface area and stability).',
+          'The arm moves in three dimensions:',
+          { list: ['360° swivel', '270° viewing angle', 'Smooth height adjustment'] },
+          'We paired this with custom-ordered metal playing cards that bend and shuffle like standard paper cards. Thanks to the magnetic face of the holder, the user doesn\'t need precise motor control; they can simply "slap on and slap off" their cards.',
+        ],
+      },
+      {
+        heading: 'Modular, high-tolerance dice tower',
+        body: [
+          'To eliminate the need for the user to aim their throws, we designed an oversized catch funnel that feeds directly into the tower and down into a contained dice tray so pieces don\'t roll off the table.',
+          'We heavily prioritized modularity: the funnel and tray easily detach, allowing all components to compactly nest and stack together for highly portable storage.',
+        ],
+      },
+      {
+        heading: 'Technical skills and methodologies applied',
+        body: [
+          'This project was a masterclass in constraint-driven problem-solving. Bringing this from concept to physical reality allowed me to deeply sharpen my skills in:',
+          {
+            list: [
+              '3D Printing & Rapid Prototyping: Managing physical manufacturing constraints, optimizing print orientations, and working with PLA materials.',
+              'Sizing & Mechanical Tolerancing: Calculating precise dimensions for friction joints, optimizing clamp tension for wheelchair mounting, and testing magnet pull-strength to balance hold vs. ease of release.',
+              'Hardware Assembly & Integration: Designing secure mechanical connections using counter-screws and stabilizing lids to eliminate wobble in the articulated arm.',
+              'Human-Centered & Accessible Design: Translating strict physical accessibility needs into tangible mechanical features.',
+              'Project Management: Coordinating strict 3D printing schedules and managing manufacturing timelines for custom parts.',
+              'Economic Analysis: Navigating tight budget constraints without compromising structural durability or user safety.',
+            ],
+          },
+          'Building a system that safely and effectively gives someone their independence back is exactly why I love engineering.',
+        ],
+      },
+      {
+        heading: 'Links',
+        body: [
+          {
+            links: [
+              { label: 'Full system demo and mechanical assembly breakdown (video)', href: 'https://www.youtube.com/watch?v=82Ez_bxukV8' },
+              { label: 'MakerRepo: download all the project files', href: 'https://makerepo.com/micaelgourde/2698.board-game-accessibility' },
+            ],
+          },
+        ],
+      },
+    ],
   },
   {
     code: 'SEG2105',

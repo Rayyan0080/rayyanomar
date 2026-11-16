@@ -117,6 +117,8 @@ export interface Course {
   specs?: string[];
   /** Course repository. */
   links?: Link[];
+  /** Extra sections specific to this course, e.g. its design project. */
+  sections?: Section[];
   /** Keeps the course in the data but leaves it out of the site. */
   hidden?: boolean;
   assignments?: Assignment[];

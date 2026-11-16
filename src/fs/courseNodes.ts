@@ -63,6 +63,7 @@ export function courseNode(c: Course): Draft {
       ...optionalList('Techniques used', c.concepts),
       ...optionalList('Technical specifications', c.specs),
       ...links('Repository', c.links),
+      ...(c.sections ?? []),
     ],
     children: [
       ...collectionNode('assignments', 'Assignments', (c.assignments ?? []).map(assignmentNode), c.code),
