@@ -108,7 +108,7 @@ export const softwareDevelopment: Project[] = [
         heading: 'README',
         body: [
           'Driving Spotter is the backend for the Driving Spotter mobile app, created for uOttaHack 7. It is written using:',
-          { list: ['Spring Boot 3.4.1', 'MariaDB 11.6.2'] },
+          { list: ['Spring Boot', 'MariaDB'] },
         ],
       },
     ],
