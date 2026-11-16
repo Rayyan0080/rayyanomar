@@ -27,7 +27,14 @@ export const softwareDevelopment: Project[] = [
       'Google Gemini, called through OpenRouter, produces the ranked and explained triage',
       'ElevenLabs turns critical incidents into voice alerts',
     ],
-    contributions: ['Team of four: Rayyan Omar, Yahya E, Gautam Khosla and Adam Jemmali.'],
+    contributions: [
+      'Worked on the FastAPI backend: the endpoints for incidents, triage and decisions, and the services behind them.',
+      'Set up the multi-agent AI pipeline: a triage agent analyses the incoming signals, a second critique agent reviews its result, and the output is checked against a strict JSON schema, with a repair-and-retry step when it does not match.',
+      'Built the orchestration that routes each task to the right model: Google Gemini for input that includes images, and models reached through OpenRouter for text reasoning, explanations and voice summaries.',
+      'Added a consensus check for high-risk actions: two independent models must agree, each with at least 70% confidence, or the system asks for more review instead of acting.',
+      'Made the AI API calls reliable with timeouts, retries and clear error messages, plus a safe fallback that asks for manual review when the AI services are unavailable.',
+      'Team of four: Rayyan Omar, Yahya E, Gautam Khosla and Adam Jemmali.',
+    ],
     challenges: [
       'Making real-time data and heavy AI processing work together without lag; solved by letting MongoDB handle real-time state and Snowflake handle analytics, each on its own.',
     ],

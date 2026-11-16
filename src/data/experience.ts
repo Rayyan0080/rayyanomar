@@ -111,6 +111,8 @@ export const experience: Experience[] = [
     summary: 'Chair of the Board of Directors, Capital Technologies',
     organization: 'Capital Technologies',
     role: 'Chair of the Board of Directors',
+    dates: '2026',
+    location: 'University of Ottawa, Ottawa, ON',
     overview:
       'I chair the board of Capital Technologies. I help make decisions for the organization and take on the tasks that need attention and that the team cannot handle alone, drawing on my experience in software engineering, logistics and management.',
     responsibilities: [
@@ -125,8 +127,10 @@ export const experience: Experience[] = [
     summary: 'VP of Technical Events, FOSS Club',
     organization: 'Free and Open Source Software (FOSS) Club',
     role: 'VP of Technical Events',
+    dates: '2026',
+    location: 'University of Ottawa, Ottawa, ON',
     overview:
-      'I run technical events for the Free and Open Source Software (FOSS) Club. I recently presented the best free and open-source alternatives to popular proprietary software, and why the software we choose matters.',
+      'I run technical events for the Free and Open Source Software (FOSS) Club at the University of Ottawa. I recently presented the best free and open-source alternatives to popular proprietary software, and why the software we choose matters.',
     responsibilities: [
       'Plan and present technical events for the club.',
       'Presented free and open-source alternatives to everyday proprietary tools, with demonstrations.',
