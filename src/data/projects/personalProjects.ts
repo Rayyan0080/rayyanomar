@@ -20,8 +20,8 @@ export const personalProjects: Project[] = [
       'Data validation for unique IDs, broken references and circular prerequisites',
       'Static deployment with a scheduled data-update workflow',
     ],
-    technologies: ['React 19', 'TypeScript', 'Vite', 'React Flow', 'Zustand', 'Fuse.js', 'Vitest'],
-    specs: ['React 19, TypeScript 6, Vite 8', 'Libraries: React Router 7, React Flow 11, Zustand 5, Fuse.js 7, Framer Motion, Lucide icons', 'Tests: Vitest 4 with Testing Library and jsdom', 'Linting: oxlint'],
+    technologies: ['React', 'TypeScript', 'Vite', 'React Flow', 'Zustand', 'Fuse.js', 'Vitest'],
+    specs: ['React, TypeScript, Vite', 'Libraries: React Router, React Flow, Zustand, Fuse.js, Framer Motion, Lucide icons', 'Tests: Vitest with Testing Library and jsdom', 'Linting: oxlint'],
     architecture: [
       'Typed data modules for movies, series, relationships, characters and universes',
       'Graph utilities for root detection, dependency trees and topological sorting',
@@ -44,7 +44,7 @@ export const personalProjects: Project[] = [
       'GitHub metadata synced at build time rather than requested per visit',
     ],
     technologies: ['React', 'TypeScript', 'Vite', 'React Router', 'GitHub Actions', 'GitHub Pages'],
-    specs: ['React 19, TypeScript 5.8, Vite 6', 'Styling: Tailwind CSS 4', 'Routing: React Router 7', 'Content built at compile time from typed data files; GitHub metadata synced with the gh CLI'],
+    specs: ['React, TypeScript, Vite', 'Styling: Tailwind CSS', 'Routing: React Router', 'Content built at compile time from typed data files; GitHub metadata synced with the gh CLI'],
     contributions: ['Sole developer.'],
   },
   {

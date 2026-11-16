@@ -133,7 +133,7 @@ export const secondYear: Course[] = [
       'Principles of software engineering: requirements, design and testing. Review of object orientation, object-oriented analysis with UML, frameworks and APIs, client-server architecture, and an introduction to user interface technology. Prerequisite: ITI 1121.',
     descriptionSource: 'uOttawa calendar (earlier edition, summarized)',
     concepts: ['Object-oriented design and UML', 'Team development with Git and GitHub', 'Android app development (activities, intents, layouts)', 'Client-server architecture with frameworks', 'Cloud databases (Firebase)', 'UI testing with Espresso'],
-    specs: ['Languages: Java (desktop and Android)', 'Android: Gradle (Kotlin DSL), minSdk 24, targetSdk 34-36', 'Backends: Firebase Realtime Database, Firebase Authentication and Cloud Firestore', 'Frameworks: OCSF client-server framework'],
+    specs: ['Languages: Java (desktop and Android)', 'Android: Gradle (Kotlin DSL)', 'Backends: Firebase Realtime Database, Firebase Authentication and Cloud Firestore', 'Frameworks: OCSF client-server framework'],
     links: [{ label: 'Repository', href: `${GH}/SEG2105-Coursework` }],
     assignments: [
       {
@@ -169,25 +169,25 @@ export const secondYear: Course[] = [
         links: seg('labs/lab-2-pointcp'),
       },
       {
-        slug: 'lab-3', specs: ['Platform: Android, written in Java', 'Build: Gradle (Kotlin DSL), minSdk 24, targetSdk 36, Java 11', '3 source files, about 154 lines', 'Libraries: AndroidX AppCompat, Material, ConstraintLayout', 'Default JUnit and Espresso test stubs'], number: '3', name: 'Lab 3: Calculator App',
+        slug: 'lab-3', specs: ['Platform: Android, written in Java', 'Build: Gradle (Kotlin DSL)', '3 source files, about 154 lines', 'Libraries: AndroidX AppCompat, Material, ConstraintLayout', 'Default JUnit and Espresso test stubs'], number: '3', name: 'Lab 3: Calculator App',
         objective: 'An Android calculator. Digit buttons build the current number, and operator buttons are handled with an Operator enum that tracks the pending operation.',
         concepts: ['Android Studio project setup', 'XML layouts', 'Button click handlers', 'UI state in an Activity'],
         links: seg('labs/lab-3-calculator'),
       },
       {
-        slug: 'lab-4', specs: ['Platform: Android, written in Java', 'Build: Gradle (Kotlin DSL), minSdk 24, targetSdk 34, Java 8', '6 source files, about 174 lines', 'Activities: MainActivity, LogoSelectorActivity, ConfirmationActivity', 'Libraries: AndroidX AppCompat, Material, ConstraintLayout'], number: '4', name: 'Lab 4: Team Logo App',
+        slug: 'lab-4', specs: ['Platform: Android, written in Java', 'Build: Gradle (Kotlin DSL)', '6 source files, about 174 lines', 'Activities: MainActivity, LogoSelectorActivity, ConfirmationActivity', 'Libraries: AndroidX AppCompat, Material, ConstraintLayout'], number: '4', name: 'Lab 4: Team Logo App',
         objective: 'A multi-screen Android app: enter a team name and postal code, pick a logo on a second screen, open the postal code in Google Maps with an implicit intent, and see a confirmation screen.',
         concepts: ['Explicit and implicit intents', 'startActivityForResult / onActivityResult', 'Passing Serializable objects between activities'],
         links: seg('labs/lab-4-team-logo'),
       },
       {
-        slug: 'lab-5', specs: ['Platform: Android instrumented tests (Java)', '2 test classes, about 59 lines', 'Libraries: Espresso, AndroidX Test (ActivityScenarioRule), JUnit 4'], number: '5', name: 'Lab 5: Espresso UI Tests',
+        slug: 'lab-5', specs: ['Platform: Android instrumented tests (Java)', '2 test classes, about 59 lines', 'Libraries: Espresso, AndroidX Test (ActivityScenarioRule), JUnit'], number: '5', name: 'Lab 5: Espresso UI Tests',
         objective: 'Instrumented Espresso tests for a student registration screen that type into the form, press register, and check the validation errors shown.',
         concepts: ['Android instrumented testing', 'ActivityScenarioRule', 'Espresso onView / perform / check', 'Input validation'],
         links: seg('labs/lab-5-espresso-tests'),
       },
       {
-        slug: 'firebase-lab', specs: ['Platform: Android, written in Java', 'Build: Gradle (Kotlin DSL), minSdk 24, targetSdk 36, Java 11', '5 source files, about 238 lines', 'Library: Firebase Realtime Database', 'Data: a "products" node of {id, name, price} records', 'Requires your own google-services.json'], name: 'Firebase Lab: Product Catalog',
+        slug: 'firebase-lab', specs: ['Platform: Android, written in Java', 'Build: Gradle (Kotlin DSL)', '5 source files, about 238 lines', 'Library: Firebase Realtime Database', 'Data: a "products" node of {id, name, price} records', 'Requires your own google-services.json'], name: 'Firebase Lab: Product Catalog',
         objective: 'An Android product catalog backed by Firebase Realtime Database. Products are added from a form, listed live, and updated or deleted from a dialog opened by a long press.',
         concepts: ['Firebase Realtime Database', 'Create, read, update and delete', 'Real-time listeners', 'Custom list adapters'],
         links: seg('labs/lab-firebase-product-catalog'),

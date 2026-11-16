@@ -44,7 +44,7 @@ export const softwareDevelopment: Project[] = [
       'Graceful fallbacks to mock data and rules when external services are unavailable',
     ],
     technologies: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'MongoDB', 'NATS / Solace PubSub+', 'Gemini', 'Cerebras', 'MapLibre GL', 'Docker'],
-    specs: ['Backend agents: Python with pydantic, nats-py, pymongo, Solace PubSub+ client and Sentry SDK', 'Dashboard: Next.js 14, React 18, TypeScript 5, MapLibre GL 4', 'Infrastructure: Docker Compose with NATS 2.10, MongoDB and mongo-express', 'Simulation source in C++ (QNX grid simulator)'],
+    specs: ['Backend agents: Python with pydantic, nats-py, pymongo, Solace PubSub+ client and Sentry SDK', 'Dashboard: Next.js, React, TypeScript, MapLibre GL', 'Infrastructure: Docker Compose with NATS, MongoDB and mongo-express', 'Simulation source in C++ (QNX grid simulator)'],
     architecture: [
       'Event sources (crisis generator, live data adapters, flight plans) publish to a message broker (NATS locally, Solace PubSub+ in production)',
       'Python agent services (coordinator, autonomy router, risk agents) consume events',
@@ -135,7 +135,7 @@ export const softwareDevelopment: Project[] = [
       'Flask web interface and a command-line interface',
     ],
     technologies: ['Python', 'Flask', 'MoviePy', 'gTTS', 'Pillow', 'Google Gemini', 'Ollama'],
-    specs: ['Language: Python', 'Web app: Flask 3.0 serving an HTML template', 'Video and audio: MoviePy 1.0.3, gTTS 2.5.3, Pillow 10.4', 'AI: google-generativeai 0.8.3, with a local Ollama client as an alternative', 'Config: python-dotenv (.env template)'],
+    specs: ['Language: Python', 'Web app: Flask serving an HTML template', 'Video and audio: MoviePy, gTTS, Pillow', 'AI: google-generativeai, with a local Ollama client as an alternative', 'Config: python-dotenv (.env template)'],
     architecture: ['Topic input, script generation, TTS audio, image generation, then MoviePy compositing into an MP4'],
     contributions: ['Sole contributor to the repository.'],
   },
