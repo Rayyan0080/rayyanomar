@@ -107,7 +107,7 @@ export const experience: Experience[] = [
     ],
   },
   {
-    slug: 'capital-technology-network',
+    slug: 'ctn',
     summary: 'Chair of the Board of Directors, Capital Technology Network',
     organization: 'Capital Technology Network (Réseau technologique de la capitale)',
     organizationDescription: 'The student organization behind the Hack the Hill hackathon.',

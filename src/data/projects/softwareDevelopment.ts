@@ -74,8 +74,14 @@ export const softwareDevelopment: Project[] = [
       'MongoDB stores events; a Next.js dashboard streams updates over server-sent events',
     ],
     contributions: [
-      'Team project; the repository is hosted on my account.',
-      'Orchestrated an event-driven architecture of 14 APIs and 7 specialized AI agents.',
+      'Integrated the 14 APIs the platform runs on: live city data (OC Transpo transit, OpenSky Network airspace, Ottawa traffic and Ontario 511), AI models (Google Gemini and Cerebras), messaging (NATS and Solace PubSub+), MongoDB, ElevenLabs voice, Sentry monitoring, Solana audit logging and the map and browser speech services.',
+      'Built the live-data layer: each source has an adapter that polls its API on a schedule and converts the raw data into one shared event format, so every agent reads the same kind of message.',
+      'Built the 7 specialized AI agents as separate Python services that communicate only through events on the message broker.',
+      'Detection agents: a transit risk agent that watches a rolling 15-minute window of vehicle data for delay clusters, bunching and stalled vehicles, and a trajectory insight agent that analyses flight plans for conflicts and hotspots.',
+      'Solution agents: airspace deconfliction and hotspot agents that each propose part of a solution, and a fix proposal agent that drafts a fix for every critical event.',
+      'Coordination and checking: a coordinator agent that merges all signals into one crisis picture and produces a recovery plan, and a verification agent that checks a deployed fix against live data and requests a rollback if it did not work.',
+      'Helped build the rest of the backend: the MongoDB event store and the autonomy router, which sends each plan to a human for approval before anything is executed.',
+      'Team of four; the repository is hosted on my account.',
     ],
     achievements: [
       'Reduced decision-making latency for city operators by over 80%, from hours to minutes, by correlating cascading risks across transit and traffic.',
