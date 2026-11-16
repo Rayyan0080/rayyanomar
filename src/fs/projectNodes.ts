@@ -14,9 +14,10 @@ export function projectNode(p: Project): Draft {
     if (!technologies.some(t => t.toLowerCase().includes(lang.toLowerCase()))) technologies.push(lang);
   }
 
+  // Rows with no value (no public repo or demo) are not drawn; see BlockView.
   const linkFields: Field[] = [
-    ['repository', repo ? { label: repo.url, href: repo.url } : 'Not public'],
-    ['live demo', demo ? { label: demo, href: demo } : 'None'],
+    ['repository', repo ? { label: repo.url, href: repo.url } : undefined],
+    ['live demo', demo ? { label: demo, href: demo } : undefined],
   ];
   if (repo) {
     linkFields.push(['created', repo.createdAt], ['updated', repo.updatedAt]);
@@ -38,7 +39,10 @@ export function projectNode(p: Project): Draft {
       ...optionalList('Achievements', p.achievements),
       ...optionalList('Technical specifications', p.specs),
       ...(p.sections ?? []),
-      { heading: 'Links', body: [{ fields: linkFields }, ...(p.related?.length ? [{ links: p.related }] : [])] },
+      {
+        heading: 'Links',
+        body: [...(linkFields.some(([, v]) => v) ? [{ fields: linkFields }] : []), ...(p.related?.length ? [{ links: p.related }] : [])],
+      },
     ],
   };
 }

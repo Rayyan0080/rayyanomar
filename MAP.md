@@ -123,11 +123,11 @@ directory and `NodePage` renders it. A field you leave out gets no section on th
 ### Project root
 | File | What it does |
 |---|---|
-| `index.html` | The HTML shell Vite fills in. |
+| `index.html` | The HTML shell Vite fills in. Points the browser-tab icon at `public/favicon.svg`. |
 | `vite.config.ts` | Vite setup (React, Tailwind plugin, test settings). |
 | `tsconfig.json` | TypeScript settings (strict; checks `src/` only). |
 | `scripts/sync-github.mjs` | Refreshes `src/data/github.json` using the `gh` CLI. |
-| `public/` | Files copied into the build as-is: `CNAME` (custom domain), `assets/Rayyan_Omar_Resume.pdf`, and `assets/nrc-poster.webp` (the NRC poster as a watermarked image; the original PDF is deliberately not in the repo). |
+| `public/` | Files copied into the build as-is: `CNAME` (custom domain), `favicon.svg` (the home-page logo drawn as pixels, shown in the browser tab), `assets/Rayyan_Omar_Resume.pdf`, and `assets/nrc-poster.webp` (the NRC poster as a watermarked image; the original PDF is deliberately not in the repo). |
 | `.github/workflows/deploy.yml` | Every push to `main` builds and deploys to GitHub Pages. |
 
 ## Common tasks
